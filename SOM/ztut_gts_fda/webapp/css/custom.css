@@ -1,0 +1,20 @@
+.noPadding{
+	padding-top: 0rem !Important;
+}
+
+.sapUiSizeCompact .sapUiFormContainerTitle>.sapUiFormTitle {
+    height: 2rem;
+    line-height: 2rem;
+    margin: 0rem;
+}
+
+.sapUiSizeCompact .sapUxAPObjectPageSubSectionHeaderTitle {
+    height: 1rem;
+    line-height: 1rem;
+    font-weight: bold;
+}
+
+.sapUiMedia-Std-Desktop .sapMSplitContainer:not(.sapMSplitContainerHideMode) .sapMSplitContainerDetail .sapUxAPObjectPageSubSectionHeader, .sapUiMedia-Std-Tablet .sapMSplitContainer:not(.sapMSplitContainerHideMode) .sapMSplitContainerDetail .sapUxAPObjectPageSubSectionHeader, html .sapUiContainer-Medium .sapMSplitContainer:not(.sapMSplitContainerHideMode) .sapMSplitContainerDetail .sapUxAPObjectPageSubSectionHeader {
+        padding: 0.5rem 0 0 0rem;
+    padding-left: 2rem;
+}

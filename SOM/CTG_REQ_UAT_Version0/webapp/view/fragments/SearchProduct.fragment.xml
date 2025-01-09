@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="Select Product" class="sapUiPopupWithPadding" items="{selectedProdModel>/matchedItems}" search="onFragVHelpSearch"
+		confirm="onProdSelect" cancel="onProdSelectionCancel">
+		<StandardListItem title="{selectedProdModel>ProdName}" description="{selectedProdModel>ProdDesc}"
+			info="{ path: 'selectedProdModel>DevPhase', formatter: '.formatter.formatDevPhDesc'}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

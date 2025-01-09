@@ -1,0 +1,80 @@
+<mvc:View controllerName="ZBP_CREATE.view.CreateBp" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<Page class="sapUiFioriObjectPage" navButtonPress="onNavBack" showNavButton="{device>/isPhone}" title="{i18n>createTitle}">
+		<content>
+			<!--<FlexBox height="30px" alignItems="Center" justifyContent="Center">-->
+			<!--	<items>-->
+			<!--		<Text text="">-->
+			<!--				<layoutData>-->
+			<!--					<FlexItemData growFactor="3" />-->
+			<!--				</layoutData>-->
+			<!--		</Text>-->
+					 <!--Actual Href is populated in CreateBP controller -->
+			<!--		<Link id="idhelplink" text="FAQs" emphasized="true" target="_blank" href="" class="sapUiSmallMarginEnd">-->
+			<!--				<layoutData>-->
+			<!--					<FlexItemData growFactor="1" />-->
+			<!--				</layoutData>-->
+			<!--		</Link>	-->
+			<!--	</items>-->
+			<!--</FlexBox>-->
+
+			<l:Grid defaultSpan="L12 M12 S12" width="auto">
+				<l:content>
+					<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="idCreateBpForm"
+						labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" title="New Business Partner">
+						<f:content>
+							<!-- Basic info -->
+							<Title text="Use complete/full or legal entity name for accurate results" emphasized="true" level="H2"/>
+							<Label required="true" text="Entity"/>
+							<Select change="onLiveChange" forceSelection="false" id="comboEntity" selectedKey="{newPartner>/Entity}">
+								<core:Item key="2" text="Customer"/>
+								<core:Item key="1" text="Vendor/Financial institution"/>
+							</Select>
+							<Label required="true" text="Name"/>
+							<!--               <Input id="txtName1" liveChange="onLiveChange" maxLength="40" value="{newPartner>/Name1}"/> -->
+							<Input id="txtName1" liveChange="onLiveChange" placeholder="Maximum 40 characters per line" type="text" value="{newPartner>/Name1}"
+								valueStateText="Name must not be empty. Maximum 40 characters." maxLength="40"/>
+							<Label text=""/>
+							<Input id="txtName2" value="{newPartner>/Name2}" placeholder="Maximum 40 characters per line"  valueStateText="Maximum 40 characters." maxLength="40"/>
+							<Label text=""/>
+							<Input id="txtName3" value="{newPartner>/Name3}" placeholder="Maximum 40 characters per line"  valueStateText="Maximum 40 characters." maxLength="40"/>
+							<Label text=""/>
+							<Input id="txtName4" value="{newPartner>/Name4}" placeholder="Maximum 40 characters per line"  valueStateText="Maximum 40 characters." maxLength="40"/>
+							<Label required="false" text="Street"/>
+							<Input id="txtStreet" liveChange="onLiveChange" placeholder="Maximum 40 characters  per line" value="{newPartner>/Street}"
+								valueStateText="Street must not be empty. Maximum 40 characters ." maxLength="40"/>
+							<Label required="true" text="City"/>
+							<Input id="txtCity" liveChange="onLiveChange" placeholder="Maximum 40 characters  per line" value="{newPartner>/City1}"
+								valueStateText="City must not be empty. Maximum 40 characters ." maxLength="40"/>
+							<Label required="true" text="Country"/>
+							<Select change="onCountryChange" forceSelection="false" id="idCountry" selectedKey="{newPartner>/Country}"/>
+							<Label id="lblRegion" text="Region"/>
+							<Select change="onRegionChange" forceSelection="false" id="idRegion" selectedKey="{newPartner>/Region}"/>
+						</f:content>
+						<Toolbar id="TB1">
+							<ToolbarSpacer/>
+							<Button id="Save" press="onSave" text="Submit" type="Accept"/>
+							<Button id="Cancel" press="onCancel" text="Cancel" type="Reject"/>
+							<ToolbarSpacer/>
+						</Toolbar>
+					</f:SimpleForm>
+					<!--<Toolbar>-->
+					<!-- <ToolbarSpacer/>-->
+					<!-- <Button id="Save" press="onSave" text="Submit" type="Accept" />-->
+					<!-- <Button id="Cancel" press="onCancel" text="Cancel" type="Reject" />-->
+					<!-- </Toolbar> -->
+				</l:content>
+			</l:Grid>
+		</content>
+		<footer>
+			<Toolbar>
+				<!-- <Button id="Save" type="Accept" text="Save"   press="onSave" /> -->
+				<!-- <Button id="Save" type="Accept" text="Save"   press="onSteve" /> -->				
+				<!--   <Button id="Save" press="onSave" text="Submit" type="Accept"/>
+        <Button id="Cancel" press="onCancel" text="Cancel" type="Reject"/> -->
+				<ToolbarSpacer/>
+				<Text text="{i18n>footerText1}"/><Text class="blue-text" text="{i18n>footerText2}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</mvc:View>

@@ -1,0 +1,28 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.WorkListVFCMgr" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="mainpage" title="{i18n>VFCMgrWorkListTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<OverflowToolbar>
+					<Button id="bSubmit" text="Submitted" type="Emphasized" press="onSubmitClick"></Button>
+					<Button id="bProgress" text="In-Progress" type="Transparent" press="onProgressClick"></Button>
+					<Button id="bReturn" text="Returned" type="Transparent" press="onReturnClick"></Button>
+					<Button id="bAwaitSPI" text="Awaiting SPInput" type="Transparent" press="onAwaitSPIClick"></Button>
+					<Button id="bAwaitAprval" text="Awaiting Approval" type="Transparent" press="onAwaitAprvalClick"></Button>
+					<Button id="bDraft" text="All Drafts" type="Transparent" press="onDraftClick"></Button>
+				</OverflowToolbar>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

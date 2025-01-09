@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin">
+		<Table id="idShipToList" inset="false" items="{JMDL>/Campaign/ShipToList}" mode="None">
+			<headerToolbar>
+				<OverflowToolbar id="tblShipToListToolbar">
+					<Title id="tblShipToListHeader" text=""/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="{/#CampaignPartners/Kunag/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#CampaignPartners/SoldtoName/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#SoldToShipToQty/Kunwe/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#SoldToShipToQty/ShiptoName/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#SoldToShipToQty/AreaMgr/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#SoldToShipToQty/SplitQty/@sap:label}"/>
+				</Column>		
+				<Column>
+					<Text text="{/#SoldToShipToQty/Selected/@sap:label}"/>
+				</Column>				
+				
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{JMDL>Kunag}"> </Text>	
+						<Text text="{JMDL>SoldtoName}"> </Text>	
+						<Text text="{JMDL>Kunwe}"> </Text>	
+						<Text text="{JMDL>ShiptoName}"> </Text>	
+						<Text text="{JMDL>AreaMgr}"> </Text>	
+						<Text text="{JMDL>SplitQty}"> </Text>	
+						<Text text="{JMDL>Selected}"> </Text>							
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

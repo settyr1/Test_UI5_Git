@@ -1,0 +1,231 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:fdp="sap.f"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.AppendRequest" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:f="sap.ui.layout.form"
+	xmlns:unified="sap.ui.unified">
+	<App>
+		<pages>
+			<Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<fdp:DynamicPage id="dynamicPageId" headerExpanded="true" toggleHeaderOnTitleClick="false">
+						<fdp:title>
+							<fdp:DynamicPageTitle>
+								<fdp:heading>
+									<Title text="{i18n>AppendReqTitle}"/>
+								</fdp:heading>
+							</fdp:DynamicPageTitle>
+						</fdp:title>
+						<fdp:header>
+							<fdp:DynamicPageHeader pinnable="false">
+								<fdp:content>
+									<f:SimpleForm id="reqCreate2" editable="true" title="Append Request" layout="ResponsiveGridLayout" adjustLabelSpan="false" labelSpanXL="5"
+										labelSpanL="5" labelSpanM="4" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2"
+										columnsM="2" singleContainerFullSize="true" class="myHideTitle">
+										<f:content>
+											<Label text="Request No" design="Bold"/>
+											<Text id="reqNo" text="{createRequestModel>/ReqNo}"/>
+											<Label text="Pfizer Compound Name" design="Bold"/>
+											<Text id="prodName" text="{createRequestModel>/ProdName}"/>
+											<Label text="Other Names" design="Bold"/>
+											<Text text="{createRequestModel>/ProdNames}"/>
+											<Label text="Product Type" design="Bold" required="true"/>
+											<ComboBox id="prodType" width="180px" items="{ path: 'dropDownModel>/prodType', templateShareable : true }" editable="false"
+												change="onDropDownValueChange">
+												<items>
+													<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+												</items>
+											</ComboBox>
+											<Label text="Development Phase" design="Bold" required="true"/>
+											<ComboBox id="devPhase" width="180px" items="{ path: 'dropDownModel>/devPhase', templateShareable : true }" editable="false"
+												change="onDropDownValueChange">
+												<items>
+													<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+												</items>
+											</ComboBox>
+											<Label text="Requestor Group" design="Bold" required="true"/>
+											<ComboBox id="reqGrp" width="180px" items="{ path: 'dropDownModel>/reqGrp', templateShareable : true }" editable="false"
+												change="onDropDownValueChange">
+												<items>
+													<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+												</items>
+											</ComboBox>
+											<core:Title/>
+											<Label text="Pricing Model" design="Bold" required="true"/>
+											<Text text="{createRequestModel>/PricModDesc}"/>
+											<Label text="Is it Biologic?" design="Bold" required="true"/>
+											<Switch id="biologic" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onDropDownValueChange"/>
+											<Label text="Is it Biosimilar?" design="Bold" required="true"/>
+											<Switch id="biosim" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onDropDownValueChange"/>
+											<Label text="Has it reached POC?" design="Bold" required="true"/>
+											<Switch id="reachedPOC" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onDropDownValueChange"/>
+											<Label text="Product Source" design="Bold" required="true"/>
+											<RadioButtonGroup id="prodSource" columns="2" selectedIndex="0" valueState="None" editable="false" select="onDropDownValueChange">
+												<buttons>
+													<RadioButton id="pfizer" text="Pfizer" editable="true" valueState="None" selected="false" textAlign="Left"/>
+													<RadioButton id="external" text="3rd Party" editable="true" valueState="None" selected="false" textAlign="Left"/>
+												</buttons>
+											</RadioButtonGroup>
+										</f:content>
+									</f:SimpleForm>
+								</fdp:content>
+							</fdp:DynamicPageHeader>
+						</fdp:header>
+						<fdp:content>
+							<IconTabBar id="iTabBarDispReq" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false"
+								visible="true" selectedKey="iTFReqDet" select="onIconTabSelect">
+								<items>
+									<IconTabFilter id="shipDetailsSection" text="Shipment Details" icon="sap-icon://shipping-status" count="" design="Vertical" enabled="true" visible="true">
+										<content>
+											<Toolbar>
+												<ToolbarSpacer/>
+												<Label required="true" text="{i18n>requiredField}"/>
+											</Toolbar>
+											<f:SimpleForm id="shipmentForm" editable="true" title="Purchase Details" layout="ResponsiveGridLayout" adjustLabelSpan="false"
+												labelSpanXL="2" labelSpanL="2" labelSpanM="2" labelSpanS="12" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+												columnsL="1" columnsM="1" singleContainerFullSize="false" class="myHideTitle">
+												<f:content>
+													<Label text="Destination Markets" design="Bold" required="true"></Label>
+													<MultiComboBox id="markets" width="300px" items="{ path: 'destMrktDropDnModel>/destMarkets', templateShareable : true }" editable="false"
+														selectionFinish="onMrktSelectionClosed" selectionChange="onMarketSelect">
+														<items>
+															<core:Item text="{destMrktDropDnModel>Desc}" key="{destMrktDropDnModel>Value}"></core:Item>
+														</items>
+													</MultiComboBox>
+													<Label text="Selected Markets" design="Bold" visible="false"/>
+													<TextArea id="selectedMrkts" value="{createRequestModel>/Markets}" width="70%" editable="false"/>
+													<core:Title></core:Title>
+													<Table id="qtyStrnTab" items="{strengthsModel>/strengths}" width="84%" fixedLayout="false" showSeparators="None">
+														<headerToolbar>
+															<Toolbar>
+																<Title text="Formulation (Presentation)"></Title>
+																<Button id="bAddRow" icon="sap-icon://add" text="Row" press="addStrenTabRow" enabled="false" visible="true"/>
+															</Toolbar>
+														</headerToolbar>
+														<columns>
+															<Column width="95px">
+																<Text text="Concentration"/>
+															</Column>
+															<Column width="75px">
+																<Text text="Units"/>
+															</Column>
+															<Column width="95px">
+																<Text text="Per Unit"/>
+															</Column>
+															<Column width="75px">
+																<Text text="Units"/>
+															</Column>
+															<Column width="95px">
+																<Text text="Total Fill"/>
+															</Column>
+															<Column width="75px">
+																<Text text="Units"/>
+															</Column>
+															<Column width="50px"/>
+															<Column width="10px"/>
+														</columns>
+														<items>
+															<ColumnListItem>
+																<cells>
+																	<Input id="strn1" value="{strengthsModel>Strn1}" change="onDropDownValueChange" editable="false"/>
+																	<ComboBox id="sUoM1" value="{strengthsModel>SUoM1}" width="160px" items="{ path: 'dropDownModel>/uomValues', templateShareable : true }"
+																		editable="false" change="onDropDownValueChange">
+																		<items>
+																			<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+																		</items>
+																	</ComboBox>
+																	<Input id="strn2" value="{strengthsModel>Strn2}" change="onDropDownValueChange" editable="false"/>
+																	<ComboBox id="sUoM2" value="{strengthsModel>SUoM2}" width="160px" items="{ path: 'dropDownModel>/uomValues', templateShareable : true }"
+																		editable="false" change="onDropDownValueChange">
+																		<items>
+																			<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+																		</items>
+																	</ComboBox>
+																	<Input id="strn3" value="{strengthsModel>Strn3}" change="onDropDownValueChange" editable="false"/>
+																	<ComboBox id="sUoM3" value="{strengthsModel>SUoM3}" width="160px" items="{ path: 'dropDownModel>/uomValues', templateShareable : true }"
+																		editable="false" change="onDropDownValueChange">
+																		<items>
+																			<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+																		</items>
+																	</ComboBox>
+																	<Button id="bDeleteRow" icon="sap-icon://delete" press="deleteStrenTabRow" type="Reject" tooltip="Delete Row" visible="false"/>
+																	<Input id="rowIdent" value="{strengthsModel>RowId}" visible="false"/>
+																</cells>
+															</ColumnListItem>
+														</items>
+													</Table>
+												</f:content>
+											</f:SimpleForm>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter id="notessuggestSection" text="Notes &amp; Attachments" icon="sap-icon://attachment" count="" design="Vertical" enabled="true" visible="true">
+										<content>
+											<f:SimpleForm id="notesForm" editable="true" title="Notes Section" layout="ResponsiveGridLayout" adjustLabelSpan="false" labelSpanXL="2"
+												labelSpanL="2" labelSpanM="2" columnsXL="1" columnsL="1" columnsM="1" class="myHideTitle">
+												<f:content>
+													<Panel width="100%" headerText="Requester Notes">
+														<Text text="Please provide any additional comments."/>
+														<TextArea id="reqsterNotes" value="{createRequestModel>/Notes}" growing="true" width="100%" growingMaxLines="5" rows="5"
+															change="onDropDownValueChange" editable="false"/>
+													</Panel>
+													<Panel width="100%" headerText="VFC Manager Notes">
+														<Text text="Please provide any additional comments."/>
+														<TextArea id="vfcMgrNotes" value="{createRequestModel>/VFCNotes}" growing="true" width="100%" growingMaxLines="5" rows="5" editable="false"/>
+													</Panel>
+													<Panel width="100%" headerText="Approver Notes">
+														<Text text="Please provide any additional comments."/>
+														<TextArea id="apprvNotes" value="{createRequestModel>/ApprvNotes}" growing="true" width="100%" growingMaxLines="5" rows="5" editable="false"/>
+													</Panel>
+													<core:Title/>
+													<Panel width="100%" headerText="Attachments">
+														<Text text="Attach any documents here. You are required to provide an attachment under the following conditions: "/>
+														<Text
+															text="1) If the product has not reached Proof of Concept, you must use the Discovery Formula and attach the results. 2) If the product is First in Class, you are required to attach a pricing sheet."/>
+														<Text
+															text="3) If the product was procured from a 3rd Party, then you are required to attach a Purchase Order to verify the details. 4) If updating product characteristics, you must provide evidence of the change (ex. Record from SnapShot)."/>
+														<Table id="attachmentTab" width="36%" noDataText="No Files Uploaded" mode="MultiSelect" showSeparators="None"
+															selectionChange="onAttachRowSelect" items="{fileAttachmentModel>/attachments}">
+															<columns>
+																<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																	<unified:FileUploader id="fileUploader" icon="sap-icon://attachment" iconFirst="true" change="onSelectUploadFile" multiple="false"
+																		placeholder="Choose a file for upload...."/>
+																</Column>
+																<Column width="auto">
+																	<Button id="bDelAttmnt" icon="sap-icon://delete" press="onDeleteAttachment" type="Reject" tooltip="Delete"/>
+																</Column>
+															</columns>
+															<items>
+																<ColumnListItem type="Inactive">
+																	<cells>
+																		<Link text="{fileAttachmentModel>FileName}" press="onFileDownload" width="300px"/>
+																		<Input visible="false"/>
+																	</cells>
+																</ColumnListItem>
+															</items>
+														</Table>
+													</Panel>
+												</f:content>
+											</f:SimpleForm>
+										</content>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</fdp:content>
+					</fdp:DynamicPage>
+				</content>
+				<footer class="myFooter">
+					<Bar>
+						<contentRight>
+							<Button id="cancelReq" text="Cancel" type="Reject" press="onCancelReq" icon="sap-icon://sys-cancel" visible="false" class="myButtonStyle"></Button>
+							<Button id="editReq" text="Edit" type="Accept" press="onEditReq" visible="false" class="myFooter myButtonStyle" icon="sap-icon://edit"></Button>
+							<Button id="submitReq" text="Submit" type="Accept" press="onSubmitReq" visible="false" class="myFooter myButtonStyle"
+								icon="sap-icon://complete"></Button>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

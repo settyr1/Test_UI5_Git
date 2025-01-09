@@ -1,0 +1,108 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin" >
+
+		<f:SimpleForm id="formHeaderP01-1" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" 
+		    labelSpanXL="3" labelSpanL="3"	labelSpanM="3" 
+		    emptySpanXL="8" emptySpanL="7" emptySpanM="7" 
+		    columnsXL="1" columnsL="1" columnsM="1" class="sapUiNoMargin">
+			<f:content>
+				<core:Title text="PG01(PGA ID/Intented Use)" class="sapUiNoMargin"/>
+				<Label text="{/#FDA_PGENERAL/GaCode/@sap:label}" labelFor="inpGaCode" textAlign="Initial" width="100%" required="true">
+				</Label>
+				<Input value="{FDA>/GaCode}" id="inpGaCode" showValueHelp="false" 
+					valueState="{MandatoryFields>/GaCode}" maxLength="{= parseInt(${/#FDA_PGENERAL/GaCode/@maxLength}) }"/>
+				<Label text="{/#FDA_PGENERAL/Gapgmcode/@sap:label}" required="true">
+					<layoutData>
+						<l:ResponsiveFlowLayoutData weight="4"></l:ResponsiveFlowLayoutData>
+					</layoutData>
+				</Label>
+				<Select
+				   id="SelectGapgmcode"
+				   selectedKey="{FDA>/Gapgmcode}"
+				   change="onGapgmcodeChange"
+				   items="{ path: '/FDA_DROPDOWNSet', 
+				            sorter: { path: 'Ztext' },
+				            filters: [{ path: 'Zkey', operator:'EQ', value1:'PROGRAM' }]
+				           }" 
+                   showSecondaryValues="false">
+					<core:ListItem additionalText="{Zvalue}" key="{Zvalue}" text="{Ztext}"/>
+				</Select>					
+				<!--<Input value="{FDA>/Gapgmcode}" id="inpGapgmcode" showValueHelp="false" valueState="{MandatoryFields>/Gapgmcode}"-->
+				<!--	maxLength="{= parseInt(${/#FDA_PGENERAL/Gapgmcode/@maxLength}) }">-->
+				<!--	<layoutData>-->
+				<!--		<l:ResponsiveFlowLayoutData weight="1"></l:ResponsiveFlowLayoutData>-->
+				<!--	</layoutData>					-->
+				<!--</Input>-->
+				<Label text="{/#FDA_PGENERAL/Gaprocode/@sap:label}" required="true"/>
+
+				<Select
+				   id="SelectGaprocode"
+				   selectedKey="{FDA>/Gaprocode}"
+				   items="{ path: 'FDA>/ddProcess', 
+				            sorter: { path: 'Ztext' }
+				           }" 
+                   showSecondaryValues="false">
+					<core:ListItem additionalText="{FDA>Zvalue}" key="{FDA>Zvalue}" text="{FDA>Ztext}"/>
+				</Select>		
+				<!--<Input value="{FDA>/Gaprocode}" id="inpGaprocode" showValueHelp="false" valueState="{MandatoryFields>/Gaprocode}"-->
+				<!--	maxLength="{= parseInt(${/#FDA_PGENERAL/Gaprocode/@maxLength}) }"/>-->
+
+				<Label text="{/#FDA_PGENERAL/Intusecode/@sap:label}">
+					<layoutData>
+						<l:GridData span="XL3 L3 M3 S12" linebreak="true"></l:GridData>
+					</layoutData>					
+				</Label> 
+				<Input value="{FDA>/Intusecode}" id="inpIntusecode" showValueHelp="false" valueState="{MandatoryFields>/Intusecode}"
+					maxLength="{= parseInt(${/#FDA_PGENERAL/Intusecode/@maxLength}) }">
+					<layoutData>
+						<l:GridData span="XL5 L5 M3 S12"></l:GridData>
+					</layoutData>						
+				</Input>						
+			</f:content>
+		</f:SimpleForm>	
+
+		<f:SimpleForm id="formHeaderP01-2" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" 
+		    labelSpanXL="3" labelSpanL="3"	labelSpanM="3" 
+		    emptySpanXL="8" emptySpanL="8" emptySpanM="8" 
+		    columnsXL="1" columnsL="1" columnsM="1" class="sapUiNoMargin">
+			<f:content>				
+
+				<core:Title text="PG02(Prod Code)" emphasized="true" class="sapUiNoMargin"/>
+				<Label text="{/#FDA_PGENERAL/Itemtype/@sap:label} {/#FDA_PGENERAL/Itemtype/@maxLength}" required="true"></Label>
+				<Input value="{FDA>/Itemtype}" id="inpItemtype" showValueHelp="false" 
+					valueState="{MandatoryFields>/Itemtype}" maxLength="{= parseInt(${/#FDA_PGENERAL/Itemtype/@maxLength}) }"/>
+				<Label text="{/#FDA_PGENERAL/Prcodequal/@sap:label}" />
+				<Input value="{FDA>/Prcodequal}" id="inpPrcodequal" showValueHelp="false" valueState="{MandatoryFields>/Prcodequal}"
+					maxLength="{= parseInt(${/#FDA_PGENERAL/Prcodequal/@maxLength}) }"/>
+				<Label text="{/#FDA_PGENERAL/Prcodenum/@sap:label}" />
+				<Input value="{FDA>/Prcodenum}" id="inpPrcodenum" showValueHelp="false" valueState="{MandatoryFields>/Prcodenum}"
+					maxLength="{= parseInt(${/#FDA_PGENERAL/Prcodenum/@maxLength}) }">
+					<layoutData>
+						<l:GridData span="XL5 L5 M5 S5"></l:GridData>
+					</layoutData>						
+				</Input>
+
+					
+			</f:content>
+		</f:SimpleForm>		
+
+		<f:SimpleForm id="formHeaderP01-3" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" 
+		    labelSpanXL="3" labelSpanL="3"	labelSpanM="3" 
+		    emptySpanXL="8" emptySpanL="8" emptySpanM="8" 
+		    columnsXL="1" columnsL="1" columnsM="1" class="sapUiNoMargin">
+			<f:content>				
+
+				<core:Title text="PG07(Trade Name)" emphasized="true" class="sapUiNoMargin"/>
+				<Label text="{/#FDA_PGENERAL/Tradename/@sap:label} {/#FDA_PGENERAL/Tradename/@maxLength}" required="true"></Label>
+				<Input value="{FDA>/Tradename}" id="inpTradename" showValueHelp="false" 
+					valueState="{MandatoryFields>/Tradename}" maxLength="{= parseInt(${/#FDA_PGENERAL/Tradename/@maxLength}) }">
+					<layoutData>
+						<l:GridData span="XL5 L5 M5 S5"></l:GridData>
+					</layoutData>					
+				</Input>
+			</f:content>
+		</f:SimpleForm>			
+		
+	</VBox>
+</core:FragmentDefinition>

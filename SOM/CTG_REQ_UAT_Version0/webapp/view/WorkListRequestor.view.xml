@@ -1,0 +1,85 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.WorkListRequestor" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="mainpage" title="{i18n>WorkListTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<OverflowToolbar>
+					<Button id="bDraft" text="My Drafts" type="Emphasized" press="onDraftClick"></Button>
+					<Button id="bSubmit" text="Submitted" type="Transparent" press="onSubmitClick"></Button>
+					<Button id="bReturn" text="Returned" type="Transparent" press="onReturnClick"></Button>
+					<Button id="bProgress" text="In-Progress" type="Transparent" press="onProgressClick"></Button>
+					<Button id="bAppended" text="Appended" type="Transparent" press="onAppendClick"></Button>
+					<Button id="bActive" text="Active" type="Transparent" press="onActiveClick"></Button>
+				</OverflowToolbar>
+				<Table id="wrkListCommerTab" items="{reqHeadModel>/ReqHeadSet}" itemPress="onRequestSelect" fixedLayout="true">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title id="titleId" text="Requests"/>
+							<ToolbarSpacer/>
+							<Button id="createReqCM" text="Create Request" press="onCreateReq" type="Emphasized" visible="true" icon="sap-icon://create"></Button>
+							<SearchField id="searchRequstr" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+							<OverflowToolbarButton id="sortCommercial" text="Sort" press="onSort" icon="sap-icon://sort"/>
+							<Button id="filterCommercial" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="NeverOverflow"/>
+								</layoutData>
+							</Button>
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column id="ReqNo"><Text text="Request No"/></Column>
+						<Column id="ReqTyp"><Text text="Request Type"/></Column>
+						<Column id="ProdId"><Text text="Pfizer Compound Name"/></Column>
+						<Column id="ProdTyp"><Text text="Product Type"/></Column>
+						<Column id="Prodname"><Text text="Other Names"/></Column>
+						<Column id="DevPhDesc"><Text text="Phase"/></Column>
+						<Column id="HeadStatus"><Text text="Status"/></Column>
+						<Column id="RequstName"><Text text="Requestor"/></Column>
+						<Column id="SubmitDate"><Text text="Date Submitted"/></Column>
+						<Column id="EffectvDate"><Text text="Effective Date"/></Column>
+						<Column id="ExpiryDate"><Text text="Expiration Date"/></Column>
+						<Column id="ValName"><Text text="VFC Manager"/></Column>
+						<Column id="SPInptName"><Text text="SP Inputter"/></Column>
+						<Column id="ApprvName"><Text text="Approver"/></Column>
+						<Column id="ALLPosnr"><Text text="Line Items"/></Column>
+						<Column id="PricModl"><Text text="Pricing Model"/></Column>
+					</columns>
+					<items>
+						<ColumnListItem type="Inactive" highlight="{= ${reqHeadModel>Priority} === 'X' ? 'Error' : 'None'}"
+							tooltip="{= ${reqHeadModel>Priority} === 'X' ? 'Priority Request' : ''}">
+							<cells>
+								<Link id="idCMReqNo" text="{reqHeadModel>ReqNo}" press="onReqNoLinkClick"/>
+								<Text text="{reqHeadModel>ReqTyp}"></Text>
+								<Text text="{reqHeadModel>ProdId}"/>
+								<Text text="{reqHeadModel>ProdTypDesc}"/>
+								<Text text="{reqHeadModel>ProdName}"/>
+								<Text text="{reqHeadModel>DevPhDesc}"/>
+								<Text text="{reqHeadModel>HStatDesc}"/>
+								<Link id="idCMName" text="{reqHeadModel>RequstName}" press="onNameClick"/>
+								<Text text="{ parts: [{path : 'reqHeadModel>SubmitDate'}, {path : 'reqHeadModel>CreateDate'}], formatter: '.formatter.replaceDate' }"></Text>
+								<Text text="{reqHeadModel>EffDate}"/>
+								<Text text="{reqHeadModel>ExpDate}"/>
+								<Link text="{reqHeadModel>ValuName}" press="onNameClick"/>
+								<Link text="{reqHeadModel>SPInptName}" press="onNameClick"/>
+								<Link text="{reqHeadModel>ApprvName}" press="onNameClick"/>
+								<Text text="{reqHeadModel>Posnr}"/>
+								<Text text="{reqHeadModel>PricModDesc}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

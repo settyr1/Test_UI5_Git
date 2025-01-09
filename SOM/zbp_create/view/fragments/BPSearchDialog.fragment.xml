@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+	<Dialog
+	    id="idDialogCustomerPicker"
+	    type="Standard"
+        class="sapCaUiCCD"
+        title="Search Business Partner"
+        contentWidth="25%"
+        contentHeight="446px"
+        enableScrolling="false">
+        <content>
+            <!-- Each specific Page gets rendered here -->
+      </content>
+	        <buttons>
+	            <Button id="idDialogButtonLeft"
+	                text="Search"
+	                press="_onSearchBPDialog"
+	                type="Accept"
+	                />
+	            <Button id="idDialogButtonRight"
+	                text="Cancel"
+	                press="_onCancelBPDialog"
+	                type="Reject"
+	                />
+	        </buttons>      
+  	</Dialog>
+</core:FragmentDefinition>

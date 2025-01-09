@@ -1,0 +1,126 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<IconTabBar id="iTabIP" class="sapUiResponsiveContentPadding" select="onIconTabSelectIP">
+		<items>
+			<IconTabFilter id="iTabPC" key="PC" text="Pre-Commercial" icon="sap-icon://multiple-radar-chart" count="">
+				<content>
+					<Table id="wrkListPreCommerTab" items="{reqHPreComModel>/ReqHPreCM}" itemPress="onRequestSelect" mode="MultiSelect"
+						selectionChange="onSelectionChange" fixedLayout="false">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title id="titleIdPC" text="Requests"/>
+								<ToolbarSpacer/>
+								<Button id="idReqSPInpt" text="Request SP Input" press="onReqSPInput" type="Emphasized" visible="true" icon="sap-icon://sales-quote"></Button>
+								<SearchField id="searchPreCommercial" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+								<OverflowToolbarButton id="sortPreCommercial" text="Sort" press="onSort" icon="sap-icon://sort"/>
+								<Button id="filterPreCommercial" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+									<layoutData>
+										<OverflowToolbarLayoutData priority="NeverOverflow"/>
+									</layoutData>
+								</Button>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="PCReqNo"><Text text="Request No"/></Column>
+							<Column id="PCReqTyp"><Text text="Request Type"/></Column>
+							<Column id="PCProdId"><Text text="Pfizer Compound Name"/></Column>
+							<Column id="PCProdTyp"><Text text="Product Type"/></Column>
+							<Column id="PCProdname"><Text text="Other Names"/></Column>
+							<Column id="PCDevPhDesc"><Text text="Phase"/></Column>
+							<Column id="PCHeadStatus"><Text text="Status"/></Column>
+							<Column id="PCPriInd"><Text text="Primary Indicator"/></Column>
+							<Column id="PCPricModl"><Text text="Pricing Model"/></Column>
+							<Column id="PCSPInptName"><Text text="SP Inputter"/></Column>
+							<Column id="PCRequstName"><Text text="Requestor"/></Column>
+							<Column id="PCSubmitDate"><Text text="Date Submitted"/></Column>
+							<Column id="PCSbmtForInptDt"><Text text="Submitted For Input"/></Column>
+							<Column id="PCSbmtForApprvDt"><Text text="Submitted For Approval"/></Column>
+							<Column id="PCApprvName"><Text text="Approver"/></Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Inactive" highlight="{= ${reqHPreComModel>Priority} === 'X' ? 'Error' : 'None'}"
+								tooltip="{= ${reqHPreComModel>Priority} === 'X' ? 'Priority Request' : ''}">
+								<cells>
+									<Link id="idPCReqNo" text="{reqHPreComModel>ReqNo}" press="onReqNoLinkClick"/>
+									<Text text="{reqHPreComModel>ReqTyp}"></Text>
+									<Text text="{reqHPreComModel>ProdId}"/>
+									<Text text="{reqHPreComModel>ProdTypDesc}"/>
+									<Text text="{reqHPreComModel>ProdName}"/>
+									<Text text="{reqHPreComModel>DevPhDesc}"/>
+									<Text text="{reqHPreComModel>HStatDesc}"/>
+									<Text text="{reqHPreComModel>PriIndDesc}"/>
+									<Text text="{reqHPreComModel>PricModDesc}"/>
+									<ComboBox value="{reqHPreComModel>SPInptName}" width="180px" items="{ path: 'SPINamesModel>/spInptId', templateShareable : true }">
+										<items>
+											<core:Item text="{SPINamesModel>Desc}"></core:Item>
+										</items>
+									</ComboBox>
+									<Link id="idPCReqName" text="{reqHPreComModel>RequstName}" press="onNameClick"/>
+									<Text text="{reqHPreComModel>SubmitDate}"></Text>
+									<Text text="{reqHPreComModel>SubInptDate}"/>
+									<Text text="{reqHPreComModel>SubAprvDate}"/>
+									<Link id="idPCAPRVName" text="{reqHPreComModel>ApprvName}" press="onNameClick"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabFilter>
+			<IconTabFilter id="iTabCM" key="CM" text="Commercial" icon="sap-icon://pharmacy" count="">
+				<content>
+					<Table id="wrkListCommerTab" items="{reqHeadModel>/ReqHeadSet}" itemPress="onRequestSelect">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title id="titleIdCM" text="Requests"/>
+								<ToolbarSpacer/>
+								<SearchField id="searchCommercial" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+								<OverflowToolbarButton id="sortCommercial" text="Sort" press="onSort" icon="sap-icon://sort"/>
+								<Button id="filterCommercial" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+									<layoutData>
+										<OverflowToolbarLayoutData priority="NeverOverflow"/>
+									</layoutData>
+								</Button>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="CMReqNo"><Text text="Request No"/></Column>
+							<Column id="CMReqTyp"><Text text="Request Type"/></Column>
+							<Column id="CMProdId"><Text text="Pfizer Compound Name"/></Column>
+							<Column id="CMProdTyp"><Text text="Product Type"/></Column>
+							<Column id="CMProdname"><Text text="Other Names"/></Column>
+							<Column id="CMPricModl"><Text text="Pricing Model"/></Column>
+							<Column id="CMHeadStatus"><Text text="Status"/></Column>
+							<Column id="CMRequstName"><Text text="Requestor"/></Column>
+							<Column id="CMSubmitDate"><Text text="Date Submitted"/></Column>
+							<Column id="CMSbmtForInptDt"><Text text="Submitted For Input"/></Column>
+							<Column id="CMSbmtForApprvDt"><Text text="Submitted For Approval"/></Column>
+							<Column id="CMSPInptName"><Text text="SP Inputter"/></Column>
+							<Column id="CMApprvName"><Text text="Approver"/></Column>
+							<Column id="CMPosnr"><Text text="Line Items"/></Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Inactive" highlight="{= ${reqHeadModel>Priority} === 'X' ? 'Error' : 'None'}"
+								tooltip="{= ${reqHeadModel>Priority} === 'X' ? 'Priority Request' : ''}">
+								<cells>
+									<Link id="idCMReqNo" text="{reqHeadModel>ReqNo}" press="onReqNoLinkClick"/>
+									<Text text="{reqHeadModel>ReqTyp}"></Text>
+									<Text text="{reqHeadModel>ProdId}"/>
+									<Text text="{reqHeadModel>ProdTypDesc}"/>
+									<Text text="{reqHeadModel>ProdName}"/>
+									<Text text="{reqHeadModel>PricModDesc}"/>
+									<Text text="{reqHeadModel>HStatDesc}"/>
+									<Link id="idCMReqName" text="{reqHeadModel>RequstName}" press="onNameClick"/>
+									<Text text="{reqHeadModel>SubmitDate}"></Text>
+									<Text text="{reqHeadModel>SubInptDate}"/>
+									<Text text="{reqHeadModel>SubAprvDate}"/>
+									<Link id="idCMSPIName" text="{reqHeadModel>SPInptName}" press="onNameClick"/>
+									<Link id="idCMAPRVName" text="{reqHeadModel>ApprvName}" press="onNameClick"/>
+									<Text text="{reqHeadModel>Posnr}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

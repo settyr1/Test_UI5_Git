@@ -1,0 +1,117 @@
+<mvc:View
+	controllerName="zsdcampaign.controller.Object"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"	
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="true"
+		title="{i18n>appTitle}"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+
+		<semantic:content>
+
+		<f:SimpleForm id="idform" maxContainerCols="2" editable="true" layout="ResponsiveGridLayout" 
+		    class="sapUiNoMargin">
+			<f:content>				
+				<!--<core:Title text="{i18n>Campaign}" emphasized="true" class="sapUiNoMargin"/>-->
+				<Label text="{/#Campaign/CampId/@sap:label}" textAlign="Begin"></Label>
+				<Input value="{JMDL>/Campaign/CampId}"   
+					valueState="{mandatoryCampaign>/CampId}"
+					valueStateText="{i18n>EnterValue}"
+					editable="false"
+					maxLength="{= parseInt(${/#Campaign/CampId/@maxLength}) }"
+					>
+						<layoutData>
+							<l:GridData span="XL4 L4 M8 S12"></l:GridData>
+						</layoutData>
+				</Input>
+				<Label text="{/#Campaign/CampDesc/@sap:label}" textAlign="Begin"></Label>
+				<Input value="{JMDL>/Campaign/CampDesc}"   
+					valueState="{mandatoryCampaign>/CampDesc}"
+					valueStateText="{i18n>EnterValue}"
+					maxLength="{= parseInt(${/#Campaign/CampDesc/@maxLength}) }"
+					>
+						<layoutData>
+							<l:GridData span="XL4 L4 M8 S12"></l:GridData>
+						</layoutData>
+				</Input>
+				<Label text="{/#Campaign/DatabChar/@sap:label}" textAlign="Begin"></Label>
+					<DatePicker value="{JMDL>/Campaign/DatabChar}" 
+					valueFormat="yyyyMMdd" displayFormat="MM/dd/yyyy" change="bcHandleDateChange"
+					valueState="{mandatoryCampaign>/DatabChar}"
+					valueStateText="{i18n>EnterValue}"
+					>
+						<layoutData>
+							<l:GridData span="XL4 L4 M8 S12"></l:GridData>
+						</layoutData>
+					</DatePicker>				
+				<Label text="{/#Campaign/DatbiChar/@sap:label}" textAlign="Begin"></Label>
+					<DatePicker value="{JMDL>/Campaign/DatbiChar}" 
+					valueFormat="yyyyMMdd" displayFormat="MM/dd/yyyy" change="bcHandleDateChange"
+					valueState="{mandatoryCampaign>/DatbiChar}"
+					valueStateText="{i18n>EnterValue}"
+					>					
+						<layoutData>
+							<l:GridData span="XL4 L4 M8 S12"></l:GridData>
+						</layoutData>
+					</DatePicker>	
+			</f:content>
+		</f:SimpleForm>	
+		
+	<IconTabBar
+		id="idIconTabBarNoIcons"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				text="{i18n>BrandDiscount}">
+				<core:Fragment fragmentName="zsdcampaign.view.Fragments.CampaignBrands" type="XML" id="fgBrands"/>
+			</IconTabFilter>
+			<IconTabFilter
+				text="{i18n>Materials}">
+				<core:Fragment fragmentName="zsdcampaign.view.Fragments.CampaignMaterials" type="XML" id="fgMaterials"/>
+			</IconTabFilter>			
+			<IconTabFilter
+				text="{i18n>Partners}">
+				<core:Fragment fragmentName="zsdcampaign.view.Fragments.PartnerList" type="XML" id="fgPartnerList"/>
+				<!--<Text text="Attachments go here ..." />-->
+			</IconTabFilter>
+			<IconTabFilter
+				text="{i18n>ShipTo}">
+				<core:Fragment fragmentName="zsdcampaign.view.Fragments.ShipToList" type="XML" id="fgShipToList"/>
+				<!--<Text text="Attachments go here ..." />-->
+			</IconTabFilter>			
+		</items>
+	</IconTabBar>
+	
+ 		</semantic:content>
+
+		<semantic:customFooterContent>
+			<Button text="{i18n>export}" press="onExport"/>			
+			<Button text="{i18n>copy}" press="onCopy"/>			
+			<Button text="{i18n>save}" tooltip="{i18n>save}" press="onSave"/>
+		</semantic:customFooterContent>	
+					
+		<!--<semantic:sendEmailAction>-->
+		<!--	<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>-->
+		<!--</semantic:sendEmailAction>-->
+
+		<!--<semantic:shareInJamAction>-->
+		<!--	<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>-->
+		<!--</semantic:shareInJamAction>-->
+
+		<!--<semantic:saveAsTileAction>-->
+		<!--	<footerbar:AddBookmarkButton id ="shareTile" title="{objectView>/saveAsTileTitle}" />-->
+		<!--</semantic:saveAsTileAction>-->
+
+	</semantic:FullscreenPage>
+
+</mvc:View>

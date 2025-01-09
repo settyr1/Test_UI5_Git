@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table id="WrkListVFCMgrALL" items="{reqHeadModel>/ReqHeadSet}" itemPress="onRequestSelect">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title id="titleIdAll" text="Requests"/>
+				<ToolbarSpacer/>
+				<SearchField id="searchALL" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+				<OverflowToolbarButton id="sortALL" text="Sort" press="onSort" icon="sap-icon://sort"/>
+				<Button id="filterALL" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="ALLReqNo"><Text text="Request No"/></Column>
+			<Column id="ALLReqTyp"><Text text="Request Type"/></Column>
+			<Column id="ALLProdId"><Text text="Pfizer Compound Name"/></Column>
+			<Column id="ALLProdTyp"><Text text="Product Type"/></Column>
+			<Column id="ALLProdname"><Text text="Other Names"/></Column>
+			<Column id="ALLPrimInd"><Text text="Primary Indication"/></Column>
+			<Column id="ALLDevPhDesc"><Text text="Phase"/></Column>
+			<Column id="ALLPricModl"><Text text="Pricing Model"/></Column>
+			<Column id="ALLHeadStatus"><Text text="Status"/></Column>
+			<Column id="ALLRequstName"><Text text="Requestor"/></Column>
+			<Column id="ALLSubmitDate"><Text text="Date Submitted"/></Column>
+			<Column id="ALLReturnDate"><Text text="Date Returned"/></Column>
+			<Column id="ALLSbmtForInptDt"><Text text="Submitted For Input"/></Column>
+			<Column id="ALLSbmtForApprvDt"><Text text="Submitted For Approval"/></Column>
+			<Column id="ALLSPInptName"><Text text="SP Inputter"/></Column>
+			<Column id="ALLApprvName"><Text text="Approver"/></Column>
+			<Column id="ALLPosnr"><Text text="Line Items"/></Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Inactive" highlight="{= ${reqHeadModel>Priority} === 'X' ? 'Error' : 'None'}"
+				tooltip="{= ${reqHeadModel>Priority} === 'X' ? 'Priority Request' : ''}">
+				<cells>
+					<Link id="idAllReqNo" text="{reqHeadModel>ReqNo}" press="onReqNoLinkClick"/>
+					<Text text="{reqHeadModel>ReqTyp}"></Text>
+					<Text text="{reqHeadModel>ProdId}"/>
+					<Text text="{reqHeadModel>ProdTypDesc}"/>
+					<Text text="{reqHeadModel>ProdName}"/>
+					<Text text="{reqHeadModel>PrimInd}"/>
+					<Text text="{reqHeadModel>DevPhDesc}"/>
+					<Text text="{reqHeadModel>PricModDesc}"/>
+					<Text text="{reqHeadModel>HStatDesc}"/>
+					<Link id="idALLReqName" text="{reqHeadModel>RequstName}" press="onNameClick"/>
+					<Text text="{reqHeadModel>SubmitDate}"></Text>
+					<Text text="{reqHeadModel>ChangeDate}"></Text>
+					<Text text="{reqHeadModel>SubInptDate}"/>
+					<Text text="{reqHeadModel>SubAprvDate}"/>
+					<Link id="idALLSPIName" text="{reqHeadModel>SPInptName}" press="onNameClick"/>
+					<Link id="idALLAPRVName" text="{reqHeadModel>ApprvName}" press="onNameClick"/>
+					<Text text="{reqHeadModel>Posnr}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

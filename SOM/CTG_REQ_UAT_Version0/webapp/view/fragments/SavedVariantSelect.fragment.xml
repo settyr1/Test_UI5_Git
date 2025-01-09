@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog class="myDialogHStyle myDialogTitleStyle">
+		<content>
+			<Table mode="SingleSelectMaster" itemPress="handleClose" noDataText="No Saved Searches Found" items="{savedVariantModel>/}">
+				<ColumnListItem type="Active">
+					<cells>
+						<ObjectIdentifier title="{savedVariantModel>VariantId}"/>
+						<ObjectIdentifier title="{savedVariantModel>VariantDesc}"/>
+					</cells>
+				</ColumnListItem>
+				<columns>
+					<Column hAlign="Center">
+						<header>
+							<Text text="Report Name"/>
+						</header>
+					</Column>
+					<Column hAlign="Center">
+						<header>
+							<Text text="Description"/>
+						</header>
+					</Column>
+				</columns>
+			</Table>
+		</content>
+		<FlexBox justifyContent="End">
+			<Button text="Close" press="onClosePress" type="Emphasized" class="sapUiSmallMarginEnd" icon="sap-icon://inspect-down"></Button>
+		</FlexBox>
+	</Dialog>
+</core:FragmentDefinition>

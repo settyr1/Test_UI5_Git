@@ -1,0 +1,72 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.WorkListSPInput" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="mainpage" title="{i18n>SPInputterWorkListTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<OverflowToolbar>
+					<Button id="bAwaitSPInpt" text="Awaiting Input" type="Emphasized" press="onAwaitIPClick"></Button>
+					<Button id="bPriorSPInpt" text="Previous Input" type="Transparent" press="onPriorIPClick"></Button>
+				</OverflowToolbar>
+				<content>
+					<Table id="wrkListCommerTab" items="{reqHeadModel>/ReqHeadSet}" itemPress="onRequestSelect">
+						<headerToolbar>
+							<OverflowToolbar>
+								<Title id="titleId" text="Requests"/>
+								<ToolbarSpacer/>
+								<SearchField id="searchCommercial" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+								<OverflowToolbarButton id="sortCommercial" text="Sort" press="onSort" icon="sap-icon://sort"/>
+								<Button id="filterCommercial" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+									<layoutData>
+										<OverflowToolbarLayoutData priority="NeverOverflow"/>
+									</layoutData>
+								</Button>
+							</OverflowToolbar>
+						</headerToolbar>
+						<columns>
+							<Column id="ReqNo"><Text text="Request No"/></Column>
+							<Column id="ReqTyp"><Text text="Request Type"/></Column>
+							<Column id="ProdId"><Text text="Pfizer Compound Name"/></Column>
+							<Column id="ProdTyp"><Text text="Product Type"/></Column>
+							<Column id="Prodname"><Text text="Other Names"/></Column>
+							<Column id="DevPhDesc"><Text text="Phase"/></Column>
+							<Column id="PrimInd"><Text text="Primary Indication"/></Column>
+							<Column id="HeadStatus"><Text text="Status"/></Column>
+							<Column id="RequstName"><Text text="Requestor"/></Column>
+							<Column id="ValName"><Text text="VFC Manager"/></Column>
+							<Column id="SubmitDate"><Text text="Date Submitted"/></Column>
+						</columns>
+						<items>
+							<ColumnListItem type="Inactive" highlight="{= ${reqHeadModel>Priority} === 'X' ? 'Error' : 'None'}"
+								tooltip="{= ${reqHeadModel>Priority} === 'X' ? 'Priority Request' : ''}">
+								<cells>
+									<Link id="idCMReqNo" text="{reqHeadModel>ReqNo}" press="onReqNoClick"/>
+									<Text text="{reqHeadModel>ReqTyp}"></Text>
+									<Text text="{reqHeadModel>ProdId}"/>
+									<Text text="{reqHeadModel>ProdTypDesc}"/>
+									<Text text="{reqHeadModel>ProdName}"/>
+									<Text text="{reqHeadModel>DevPhDesc}"/>
+									<Text text="{reqHeadModel>PriIndDesc}"/>
+									<Text id="idstatus" text="{reqHeadModel>HStatDesc}"/>
+									<Link id="idCMReqName" text="{reqHeadModel>RequstName}" press="onNameClick"/>
+									<Link id="idCMValName" text="{reqHeadModel>ValuName}" press="onNameClick"/>
+									<Text text="{ path : 'reqHeadModel>SubmitDate' }"></Text>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<GenericTile id="myReq" press="onManageReqstrReq" subheader="Requestor" header="Manage My Requests"
+		class="sapUiTinyMarginBegin sapUiMediumMarginTop myTile2345Style" tileContent="{/UserInfoWrklistItems}">
+		<TileContent footerColor="Good" unit="{/UserInfoWrklistItems/Unit}" footer="{/UserInfoWrklistItems/Footer}" >
+			<NumericContent icon="sap-icon://inbox" value="{/UserInfoWrklistItems/ReqWrkItem}"/>
+		</TileContent>
+	</GenericTile>
+</core:FragmentDefinition>

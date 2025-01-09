@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin" busyIndicatorDelay="{detailView>/lineItemTableDelay}" id="HeaderVbox">
+		<f:SimpleForm id="formHeaderEdit" maxContainerCols="3" editable="false" layout="ResponsiveGridLayout" labelSpanXL="12" labelSpanL="12"
+			labelSpanM="12" emptySpanXL="0" emptySpanL="0" emptySpanM="0" columnsXL="3" columnsL="3" columnsM="3" class="formHiddenTitle sapUiNoMargin">
+			<f:content>
+				<Toolbar visible="false"/>
+				<Label text="{/#FDA_PGENERAL/Prvsy/@sap:label}" required="true"></Label>
+				<Input value="{FDA>/Prvsy}" id="inpPrvsy" showValueHelp="true" 
+				    valueHelpRequest="bc_onSearchHelp" 
+				    app:SearchName="/SAPSLL/PRA" 
+				    app:SearchService="search_productsSet"
+				    app:SearchReturnField="Prvsy"
+				    change="onPrvsyChange"
+					valueState="{MandatoryFields>/Prvsy}" maxLength="{/#FDA_PGENERAL/Prvsy/@MaxLength}"/>
+				<Label text="{/#FDA_PGENERAL/Commchar/@sap:label}" required="false"/>
+				<Input value="{FDA>/Commchar}" id="inpCommchar" showValueHelp="false" valueState="{MandatoryFields>/Commchar}"
+					maxLength="{/#FDA_PGENERAL/Commchar/@MaxLength}"/>
+				<Toolbar visible="false"/>
+				<Label text="{/#FDA_PGENERAL/FdaIndicator/@sap:label}" required="true">
+				</Label>
+				<RadioButtonGroup columns="1" class="sapUiNoMargin" id="rdFdaIndicator">
+					<buttons>
+						<RadioButton id="FdaC" text="{i18n>Complete}"/>
+						<RadioButton id="FdaNC" text="{i18n>Incomplete}"/>
+						<RadioButton id="FdaNR" text="{i18n>NoFDA}"/>
+					</buttons>
+				</RadioButtonGroup>
+				<Toolbar visible="false"/>
+				<Label text="{/#FDA_PGENERAL/Ftz/@sap:label}" required="true" id="rdFtz">
+				</Label>
+				<RadioButtonGroup columns="1" class="sapUiNoMargin">
+					<buttons>
+						<RadioButton id="FtzY" text="{i18n>Yes}"/>
+						<RadioButton id="FtzN" text="{i18n>No}"/>
+					</buttons>
+				</RadioButtonGroup>
+			</f:content>
+		</f:SimpleForm>		
+	</VBox>
+</core:FragmentDefinition>

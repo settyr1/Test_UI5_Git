@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<GenericTile id="srchCreateReq" class="sapUiTinyMarginBegin sapUiMediumMarginTop myTile1Style" header="Create Request" 
+		subheader="" press="onSrchCreateRequest">
+		<TileContent>
+			<ImageContent src="sap-icon://create" />
+		</TileContent>
+	</GenericTile>	
+</core:FragmentDefinition>

@@ -1,0 +1,18 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.pfizer.ctg.CTG_REQ.controller.MainView"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:semantic="sap.f.semantic">
+	<App>
+		<Page id="mainpage" title="{i18n>mainViewTitle}">
+			<headerContent>
+				<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+			</headerContent>			
+			<content></content>
+			<footer>
+				<Bar>
+					<contentRight>
+						<Image tooltip="Pfizer ERP"/>
+					</contentRight>
+				</Bar>
+			</footer>
+		</Page>
+	</App>
+</mvc:View>

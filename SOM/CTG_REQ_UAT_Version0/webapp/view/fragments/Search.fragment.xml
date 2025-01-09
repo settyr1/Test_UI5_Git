@@ -1,0 +1,265 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin assetForm">
+		<Title text="Contego Request Search" level="H2"/>
+		<Toolbar>
+			<RadioButton groupName="GroupRP" id="srchHeader" text="Header Level" selected="true"/>
+			<RadioButton groupName="GroupRP" id="srchDetail" text="Detail/Item Level" selected="false"/>
+			<ToolbarSpacer/>
+			<Label required="true" text="RequiredField" class="req"/>
+		</Toolbar>
+		<f:Form class="createAssetForm" editable="true" id="AddNewAssetForm">
+			<f:layout>
+				<f:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" columnsM="2" columnsXL="3" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					emptySpanXL="0" labelSpanL="4" labelSpanM="4" labelSpanS="12" labelSpanXL="4" singleContainerFullSize="false"/>
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement>
+							<f:fields>
+								<Label text="Contego Request Id"/>
+								<Input id="reqNo" maxLength="20" placeholder="Enter Request Number" valueStateText="{i18n>requiredFieldText}" value="{variantData>/0/ReqNo}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Development Phase" required="true"/>
+								<MultiComboBox id="devPhase" items="{ path: 'dropDownModel>/devPhase', templateShareable : true }" selectionFinish="onDevPhase"
+									valueStateText="Required Field Cannot be Empty" selectedKeys="{variantDevPhase>/0}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Request Type"/>
+								<ComboBox id="reqTyp" items="{ path: 'dropDownModel>/reqTyp', templateShareable : true }" selectedKey="{variantData>/0/ReqTyp}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Request Status" required="true"/>
+								<MultiComboBox id="reqStat" items="{ path: 'dropDownModel>/reqStat', templateShareable : true }" selectionFinish="onDevPhase"
+									valueStateText="Required Field Cannot be Empty" selectedKeys="{variantReqStatus>/0}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Product Type"/>
+								<MultiComboBox id="prodType" items="{ path: 'prodTypeModel>/myData', templateShareable : true }" change="onProdTypeSelected"
+									selectedKeys="{prodTypeData>/0}">
+									<items>
+										<core:Item text="{prodTypeModel>Desc}" key="{prodTypeModel>Value}"></core:Item>
+									</items>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Primary Indication"/>
+								<MultiComboBox id="primaryInd" items="{ path: 'dropDownModel>/primaryInd', templateShareable : true }" change="onValueChange"
+									selectedKeys="{primIndData>/0}">
+									<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Mechanism of Action"/>
+								<ComboBox id="actionMech" items="{ path: 'dropDownModel>/mechOfAction', templateShareable : true }" change="onValueChange"
+									selectedKey="{variantData>/0/MechAction}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Finished Goods Form"/>
+								<ComboBox id="finiGoodsForm" items="{ path: 'dropDownModel>/finiGoodsForm', templateShareable : true }" change="onFiniGoodsFrmSelect"
+									selectedKey="{variantData>/0/FiniGoodsFrm}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<CheckBox text="Biologic" selected="{= ${Biologic} === 'X' ? true : false}" select="onChecked" id="biologic"/>
+								<CheckBox text="First In Class" selected="{= ${FICInd} === 'X' ? true : false}" id="ficind"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<CheckBox text="POC" selected="{= ${POCInd} === 'X' ? true : false}" id="pocInd"/>
+								<CheckBox text="Procured from 3rd Party" selected="{= ${ProdSrce} === 'X' ? true : false}" id="prodSrc"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Product Name"/>
+								<MultiInput id="srchProduct" showSuggestion="true" showValueHelp="true" valueHelpRequest="onSearch" tokens="{prodNameData>/}"
+									placeholder="Pfizer Compound or Other Names..." suggestionItems="{prodSrchModel>/products}" suggestionItemSelected="onItemSelected">
+									<tokens>
+										<Token key="{prodNameData>abc}" text="{prodNameData>abc}"/>
+									</tokens>
+									<core:Item key="{prodSrchModel>ProdName}" text="{prodSrchModel>ProdDesc}"/>
+								</MultiInput>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<MultiInput id="selectedProds" showSuggestion="false" showValueHelp="false" suggestionItems="{selectedProdModel>/matchedItems}"
+									suggestionItemSelected="onItemSelected" placeholder="Selected Products" class="heightInput" tokens="{prodIdData>/}">
+									<tokens>
+										<Token key="{prodIdData>0}" text="{prodIdData>0}"/>
+									</tokens>
+									<suggestionItems>
+										<core:ListItem key="{prodSrchModel>ProdName}" text="{prodSrchModel>ProdDesc}" additionalText="{prodSrchModel>DevPhDesc}"/>
+									</suggestionItems>
+								</MultiInput>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer title="">
+					<f:formElements>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Pricing Model"/>
+								<MultiComboBox id="pricing" items="{ path: 'dropDownModel>/pricing', templateShareable : true }" selectedKeys="{pricModelData>/0}">
+									<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Destination Markets"/>
+								<MultiComboBox id="markets" items="{ path: 'dropDownModel>/destMarkets', templateShareable : true }" selectedKeys="{destMarkData>/0}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Market Group"/>
+								<MultiComboBox id="ficGrp" items="{ path: 'dropDownModel>/mrktGrp', templateShareable : true }" selectedKeys="{marketGrpData>/0}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</MultiComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Destination Type" required="true"/>
+								<ComboBox id="destType" items="{ path: 'dropDownModel>/destType', templateShareable : true }" placeholder="Select a Destination Type" width="auto"
+									valueStateText="Required Field Cannot be Empty" selectionChange="onDestinationTypeSelect" selectedKey="{variantData>/0/ShipDest}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"/>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<f:fields>
+								<Label text="Requested By"/>
+								<Input id="idNtId" placeholder="Enter the NTID" value="{variantData>/0/ReqUserId}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Requestor Group"/>
+								<ComboBox id="reqGrp" items="{ path: 'dropDownModel>/reqGrp', templateShareable : true }" editable="true"
+									selectedKey="{variantData>/0/ReqGrp}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Expiration Date"/>
+								<DateRangeSelection change="handleDateChange" dateValue="{path:'/dateValueDRS1'}" secondDateValue="{path:'/secondDateValueDRS1'}"
+									id="expDateId" displayFormat="MMM d,y"></DateRangeSelection>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Best in Class Comparator"/>
+								<ComboBox id="classComp" items="{ path: 'dropDownModel>/valuCompCtry', templateShareable : true }" editable="true"
+									selectedKey="{variantData>/0/BICComp}">
+									<items>
+										<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+									</items>
+								</ComboBox>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<f:fields>
+								<Label text="Valuated By"/>
+								<Input id="valById" placeholder="Enter the values with ',' in between" value="{variantData>/0/ValuUserId}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<f:fields>
+								<Label text="SP Inputter"/>
+								<Input id="spInputId" placeholder="Enter the values with ',' in between" value="{variantData>/0/SPIUserId}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement>
+							<f:fields>
+								<Label text="Approver"/>
+								<Input id="approvId" placeholder="Enter the values with ',' in between" value="{variantData>/0/ApprvUserId}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Request Date"/>
+								<DateRangeSelection change="handleDateChange" dateValue="" id="reqDateId" secondDateValue=""></DateRangeSelection>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement >
+							<f:fields>
+								<Label text="Effective Date"/>
+								<DateRangeSelection change="handleDateChange" dateValue="" id="effecDateId" secondDateValue=""></DateRangeSelection>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+		<Toolbar id="TB2">
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<ToolbarSpacer/>
+			<Button id="search" press="onSearchPressed" text="Search"/>
+			<!--<Button id="saveSearch" press="onSaveSearchPressed" text="Save Search"/>-->
+			<Button id="reset" press="onResetPressed" text="Reset"/>
+		</Toolbar>
+	</VBox>
+</core:FragmentDefinition>

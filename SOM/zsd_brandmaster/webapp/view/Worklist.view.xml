@@ -1,0 +1,50 @@
+<mvc:View controllerName="zsdbrandmaster.controller.Worklist" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistViewTitle}">
+		<semantic:content>
+			<ui:Table id="uitable" selectionMode="None" rows="{BRANDS>/BrandsSet}" visibleRowCount="15" sort="sortDeliveryDate"
+				ariaLabelledBy="title">
+				<ui:toolbar>
+					<Toolbar>
+						<Title id="uititle" text="{i18n>worklistViewTitle}"></Title>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" text="{i18n>add}" tooltip="{i18n>add}" press="onAdd"/>
+						<Button icon="sap-icon://save" text="{i18n>save}" tooltip="{i18n>save}" press="onSave"/>
+						<Button text="Export" icon="sap-icon://excel-attachment" width="auto" press="onDataExport"/>
+					</Toolbar>
+				</ui:toolbar>
+				<ui:columns>
+					<ui:Column width="4rem">
+						<Label text=""/>
+						<ui:template>
+							<Button icon="sap-icon://delete" type="Reject" press="onDeleteBrandLink" visible="{= ${BRANDS>NewInd} === true }"/>
+						</ui:template>
+					</ui:Column>
+					<!--<ui:Column width="4rem">-->
+					<!--	<Label text="{i18n>Delete}"/>-->
+					<!--	<ui:template>-->
+					<!--		<CheckBox text="" selected="{BRANDS>DelInd}" visible="{= ${BRANDS>NewInd} === false }" />-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>					-->
+					<ui:Column width="15rem" sortProperty="Brand" filterProperty="Brand">
+						<Label text="{/#Brands/Brand/@sap:label}"/>
+						<ui:template>
+							<Input type="Text" value="{path:'BRANDS>Brand'}" textAlign="Left" 
+								editable="{= ${BRANDS>NewInd} === true }"
+							/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="15rem" sortProperty="Brandname" filterProperty="Brandname"> 
+						<Label text="{/#Brands/Brandname/@sap:label}"/>
+						<ui:template>
+							<Input type="Text" value="{path:'BRANDS>Brandname'}" textAlign="Left" 
+								editable="true"
+							/>
+						</ui:template>
+					</ui:Column>					
+				</ui:columns>
+			</ui:Table>
+		</semantic:content>
+	</semantic:FullscreenPage>
+</mvc:View>

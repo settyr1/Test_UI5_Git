@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" 
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin">
+		
+			<ui:Table id="idCampaignBrands" selectionMode="None" rows="{JMDL>/Campaign/Brands}" visibleRowCount="10" 
+				ariaLabelledBy="title">
+				<ui:toolbar>
+					<Toolbar>
+						<Title id="tblCampaignDetailsHeader" text=""></Title>
+						<ToolbarSpacer/>
+						<Button text="{i18n>addAllBrands}" tooltip="All Brands" press="bcAddAllBrands"/>					
+						<Button icon="sap-icon://add" tooltip="Add" press="bcAddCampaignBrand"/>
+						<!--<Button icon="sap-icon://delete" tooltip="Delete" press="onDeleteBrandLink"/>						-->
+					</Toolbar>
+				</ui:toolbar>
+				<ui:columns>
+					<ui:Column width="4rem">
+						<Label text=""/>
+						<ui:template>
+							<Button icon="sap-icon://delete" type="Reject" press="onDeleteBrandLink" visible="{= ${BRANDS>NewInd} === true }"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column  sortProperty="Brand" filterProperty="Brand">
+						<Label text="{/#CampaignBrands/Brand/@sap:label}"/>
+						<ui:template>
+							<Select
+							   selectedKey="{JMDL>Brand}"
+							   width="30rem"
+							   items="{ path: 'JMDL>/Brands', 
+							            sorter: { path: 'Brand' },
+							            filters: [],
+							            templateShareable: true
+							           }" 
+							   enabled="true"
+								>
+								<core:Item key="{JMDL>Brand}" text="{JMDL>Brandname}" />
+							</Select>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="11rem" sortProperty="MinDisc" filterProperty="MinDisc">
+						<Label text="{/#CampaignBrands/MinDisc/@sap:label}"/>
+						<ui:template>
+							<Input type="Text" value="{path:'JMDL>MinDisc', type : '.ConvZeroNumber' }" textAlign="Right" liveChange="LiveChangeOnlyNumber"
+								app:integerPart="4" 
+								valueState="{= ${JMDL>MinDiscErr} === '' ? 'None' : ${JMDL>MinDiscErr} }"
+								valueStateText="{i18n>EnterValue}" 
+								app:fractionalPart="2"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column   width="11rem" sortProperty="MaxDisc" filterProperty="MaxDisc">
+						<Label text="{/#CampaignBrands/MaxDisc/@sap:label}"/>
+						<ui:template>
+							<Input type="Text" value="{path:'JMDL>MaxDisc', type : '.ConvZeroNumber' }" textAlign="Right" liveChange="LiveChangeOnlyNumber"
+								valueState="{= ${JMDL>MaxDiscErr} === '' ? 'None' : ${JMDL>MaxDiscErr} }"
+								valueStateText="{i18n>EnterValue}" 						
+								app:integerPart="4" app:fractionalPart="2"/>
+						</ui:template>
+					</ui:Column>					
+				</ui:columns>
+			</ui:Table>
+			
+		<!--<Table id="idCampaignBrands" inset="false" items="{JMDL>/Campaign/Brands}" mode="MultiSelect" keyboardMode="Edit">-->
+		<!--	<headerToolbar>-->
+		<!--		<OverflowToolbar id="tblPCampaignDetailsToolbar">-->
+		<!--			<Title id="tblCampaignDetailsHeader" text=""/>-->
+		<!--			<ToolbarSpacer/>-->
+		<!--			<Button text="{i18n>addAllBrands}" tooltip="All Brands" press="bcAddAllBrands"/>					-->
+		<!--			<Button icon="sap-icon://add" tooltip="Add" press="bcAddCampaignBrand"/>-->
+		<!--			<Button icon="sap-icon://delete" tooltip="Delete" press="bcDeleteCampaignBrands"/>-->
+		<!--		</OverflowToolbar>-->
+		<!--	</headerToolbar>-->
+		<!--	<columns>-->
+		<!--		<Column>-->
+		<!--			<Text text="{/#CampaignBrands/Brand/@sap:label}"/>-->
+		<!--		</Column>-->
+		<!--		<Column>-->
+		<!--			<Text text="{/#CampaignBrands/MinDisc/@sap:label}"/>-->
+		<!--		</Column>-->
+		<!--		<Column>-->
+		<!--			<Text text="{/#CampaignBrands/MaxDisc/@sap:label}"/>-->
+		<!--		</Column>-->
+		<!--	</columns>-->
+		<!--	<items>-->
+		<!--		<ColumnListItem>-->
+		<!--			<cells>-->
+		<!--				<Select-->
+		<!--				   selectedKey="{JMDL>Brand}"-->
+		<!--				   width="30rem"-->
+		<!--				   items="{ path: 'JMDL>/Brands', -->
+		<!--				            sorter: { path: 'Brand' },-->
+		<!--				            filters: [],-->
+		<!--				            templateShareable: true-->
+		<!--				           }" -->
+		<!--				   enabled="true"-->
+		<!--					>-->
+		<!--					<core:Item key="{JMDL>Brand}" text="{JMDL>Brandname}" />-->
+		<!--				</Select>-->
+		<!--				<Input type="Text" value="{path:'JMDL>MinDisc', type : '.ConvZeroNumber' }" textAlign="Right" liveChange="LiveChangeOnlyNumber"-->
+		<!--					app:integerPart="4" -->
+		<!--					valueState="{= ${JMDL>MinDiscErr} === '' ? 'None' : ${JMDL>MinDiscErr} }"-->
+		<!--					valueStateText="{i18n>EnterValue}" -->
+		<!--					app:fractionalPart="2"/>-->
+		<!--				<Input type="Text" value="{path:'JMDL>MaxDisc', type : '.ConvZeroNumber' }" textAlign="Right" liveChange="LiveChangeOnlyNumber"-->
+		<!--					valueState="{= ${JMDL>MaxDiscErr} === '' ? 'None' : ${JMDL>MaxDiscErr} }"-->
+		<!--					valueStateText="{i18n>EnterValue}" 						-->
+		<!--					app:integerPart="4" app:fractionalPart="2"/>-->
+		<!--			</cells>-->
+		<!--		</ColumnListItem>-->
+		<!--	</items>-->
+		<!--</Table>-->
+	</VBox>
+</core:FragmentDefinition>

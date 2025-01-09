@@ -1,0 +1,364 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.SearchandReport" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table"
+	xmlns:u="sap.ui.unified">
+	<App>
+		<pages>
+			<Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<IconTabBar id="idIconTabBar" select="handleIconTabBarSelect" class="sapUiResponsiveContentPadding" expandable="false">
+						<items>
+							<IconTabFilter icon="sap-icon://search" iconColor="Positive" text="Search" key="Ok">
+								<VBox class="sapUiSmallMargin assetForm">
+									<Title text="Contego Request Search" level="H2"/>
+									<Toolbar>
+										<RadioButton groupName="GroupRP" id="srchHeader" text="Header Level" selected="true"/>
+										<RadioButton groupName="GroupRP" id="srchDetail" text="Detail/Item Level" selected="false"/>
+										<ToolbarSpacer/>
+										<Label required="true" text="{i18n>requiredField}" class="req"/>
+									</Toolbar>
+									<f:Form class="searchFormLayout" editable="true" id="searchForm">
+										<f:layout>
+											<f:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" columnsM="2" columnsXL="3" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+												emptySpanXL="0" labelSpanL="4" labelSpanM="4" labelSpanS="12" labelSpanXL="4" singleContainerFullSize="false"/>
+										</f:layout>
+										<f:formContainers>
+											<f:FormContainer title="">
+												<f:formElements>
+													<f:FormElement>
+														<f:fields>
+															<Label text="Contego Request Id"/>
+															<Input id="reqNo" maxLength="20" valueStateText="{i18n>requiredFieldText}" value="{variantData>/0/ReqNo}"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Development Phase" required="true"/>
+															<MultiComboBox id="devPhase" items="{ path: 'dropDownModel>/devPhase', templateShareable : true }" selectionFinish="onDevPhase"
+																valueStateText="Required Field Cannot be Empty" placeholder="Select Development Phase" selectionChange="onComboBoxSelectionChange"
+																selectedKeys="{variantDevPhase>/0}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Request Type"/>
+															<ComboBox id="reqTyp" items="{ path: 'dropDownModel>/reqTyp', templateShareable : true }" selectedKey="{variantData>/0/ReqTyp}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</ComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Request Status" required="true"/>
+															<MultiComboBox id="reqStat" items="{ path: 'dropDownModel>/reqStat', templateShareable : true }" selectionFinish="onDevPhase"
+																valueStateText="Required Field Cannot be Empty" placeholder="Select Request Status" selectionChange="onComboBoxSelectionChange"
+																selectedKeys="{variantReqStatus>/0}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Product Type"/>
+															<MultiComboBox id="prodType" items="{ path: 'prodTypeModel>/myData', templateShareable : true }" change="onProdTypeSelected"
+																selectedKeys="{prodTypeData>/0}">
+																<items>
+																	<core:Item text="{prodTypeModel>Desc}" key="{prodTypeModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Primary Indication"/>
+															<MultiComboBox id="primaryInd" items="{ path: 'dropDownModel>/primaryInd', templateShareable : true }" change="onValueChange"
+																selectedKeys="{primIndData>/0}">
+																<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Mechanism of Action"/>
+															<ComboBox id="actionMech" items="{ path: 'dropDownModel>/mechOfAction', templateShareable : true }" change="onValueChange"
+																selectedKey="{variantData>/0/MechAction}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+																</items>
+															</ComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Finished Goods Form"/>
+															<ComboBox id="finiGoodsForm" items="{ path: 'dropDownModel>/finiGoodsForm', templateShareable : true }" change="onFiniGoodsFrmSelect"
+																selectedKey="{variantData>/0/FiniGoodsFrm}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</ComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<CheckBox text="Biologic" selected="{= ${variantData>/0/Biologic} === 'X' ? true : false}" select="onChecked" id="biologic"/>
+															<CheckBox text="First In Class" selected="{= ${variantData>/0/FICInd} === 'X' ? true : false}" id="ficind"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<CheckBox text="POC" selected="{= ${variantData>/0/POCInd} === 'X' ? true : false}" id="pocInd"/>
+															<CheckBox text="Procured from 3rd Party" selected="{= ${variantData>/0/ProdSrce} === 'X' ? true : false}" id="prodSrc"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Product Name"/>
+															<MultiInput id="srchProduct" showSuggestion="true" showValueHelp="true" valueHelpRequest="onSearch"
+																placeholder="Pfizer Compound or Other Names..." suggestionItems="{prodSrchModel>/products}" suggestionItemSelected="onItemSelected"
+																maxTokens="5">
+																<suggestionItems>
+																	<core:ListItem key="{prodSrchModel>ProdName}" text="{prodSrchModel>ProdDesc}" additionalText="{prodSrchModel>DevPhDesc}"/>
+																</suggestionItems>
+															</MultiInput>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<MultiInput id="selectedProds" showSuggestion="false" showValueHelp="false" suggestionItemSelected="onItemSelected"
+																placeholder="Selected Products" class="heightInput" tokenUpdate="onTokenUpdate" maxTokens="10" tokens="{prodNameData>/}">
+																<tokens>
+																	<Token key="{prodNameData>valuepair/1}" text="{prodNameData>valuepair/0}"/>
+																</tokens>
+															</MultiInput>
+														</f:fields>
+													</f:FormElement>
+												</f:formElements>
+											</f:FormContainer>
+											<f:FormContainer title="">
+												<f:formElements>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Pricing Model"/>
+															<MultiComboBox id="pricing" items="{ path: 'dropDownModel>/pricing', templateShareable : true }" selectedKeys="{pricModelData>/0}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Destination Markets"/>
+															<MultiComboBox id="markets" items="{ path: 'dropDownModel>/destMarkets', templateShareable : true }" selectedKeys="{destMarkData>/0}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Market Group"/>
+															<MultiComboBox id="ficGrp" items="{ path: 'dropDownModel>/mrktGrp', templateShareable : true }" selectedKeys="{marketGrpData>/0}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Destination Type"/>
+															<MultiComboBox id="destType" items="{ path: 'dropDownModel>/destType', templateShareable : true }" width="auto"
+																valueStateText="Required Field Cannot be Empty" selectionChange="onDestinationTypeSelect"
+																selectedKeys="{=${destTypeData>/0} === 'B' ? ['P','3'] : ${destTypeData>/0} === 'P' ? ['P'] : ${destTypeData>/0} === '3' ? ['3']:''}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"/>
+																</items>
+															</MultiComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<Label text="Requested By"/>
+															<Input id="idNtId" value="{variantData>/0/ReqUserId}"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Requestor Group"/>
+															<ComboBox id="reqGrp" items="{ path: 'dropDownModel>/reqGrp', templateShareable : true }" editable="true"
+																selectedKey="{variantData>/0/ReqGrp}">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</ComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Expiration Date"/>
+															<DateRangeSelection dateValue="{expDateData>/dateValueDrs2}" secondDateValue="{expDateData>/secondDateValueDrs2}" id="expDateId"
+																displayFormat="MMM d, y"></DateRangeSelection>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Best in Class Comparator"/>
+															<ComboBox id="classComp" items="{ path: 'dropDownModel>/bicCompProd', templateShareable : true }" editable="true"
+																selectedKey="{variantData>/0/BICComp}">
+																<items>
+																	<core:Item key="{dropDownModel>Value}" text="{dropDownModel>Value}"></core:Item>
+																</items>
+															</ComboBox>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<Label text="Valuated By"/>
+															<Input id="valById" value="{variantData>/0/ValuUserId}"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<Label text="SP Inputter"/>
+															<Input id="spInputId" value="{variantData>/0/SPIUserId}"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement>
+														<f:fields>
+															<Label text="Approver"/>
+															<Input id="approvId" value="{variantData>/0/ApprvUserId}"/>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Request Date"/>
+															<DateRangeSelection dateValue="{subDateData>/dateValueDrsSub2}" secondDateValue="{subDateData>/secondDateValueDrsSub2}" id="subDateId"
+																displayFormat="MMM d, y"></DateRangeSelection>
+														</f:fields>
+													</f:FormElement>
+													<f:FormElement >
+														<f:fields>
+															<Label text="Effective Date"/>
+															<DateRangeSelection dateValue="{effDateData>/dateValueDrsEff2}" secondDateValue="{effDateData>/secondDateValueDrsEff2}" id="effecDateId"
+																displayFormat="MMM d, y"></DateRangeSelection>
+														</f:fields>
+													</f:FormElement>
+												</f:formElements>
+											</f:FormContainer>
+										</f:formContainers>
+									</f:Form>
+									<Toolbar id="TB2">
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<ToolbarSpacer/>
+										<Button id="search" press="onSearchPressed" icon="sap-icon://search" text="Search" type="Emphasized"/>
+										<Button id="saveSearch" press="onSaveSearchPressed" text="Save Search" type="Emphasized" icon="sap-icon://browse-folder" visible="true"/>
+										<Button id="savedVariants" press="onSavedVarinatsPressed" type="Emphasized" icon="sap-icon://detail-view" text="My Saved Searches"/>
+										<Button id="reset" press="onResetPressed" text="Reset" type="Emphasized" icon="sap-icon://reset"/>
+									</Toolbar>
+								</VBox>
+							</IconTabFilter>
+							<IconTabSeparator/>
+							<IconTabFilter icon="sap-icon://expense-report" iconColor="Critical" text="30-60 Report" key="Heavy" id="reportTabFilter" count="">
+								<f:SimpleForm layout="ResponsiveGridLayout" editable="false" singleContainerFullSize="true">
+									<f:toolbar>
+										<Toolbar id="TB1">
+											<Title id="count" text="Expiring Requests" class="headerTitle"></Title>
+											<ToolbarSpacer/>
+											<SearchField id="srchText" placeholder="Search Globally" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"
+												tooltip="Global Search"/>
+											<Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>
+											<Button icon="sap-icon://download" press="onDataExport" tooltip="Export to Excel"/>
+										</Toolbar>
+									</f:toolbar>
+									<f:content>
+										<t:Table id="standReportId" selectionMode="None" visibleRowCountMode="Fixed" visibleRowCount="11" filter="onFilterRows"
+											rows="{ path: 'standardReportModel>/', templateShareable: false, sorter: { path: 'ExpiryDt' } }">
+											<t:rowSettingsTemplate>
+												<t:RowSettings highlight="{path: 'standardReportModel>ExpiryDt', formatter: '.formatter.rowHighlight'}"/>
+											</t:rowSettingsTemplate>
+											<t:columns>
+												<t:Column hAlign="Center" filterProperty="ReqNo" width="7rem">
+													<Label text="Request No"/>
+													<t:template>
+														<Link text="{standardReportModel>ReqNo}" id="reqNoReport" press="onReqNoHyperlink" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="PriceModelDesc" width="7.4rem">
+													<Label text="Pricing Model"/>
+													<t:template>
+														<Text text="{standardReportModel>PriceModelDesc}" id="pricModelDesc" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="ProdName" width="13rem">
+													<Label text="Product Name"/>
+													<t:template>
+														<Text text="{standardReportModel>ProdName}" id="prodName" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="OtherNames" width="13rem">
+													<Label text="Other Names"/>
+													<t:template>
+														<Text text="{standardReportModel>OtherNames}" id="otherName" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="PhaseDesc" width="7rem">
+													<Label text="Phase"/>
+													<t:template>
+														<Text text="{standardReportModel>PhaseDesc}" id="phaseDesc" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" id="price" filterProperty="ProdTypDesc" width="11rem">
+													<Label text="Product Type"/>
+													<t:template>
+														<Text text="{standardReportModel>ProdTypDesc}" id="prodTypDesc" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="ReqUserId" width="7rem">
+													<Label text="Requestor"/>
+													<t:template>
+														<Text text="{standardReportModel>ReqUserId}" id="requestorId" wrapping="false"/>
+													</t:template>
+												</t:Column>
+												<t:Column hAlign="Center" filterProperty="ExpiryDt" width="7rem">
+													<Label text="Expiration Date"/>
+													<t:template>
+														<ObjectStatus id="expDate" text="{standardReportModel>ExpiryDt}"
+															state="{path: 'standardReportModel>ExpiryDt', formatter: '.formatter.formatColor'}"/>
+													</t:template>
+												</t:Column>
+											</t:columns>
+										</t:Table>
+									</f:content>
+								</f:SimpleForm>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,66 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table id="WrkListVFCMgrASP" items="{reqHeadModel>/ReqHeadSet}" itemPress="onRequestSelect" mode="MultiSelect"
+		selectionChange="onSelectionChange" fixedLayout="false">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title id="titleIdASP" text="Requests"/>
+				<ToolbarSpacer/>
+				<Button id="idChngASPInpt" text="Change SP Inputter" press="onChangeSPInput" type="Emphasized" visible="true" icon="sap-icon://sales-quote"></Button>
+				<SearchField id="searchASP" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+				<OverflowToolbarButton id="sortASP" text="Sort" press="onSort" icon="sap-icon://sort"/>
+				<Button id="filterASP" icon="sap-icon://filter" press="onFilter" tooltip="filterCommer">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column id="ASPReqNo"><Text text="Request No"/></Column>
+			<Column id="ASPReqTyp"><Text text="Request Type"/></Column>
+			<Column id="ASPProdId"><Text text="Pfizer Compound Name"/></Column>
+			<Column id="ASPProdTyp"><Text text="Product Type"/></Column>
+			<Column id="ASPProdname"><Text text="Other Names"/></Column>
+			<Column id="ASPPrimInd"><Text text="Primary Indication"/></Column>
+			<Column id="ASPDevPhDesc"><Text text="Phase"/></Column>
+			<Column id="ASPPricModl"><Text text="Pricing Model"/></Column>
+			<Column id="ASPHeadStatus"><Text text="Status"/></Column>
+			<Column id="ASPRequstName"><Text text="Requestor"/></Column>
+			<Column id="ASPSubmitDate"><Text text="Date Submitted"/></Column>
+			<Column id="ASPReturnDate"><Text text="Date Returned"/></Column>
+			<Column id="ASPSbmtForInptDt"><Text text="Submitted For Input"/></Column>
+			<Column id="ASPSbmtForApprvDt"><Text text="Submitted For Approval"/></Column>
+			<Column id="ASPSPInptName"><Text text="SP Inputter"/></Column>
+			<Column id="ASPApprvName"><Text text="Approver"/></Column>
+			<Column id="ASPPosnr"><Text text="Line Items"/></Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Inactive" highlight="{= ${reqHeadModel>Priority} === 'X' ? 'Error' : 'None'}"
+				tooltip="{= ${reqHeadModel>Priority} === 'X' ? 'Priority Request' : ''}">
+				<cells>
+					<Link id="idASPReqNo" text="{reqHeadModel>ReqNo}" press="onReqNoLinkClick"/>
+					<Text text="{reqHeadModel>ReqTyp}"></Text>
+					<Text text="{reqHeadModel>ProdId}"/>
+					<Text text="{reqHeadModel>ProdTypDesc}"/>
+					<Text text="{reqHeadModel>ProdName}"/>
+					<Text text="{reqHeadModel>PrimInd}"/>
+					<Text text="{reqHeadModel>DevPhDesc}"/>
+					<Text text="{reqHeadModel>PricModDesc}"/>
+					<Text text="{reqHeadModel>HStatDesc}"/>
+					<Link id="idASPReqName" text="{reqHeadModel>RequstName}" press="onNameClick"/>
+					<Text text="{reqHeadModel>SubmitDate}"></Text>
+					<Text text="{reqHeadModel>ChangeDate}"></Text>
+					<Text text="{reqHeadModel>SubInptDate}"/>
+					<Text text="{reqHeadModel>SubAprvDate}"/>
+					<ComboBox value="{reqHeadModel>SPInptName}" width="180px" items="{ path: 'SPINamesModel>/spInptId', templateShareable : true }">
+						<items>
+							<core:Item text="{SPINamesModel>Desc}"></core:Item>
+						</items>
+					</ComboBox>
+					<Link id="idASPAPRVName" text="{reqHeadModel>ApprvName}" press="onNameClick"/>
+					<Text text="{reqHeadModel>Posnr}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

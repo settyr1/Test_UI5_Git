@@ -1,0 +1,83 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin">
+		
+			<ui:Table id="idPartnerList" selectionMode="None" rows="{JMDL>/Campaign/PartnerList}" visibleRowCount="10" 
+				ariaLabelledBy="title">
+				<ui:toolbar>
+					<Toolbar>
+						<Title id="tblPartnerListHeader" text=""></Title>
+						<ToolbarSpacer/>
+						<Button text="{i18n>addAllSoldTo}" press="bcAddAllPartners"/>						
+						<Button icon="sap-icon://add" tooltip="Add" press="bcAddPartnerList"/>
+						<!--<Button icon="sap-icon://delete" tooltip="Delete" press="bcDeletePartnerList"/>-->
+					</Toolbar>
+				</ui:toolbar>
+				<ui:columns>
+					<ui:Column width="4rem">
+						<Label text=""/>
+						<ui:template>
+							<Button icon="sap-icon://delete" type="Reject" press="onDeletePartnerList" visible="{= ${BRANDS>NewInd} === true }"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="15rem" sortProperty="Kunag" filterProperty="Kunag">
+						<Label text="{/#CampaignPartners/Kunag/@sap:label}"/>
+						<ui:template>
+							<Input value="{JMDL>Kunag}"
+								maxLength="{= parseInt(${/#CampaignPartners/Kunag/@maxLength}) }"
+								showValueHelp="true" app:SearchName="ZSD_CAMP_PARTNER" app:SearchService="ZsdCampPartner" app:SearchReturnField="Kunag" valueHelpRequest="bc_onSearchHelp">
+					
+							</Input>
+						</ui:template>
+					</ui:Column>
+					<ui:Column    sortProperty="SoldtoName" filterProperty="SoldtoName">
+						<Label text="{/#CampaignPartners/SoldtoName/@sap:label}"/>
+						<ui:template>
+							<Text text="{JMDL>SoldtoName}"/>
+						</ui:template>
+					</ui:Column>					
+				</ui:columns>
+			</ui:Table>		
+		
+		<!--<Table id="idPartnerList" inset="false" items="{JMDL>/Campaign/PartnerList}" mode="MultiSelect">-->
+		<!--	<headerToolbar>-->
+		<!--		<OverflowToolbar id="tblPartnerListToolbar">-->
+		<!--			<Title id="tblPartnerListHeader" text=""/>-->
+		<!--			<ToolbarSpacer/>-->
+		<!--			<Button text="{i18n>addAllSoldTo}" press="bcAddAllPartners"/>						-->
+		<!--			<Button icon="sap-icon://add" tooltip="Add" press="bcAddPartnerList"/>-->
+		<!--			<Button icon="sap-icon://delete" tooltip="Delete" press="bcDeletePartnerList"/>-->
+		<!--		</OverflowToolbar>-->
+		<!--	</headerToolbar>-->
+		<!--	<columns>-->
+		<!--		<Column>-->
+		<!--			<Text text="{/#CampaignPartners/Kunag/@sap:label}"/>-->
+		<!--					<layoutData>-->
+		<!--						<l:GridData span="XL2 L2 M2 S4"></l:GridData>-->
+		<!--					</layoutData>-->
+		<!--		</Column>-->
+		<!--		<Column>-->
+		<!--			<Text text="{/#CampaignPartners/SoldtoName/@sap:label}"/>-->
+		<!--					<layoutData>-->
+		<!--						<l:GridData span="XL10 L10 M10 S4"></l:GridData>-->
+		<!--					</layoutData>-->
+		<!--		</Column>-->
+		<!--	</columns>-->
+		<!--	<items>-->
+		<!--		<ColumnListItem>-->
+		<!--			<cells>-->
+		<!--				<Input value="{JMDL>Kunag}"-->
+		<!--					maxLength="{= parseInt(${/#CampaignPartners/Kunag/@maxLength}) }"-->
+		<!--					showValueHelp="true" app:SearchName="ZSD_CAMP_PARTNER" app:SearchService="ZsdCampPartner" app:SearchReturnField="Kunag" valueHelpRequest="bc_onSearchHelp">-->
+				
+		<!--				</Input>-->
+		<!--				<Text text="{JMDL>SoldtoName}"-->
+		<!--				>-->
+				
+		<!--				</Text>						-->
+		<!--			</cells>-->
+		<!--		</ColumnListItem>-->
+		<!--	</items>-->
+		<!--</Table>-->
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,399 @@
+{
+	"_version": "1.9.0",
+	"sap.app": {
+		"id": "com.pfizer.ctg.CTG_REQ",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZCTG_REQUEST_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			}
+		},
+		"sourceTemplate": {
+			"id": "sap.ui.ui5-template-plugin.1worklist",
+			"version": "1.52.7"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.pfizer.ctg.CTG_REQ.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+		"dependencies": {
+			"minUI5Version": "1.52.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ushell": {},
+				"sap.collaboration": {
+					"lazy": true
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.pfizer.ctg.CTG_REQ.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/custom-stylesheet.css"
+				}
+			]
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setTitle": "auto"
+				}
+			}
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "com.pfizer.ctg.CTG_REQ.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"notFound"
+					]
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "MainView",
+					"target": [
+						"MainView"
+					]
+				},
+				{
+					"pattern": "WorkListRequestor/{userId}/{statTab}",
+					"name": "WorkListRequestor",
+					"target": [
+						"WorkListRequestor"
+					]
+				},
+				{
+					"pattern": "WorkListVFCMgr/{userId}",
+					"name": "WorkListVFCMgr",
+					"target": [
+						"WorkListVFCMgr"
+					]
+				},
+				{
+					"pattern": "WorkListSPInput/{userId}",
+					"name": "WorkListSPInput",
+					"target": [
+						"WorkListSPInput"
+					]
+				},
+				{
+					"pattern": "WorkListApprover/{userId}",
+					"name": "WorkListApprover",
+					"target": [
+						"WorkListApprover"
+					]
+				},
+				{
+					"pattern": "ReqDetail/{reqId}",
+					"name": "ReqDetail",
+					"target": [
+						"ReqDetail"
+					]
+				},
+				{
+					"pattern": "SearchandReport",
+					"name": "SearchandReport",
+					"target": [
+						"SearchandReport"
+					]
+				},
+				{
+					"pattern": "HeaderLevelList",
+					"name": "HeaderLevelList",
+					"target": [
+						"HeaderLevelList"
+					]
+				},
+				{
+					"pattern": "ItemLevelList",
+					"name": "ItemLevelList",
+					"target": [
+						"ItemLevelList"
+					]
+				},
+				{
+					"pattern": "ProductSearch",
+					"name": "ProductSearch",
+					"target": [
+						"ProductSearch"
+					]
+				},
+				{
+					"pattern": "CreateProduct/{prodName}/{prodId}/{action}",
+					"name": "CreateProduct",
+					"target": [
+						"CreateProduct"
+					]
+				},
+				{
+					"pattern": "WorkListProducts/{action}",
+					"name": "WorkListProducts",
+					"target": [
+						"WorkListProductMaster"
+					]
+				},
+				{
+					"pattern": "CreateRequest/{reqNo}/{action}",
+					"name": "CreateRequest",
+					"target": [
+						"CreateRequest"
+					]
+				},
+				{
+					"pattern": "AppendRequest/{reqId}/{action}",
+					"name": "AppendRequest",
+					"target": [
+						"AppendRequest"
+					]
+				},
+				{
+					"pattern": "UpdateRequest/{reqId}/{action}",
+					"name": "UpdateRequest",
+					"target": [
+						"UpdateRequest"
+					]
+				},
+				{
+					"pattern": "RenewRequest/{reqNo}/{action}",
+					"name": "RenewRequest",
+					"target": [
+						"RenewRequest"
+					]
+				},
+				{
+					"pattern": "ValuationActual/{reqId}/{priceModel}/{action}",
+					"name": "ValuationActual",
+					"target": [
+						"ValuationActual"
+					]
+				},
+				{
+					"pattern": "ValuationCostPlus/{reqId}/{priceModel}/{action}",
+					"name": "ValuationCostPlus",
+					"target": [
+						"ValuationCostPlus"
+					]
+				},
+				{
+					"pattern": "ValuationFirstInClass/{reqId}/{priceModel}/{action}",
+					"name": "ValuationFirstInClass",
+					"target": [
+						"ValuationFirstInClass"
+					]
+				},
+				{
+					"pattern": "ValuationDiscovery/{reqId}/{priceModel}/{action}",
+					"name": "ValuationDiscovery",
+					"target": [
+						"ValuationDiscovery"
+					]
+				},
+				{
+					"pattern": "ValuationComp/{reqId}/{priceModel}/{action}",
+					"name": "ValuationComp",
+					"target": [
+						"ValuationComp"
+					]
+				}
+			],
+			"targets": {
+				"MainView": {
+					"viewType": "XML",
+					"viewName": "MainView",
+					"viewId": "MainView",
+					"viewLevel": 0
+				},
+				"WorkListRequestor": {
+					"viewType": "XML",
+					"viewName": "WorkListRequestor",
+					"viewId": "WorkListRequestor",
+					"viewLevel": 1
+				},
+				"ReqDetail": {
+					"viewType": "XML",
+					"viewName": "ReqDetail",
+					"viewId": "ReqDetail",
+					"viewLevel": 2
+				},
+				"objectNotFound": {
+					"viewName": "ObjectNotFound",
+					"viewId": "objectNotFound"
+				},
+				"notFound": {
+					"viewName": "NotFound",
+					"viewId": "notFound"
+				},
+				"WorkListVFCMgr": {
+					"viewType": "XML",
+					"viewName": "WorkListVFCMgr",
+					"viewId": "WorkListVFCMgr",
+					"viewLevel": 1
+				},
+				"WorkListSPInput": {
+					"viewType": "XML",
+					"viewName": "WorkListSPInput",
+					"viewId": "WorkListSPInput",
+					"viewLevel": 1
+				},
+				"WorkListApprover": {
+					"viewType": "XML",
+					"viewName": "WorkListApprover",
+					"viewId": "WorkListApprover",
+					"viewLevel": 1
+				},
+				"CreateRequest": {
+					"viewType": "XML",
+					"viewName": "CreateRequest",
+					"viewId": "CreateRequest",
+					"viewLevel": 1
+				},
+				"ProductSearch": {
+					"viewType": "XML",
+					"viewName": "ProductSearch",
+					"viewId": "ProductSearch",
+					"viewLevel": 1
+				},
+				"ValuationActual": {
+					"viewType": "XML",
+					"viewName": "ValuationActual",
+					"viewId": "ValuationActual",
+					"viewLevel": 1
+				},
+				"ValuationCostPlus": {
+					"viewType": "XML",
+					"viewName": "ValuationCostPlus",
+					"viewId": "ValuationCostPlus",
+					"viewLevel": 1
+				},
+				"ValuationFirstInClass": {
+					"viewType": "XML",
+					"viewName": "ValuationFirstInClass",
+					"viewId": "ValuationFirstInClass",
+					"viewLevel": 1
+				},
+				"ValuationDiscovery": {
+					"viewType": "XML",
+					"viewName": "ValuationDiscovery",
+					"viewId": "ValuationDiscovery",
+					"viewLevel": 1
+				},
+				"ValuationComp": {
+					"viewType": "XML",
+					"viewName": "ValuationComp",
+					"viewId": "ValuationComp",
+					"viewLevel": 1
+				},
+				"CreateProduct": {
+					"viewType": "XML",
+					"viewName": "CreateProduct",
+					"viewId": "CreateProduct",
+					"viewLevel": 1
+				},
+				"WorkListProductMaster": {
+					"viewType": "XML",
+					"viewName": "WorkListProductMaster",
+					"viewId": "WorkListProducts",
+					"viewLevel": 1
+				},
+				"AppendRequest": {
+					"viewType": "XML",
+					"viewName": "AppendRequest",
+					"viewId": "AppendRequest",
+					"viewLevel": 1
+				},
+				"UpdateRequest": {
+					"viewType": "XML",
+					"viewName": "UpdateRequest",
+					"viewId": "UpdateRequest",
+					"viewLevel": 1
+				},
+				"RenewRequest": {
+					"viewType": "XML",
+					"viewName": "RenewRequest",
+					"viewId": "RenewRequest",
+					"viewLevel": 1
+				},
+				"SearchandReport": {
+					"viewType": "XML",
+					"viewName": "SearchandReport",
+					"viewId": "SearchandReport",
+					"viewLevel": 1
+				},
+				"HeaderLevelList": {
+					"viewType": "XML",
+					"viewName": "HeaderLevelList",
+					"viewId": "HeaderLevelList",
+					"viewLevel": 2
+				},
+				"ItemLevelList": {
+					"viewType": "XML",
+					"viewName": "ItemLevelList",
+					"viewId": "ItemLevelList",
+					"viewLevel": 2
+				}
+			}
+		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zctg_req/webapp",
+		"_version": "1.1.0"
+	}
+}

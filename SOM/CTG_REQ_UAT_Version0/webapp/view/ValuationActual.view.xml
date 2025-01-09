@@ -1,0 +1,513 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.ValuationActual" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:form="sap.ui.layout.form"
+	xmlns:t="sap.ui.table" xmlns:unified="sap.ui.unified">
+	<App>
+		<pages>
+			<Page id="valuDetlPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<f:DynamicPage id="dynamicPageId" headerExpanded="true" toggleHeaderOnTitleClick="false">
+						<f:title>
+							<f:DynamicPageTitle>
+								<f:heading width="90">
+									<Title text="{reqHExtnModel>/ReqHExtnSet/AttrReqNo}" width="auto"/>
+								</f:heading>
+								<f:breadcrumbs>
+									<Breadcrumbs>
+										<Link id="refReqE" text="" press="onCurrReqNoClick" visible="false" class="myRefReqStyle"/>
+									</Breadcrumbs>
+								</f:breadcrumbs>
+								<f:content>
+									<Button id="auditLog" tooltip="Audit Log" icon="sap-icon://list" press="onReqAuditLog" class="myAuditLogButn" type="Transparent" visible="true"/>
+								</f:content>
+								<f:actions>
+									<ToolbarSpacer/>
+									<Button id="actionsButn" text="Actions" type="Emphasized" visible="false" icon="sap-icon://action" press="onActionSheet"></Button>
+									<Button id="pdfButn" tooltip="Download" type="Transparent" visible="false" icon="sap-icon://pdf-attachment" press="onPDFDownload"
+										class="myPDFIconButn"></Button>
+								</f:actions>
+							</f:DynamicPageTitle>
+						</f:title>
+						<f:header>
+							<f:DynamicPageHeader pinnable="false">
+								<f:content>
+									<ObjectHeader intro="">
+										<attributes>
+											<ObjectAttribute text="{reqHExtnModel>/ReqHExtnSet/ProdId}" active="false" visible="true"/>
+											<ObjectAttribute text="{reqHExtnModel>/ReqHExtnSet/AttrProdNames}" active="false" visible="true"/>
+											<ObjectAttribute text="{reqHExtnModel>/ReqHExtnSet/AttrPhase}" active="false" visible="true"/>
+											<ObjectAttribute text="{reqHExtnModel>/ReqHExtnSet/AttrPricModl}" active="false" visible="true"/>
+											<ObjectAttribute id="expDate" text="{reqHExtnModel>/ReqHExtnSet/AttrExpDate}" active="false" visible="false"/>
+										</attributes>
+										<statuses>
+											<ObjectStatus text="{reqHExtnModel>/ReqHExtnSet/AttrStatus}" state="Success" visible="true"/>
+										</statuses>
+									</ObjectHeader>
+								</f:content>
+							</f:DynamicPageHeader>
+						</f:header>
+						<f:content>
+							<IconTabBar id="iTabBarComparator" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false"
+								visible="true" selectedKey="iTFReqDet" select="onIconTabSelect">
+								<items>
+									<IconTabFilter id="iTFReqDet" text="Request Details" icon="sap-icon://detail-view" count="" design="Vertical" enabled="true" visible="true">
+										<content>
+											<Panel id="reqDet" headerText="Request Details" expandable="true" expanded="true">
+												<l:BlockLayout background="Default" visible="true">
+													<l:content>
+														<l:BlockLayoutRow scrollable="false">
+															<l:content>
+																<l:BlockLayoutCell width="32" title="" titleAlignment="Begin" titleLevel="Auto">
+																	<l:content>
+																		<Table width="400px" noDataText="No data" mode="None" showSeparators="All" class="sapUiResponsiveMargin">
+																			<headerToolbar/>
+																			<columns>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+																					<header>
+																						<Text text="Request Details" visible="true"/>
+																					</header>
+																					<footer/>
+																				</Column>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																					<header/>
+																					<footer/>
+																				</Column>
+																			</columns>
+																			<items>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Requestor"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/ReqName}"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Requestor Group"/>
+																						<ObjectIdentifier text="{ path: 'reqHExtnModel>/ReqHExtnSet/ReqGrp', formatter: '.formatter.formatReqGrp' }"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Request Date"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/SubmitDate}"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Reference Request"/>
+																						<Link text="{reqHExtnModel>/ReqHExtnSet/RefReqNo}" press="onRefReqNoClick"/>
+																					</cells>
+																				</ColumnListItem>
+																			</items>
+																		</Table>
+																	</l:content>
+																</l:BlockLayoutCell>
+																<l:BlockLayoutCell width="32" title="" titleAlignment="Begin" titleLevel="Auto">
+																	<l:content>
+																		<Table width="400px" noDataText="No data" mode="None" showSeparators="All" class="sapUiResponsiveMargin">
+																			<headerToolbar/>
+																			<columns>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+																					<header>
+																						<Text text="Valuation Details" visible="true"/>
+																					</header>
+																					<footer/>
+																				</Column>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																					<header/>
+																					<footer/>
+																				</Column>
+																			</columns>
+																			<items>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Valuator"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/ValName}"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="SP Inputter"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/SPIName}"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Valuation date"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/ValuDate}"/>
+																					</cells>
+																				</ColumnListItem>
+																			</items>
+																		</Table>
+																		<Label text=""></Label>
+																		<Table width="400px" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"
+																			class="sapUiResponsiveMargin">
+																			<headerToolbar/>
+																			<columns>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Phone" demandPopin="false" popinDisplay="Inline" mergeDuplicates="false">
+																					<header>
+																						<Text text="Approver Details" visible="true"/>
+																					</header>
+																					<footer/>
+																				</Column>
+																				<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																					<header/>
+																					<footer/>
+																				</Column>
+																			</columns>
+																			<items>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Approver"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/AprvName}"/>
+																					</cells>
+																				</ColumnListItem>
+																				<ColumnListItem>
+																					<cells>
+																						<ObjectIdentifier title="Effective Date"/>
+																						<ObjectIdentifier text="{reqHExtnModel>/ReqHExtnSet/EffDate}"/>
+																					</cells>
+																				</ColumnListItem>
+																			</items>
+																		</Table>
+																	</l:content>
+																</l:BlockLayoutCell>
+															</l:content>
+														</l:BlockLayoutRow>
+													</l:content>
+												</l:BlockLayout>
+											</Panel>
+											<Panel id="basicInfo" headerText="Basic Information" expandable="true" expanded="false">
+												<form:SimpleForm id="sfBasicInfo" title="Basic Information" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="5"
+													labelSpanM="5" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="3" columnsXL="2" columnsL="2" columnsM="2"
+													singleContainerFullSize="true" class="myHideTitle sapUiFormTitle">
+													<form:content>
+														<Label text="Pfizer Compound Name" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ProdId}"/>
+														<Label text="Other Names" design="Bold"/>
+														<Input value="{reqHExtnModel>/ReqHExtnSet/ProdNames}" editable="false"/>
+														<Label text="Phase" design="Bold"/>
+														<Text id="devPhase" text="{reqHExtnModel>/ReqHExtnSet/DevPhDesc}"/>
+														<Label text="Product Type" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ProdTypDesc}"/>
+														<Label text="Finished Goods Form" design="Bold"/>
+														<Text id="finiGoodsForm" text="{reqHExtnModel>/ReqHExtnSet/FiniGoodFrmDesc}"/>
+														<core:Title/>
+														<Label text="Is it Biologic" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/Biologic}"/>
+														<Label text="Is it Biosimilar" design="Bold"/>
+														<Text id="biosim" text="{reqHExtnModel>/ReqHExtnSet/Biosimilar}"/>
+														<Label text="Is it First in Class" design="Bold"/>
+														<Text id="firstInClass" text="{reqHExtnModel>/ReqHExtnSet/FirstClass}"/>
+														<Label text="Has it reached POC?" design="Bold"/>
+														<Text id="reachedPOC" text="{reqHExtnModel>/ReqHExtnSet/POCInd}"/>
+														<Label text="Product Source" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ProdSrcDesc}"/>
+													</form:content>
+												</form:SimpleForm>
+											</Panel>
+											<Panel id="prodDet" headerText="Product Details" expandable="true" expanded="false">
+												<form:SimpleForm id="sfProdDet" title="Product Details" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+													labelSpanM="3" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="3" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false" class="myHideTitle sapUiFormTitle">
+													<form:content>
+														<Label text="Primary Indication" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/PriIndHier}"/>
+														<Label text="Daily Dose (MG)" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/Ddose}"/>
+														<Label text="Mechanism of Action" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ActionMechDesc}"/>
+														<Label text="MoA Type" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/MechActTypDesc}"/>
+														<Label text="How is it Administered" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/HowAdmin}"/>
+														<Label text="How Often Administered" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/HowOftnAdm}"/>
+														<Label text="Anticipated Phase Change" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/PhseChngDt}"/>	
+													</form:content>
+												</form:SimpleForm>
+											</Panel>
+											<Panel id="purchDet" headerText="Purchase Details" expandable="true" expanded="false">
+												<form:SimpleForm id="sfPurchDet" title="Request Details" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+													labelSpanM="3" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="3" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false" class="myHideTitle sapUiFormTitle">
+													<form:content>
+														<Label text="How was it Obtained?" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ProcmntTyp}"/>
+														<Label text="Total Cost of Purchase" design="Bold"/>
+														<Text text="{ path: 'reqHExtnModel>/ReqHExtnSet/PurchCost', formatter: '.formatter.formatCurrency' }"></Text>
+														<Label text="Quantity Purchased" design="Bold"/>
+														<Text
+															text="{ parts: [ {path: 'reqHExtnModel>/ReqHExtnSet/QtyPurch'}, {path: 'reqHExtnModel>/ReqHExtnSet/QtyUOM'} ], formatter: '.formatter.formatUoM' }"/>
+														<Label text="Value Added by Pfizer" design="Bold"/>
+														<Text text="{ path: 'reqHExtnModel>/ReqHExtnSet/ValuAdded', formatter: '.formatter.formatCurrency' }"/>
+													</form:content>
+												</form:SimpleForm>
+											</Panel>
+											<Panel id="shipDet" headerText="Shipment Details" expandable="true" expanded="false">
+												<form:SimpleForm id="sfShipDet" title="Request Details" editable="false" layout="ResponsiveGridLayout" labelSpanXL="3" labelSpanL="3"
+													labelSpanM="3" adjustLabelSpan="false" emptySpanXL="3" emptySpanL="3" emptySpanM="3" columnsXL="1" columnsL="1" columnsM="1"
+													singleContainerFullSize="false" class="myHideTitle sapUiFormTitle">
+													<form:content>
+														<Label text="Ship To" design="Bold"/>
+														<Text text="{reqHExtnModel>/ReqHExtnSet/ShipDest}"/>
+														<Label text="Destination" design="Bold"/>
+														<TextArea value="{reqHExtnModel>/ReqHExtnSet/AllCtry}" growing="true" growingMaxLines="3" editable="false"></TextArea>
+														<Label text="Formulation" design="Bold"/>
+														<TextArea value="{reqHExtnModel>/ReqHExtnSet/AllStrn}" growing="true" growingMaxLines="3" editable="false"></TextArea>
+													</form:content>
+												</form:SimpleForm>
+											</Panel>
+											<Panel headerText="Notes &amp; Attachments" expandable="true" expanded="false">
+												<form:SimpleForm id="sfnotes" editable="true" title="Notes Section" layout="ResponsiveGridLayout" adjustLabelSpan="false" labelSpanXL="2"
+													labelSpanL="2" labelSpanM="2" columnsXL="1" columnsL="1" columnsM="1" class="myHideTitle">
+													<form:content>
+														<Panel width="100%" headerText="Notes">
+															<Text text="Please provide any additional comments for the Valuator."/>
+															<TextArea value="{reqHExtnModel>/ReqHExtnSet/Comments}" growing="true" width="80%" growingMaxLines="5" rows="5" editable="false"/>
+														</Panel>
+														<core:Title/>
+														<Panel width="100%" headerText="Attachments">
+															<Text text="Attach any documents here. You are required to provide an attachment under the following conditions: "/>
+															<Text
+																text="1) If the product has not reached Proof of Concept, you must use the Discovery Formula and attach the results. 2) If the product is First in Class, you are required to attach a pricing sheet."/>
+															<Text
+																text="3) If the product was procured from a 3rd Party, then you are required to attach a Purchase Order to verify the details. 4) If updating product characteristics, you must provide evidence of the change (ex. Record from SnapShot)."/>
+															<Table id="attachmentTab" width="36%" noDataText="No Files Uploaded" mode="None" showSeparators="None"
+																items="{fileAttachmentModel>/attachments}">
+																<columns>
+																	<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false"></Column>
+																	<Column width="auto"></Column>
+																</columns>
+																<items>
+																	<ColumnListItem type="Inactive">
+																		<cells>
+																			<Link text="{fileAttachmentModel>FileName}" press="onFileDownload" width="300px"/>
+																			<Input visible="false"/>
+																		</cells>
+																	</ColumnListItem>
+																</items>
+															</Table>
+														</Panel>
+													</form:content>
+												</form:SimpleForm>
+											</Panel>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter id="iTFValuPrdTyp" text="Valuation" icon="sap-icon://lead" count="" design="Vertical" enabled="true" visible="true">
+										<content>
+											<Toolbar>
+												<ToolbarSpacer/>
+												<Label required="true" text="{i18n>requiredField}"/>
+											</Toolbar>
+											<l:BlockLayout background="Default" visible="true">
+												<l:content>
+													<l:BlockLayoutRow>
+														<l:content>
+															<l:BlockLayoutCell width="50">
+																<l:content>
+																	<Table width="40%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true"
+																		class="sapUiResponsiveMargin">
+																		<headerToolbar>
+																			<Toolbar>
+																				<content>
+																					<Title text="Actual Price Details"/>
+																				</content>
+																			</Toolbar>
+																		</headerToolbar>
+																		<columns>
+																			<Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																				<header>
+																					<Text text="Variables" visible="true"/>
+																				</header>
+																				<footer/>
+																			</Column>
+																			<Column width="auto">
+																				<header/>
+																				<footer/>
+																			</Column>
+																		</columns>
+																		<items>
+																			<ColumnListItem type="Inactive">
+																				<cells>
+																					<Text text="API/SFG Discount" width="auto"/>
+																					<Input id="idAPISFGDisct" value="{reqHExtnModel>/ReqHExtnSet/ActualDisc}" type="Text" width="130px" editable="false"/>
+																				</cells>
+																			</ColumnListItem>
+																		</items>
+																	</Table>
+																</l:content>
+															</l:BlockLayoutCell>
+														</l:content>
+													</l:BlockLayoutRow>
+													<l:BlockLayoutRow>
+														<l:content>
+															<l:BlockLayoutCell width="100">
+																<l:content>
+																		<t:Table id="valuationTab" rows="{reqDetailsModel>/ReqDetailsSet}" selectionMode="None" class="sapUiResponsiveMargin myValuTitle"
+																		enableColumnReordering="false" visibleRowCountMode="Fixed" visibleRowCount="5" width="1000px">
+																	<!--<t:Table id="valuationTab" selectionMode="None" class="sapUiResponsiveMargin myValuTitle" enableColumnReordering="false"-->
+																	<!--	visibleRowCountMode="Fixed" visibleRowCount="5" width="1000px"-->
+																	<!--	rows="{ path: 'reqDetailsModel>/ReqDetailsSet', templateShareable: false, sorter: { path: 'CtryKey' } }">-->
+																		<t:extension>
+																			<OverflowToolbar>
+																				<Title text="Valuation"></Title>
+																				<ToolbarSpacer/>
+																				<Button id="dnloadButn" type="Transparent" icon="sap-icon://download" tooltip="Download" press="onDownloadValuExcel"/>
+																				<unified:FileUploader id="excelUploader" icon="sap-icon://upload" buttonOnly="true" iconOnly="true" change="onUploadValuExcel" sameFilenameAllowed="true"/>
+																			</OverflowToolbar>
+																		</t:extension>
+																		<t:columns>
+																			<t:Column width="6rem" sortProperty="ItmStatDesc" filterProperty="ItmStatDesc" resizable="false">
+																				<Label text="Status" design="Bold"/>
+																				<t:template>
+																					<Text text="{reqDetailsModel>ItmStatDesc}" visible="true"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="6rem" sortProperty="DestTyp" filterProperty="DestTyp" resizable="false">
+																				<Label text="Destination" design="Bold"/>
+																				<t:template>
+																					<Label text="{reqDetailsModel>DestTyp}" design="Bold" visible="true"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="6rem" sortProperty="CtryKey" filterProperty="CtryKey" resizable="false">
+																				<Label text="Country" design="Bold"/>
+																				<t:template>
+																					<Label text="{reqDetailsModel>CtryKey}" design="Bold" visible="true"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="10rem" resizable="false">
+																				<Label text="Formulation" design="Bold"/>
+																				<t:template>
+																					<Text
+																						text="{ parts: [ { path: 'reqDetailsModel>Strn1' }, { path: 'reqDetailsModel>UOM1' }, { path: 'reqDetailsModel>Strn2' }, { path: 'reqDetailsModel>UOM2' }, { path: 'reqDetailsModel>Strn3' }, { path: 'reqDetailsModel>UOM3' } ], formatter: '.formatter.formatValuePerUnit' }"
+																						wrapping="true"></Text>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="10rem" id="idUnitPrice" sortProperty="UnitPrice" filterProperty="UnitPrice" resizable="false">
+																				<Label text="Price per Unit (USD)" required="true" design="Bold"/>
+																				<t:template>
+																					<Input value="{reqDetailsModel>UnitPrice}" type="Number" visible="true" editable="{reqDetailsModel>isEditable}" change="onUnitPriceChange"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="6rem" id="idFgInd" sortProperty="FGInd" filterProperty="FGInd" resizable="false">
+																				<Label text="FG Value?" design="Bold"/>
+																				<t:template>
+																					<CheckBox id="fgInd" selected="{reqDetailsModel>FGInd}" select="onFGIndChecked" editable="{reqDetailsModel>isEditable}"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="9rem" resizable="false">
+																				<Label text="Calculated Value" design="Bold"/>
+																				<t:template>
+																					<!--	<ObjectNumber number="{reqDetailsModel>CalcValue}" unit="{path: 'reqDetailsModel>UOM1', formatter: '.formatter.formatPriceUnit'}"
+																						emphasized="true" state="None"/>-->
+																					<ObjectNumber number="{reqDetailsModel>CalcValue}" unit="USD" emphasized="true" state="None"/>
+																				</t:template>
+																			</t:Column>
+																			<t:Column width="17rem" id="idNotes" resizable="false" visible="true">
+																				<Label text="Notes" required="true" design="Bold"/>
+																				<t:template>
+																					<TextArea value="{reqDetailsModel>Comments}" editable="{reqDetailsModel>isEditable}" visible="true" width="255px" change="onValuNotesChange"/>
+																				</t:template>
+																			</t:Column>
+																		</t:columns>
+																		<t:footer>
+																			<Button id="avgPriceSave" text="Save &amp; Calculate" type="Emphasized" press="onSaveCalcPrice" icon="sap-icon://save" iconFirst="true"
+																				width="auto" enabled="true"/>
+																		</t:footer>
+																	</t:Table>
+																</l:content>
+															</l:BlockLayoutCell>
+														</l:content>
+													</l:BlockLayoutRow>
+													<l:BlockLayoutRow>
+														<l:content>
+															<l:BlockLayoutCell>
+																<l:content>
+																	<form:SimpleForm id="valuNotesForm" editable="true" title="Notes Section" layout="ResponsiveGridLayout" adjustLabelSpan="false"
+																		labelSpanXL="2" labelSpanL="2" labelSpanM="2" columnsXL="1" columnsL="1" columnsM="1" class="myHideTitle">
+																		<form:content>
+																			<Panel width="100%" headerText="VFC Manager Notes">
+																				<headerToolbar>
+																					<OverflowToolbar>
+																						<Title text="VFC Manager Notes" />
+																					</OverflowToolbar>
+																				</headerToolbar>																				
+																				<Text text="Please provide any additional comments."/>
+																				<TextArea id="vfcMgrNotes" value="{reqHExtnModel>/ReqHExtnSet/VFCNotes}" growing="true" width="100%" growingMaxLines="5" rows="5"/>
+																			</Panel>
+																			<Panel width="100%" headerText="Approver Notes">
+																				<headerToolbar>
+																					<OverflowToolbar>
+																						<Title text="Approver Notes" />
+																						<ToolbarSpacer />
+																					</OverflowToolbar>
+																				</headerToolbar>
+																				<Text text="Please provide any additional comments."/>
+																				<TextArea id="apprvNotes" value="{reqHExtnModel>/ReqHExtnSet/ApprvNotes}" growing="true" width="100%" growingMaxLines="5" rows="5"/>
+																			</Panel>
+																			<core:Title/>
+																			<Panel width="100%" headerText="Attachments">
+																				<Text text="Attach any documents here."/>
+																				<Table id="valuAttchTab" width="40%" noDataText="No Files Uploaded" mode="MultiSelect" showSeparators="None"
+																					items="{fileAttachmentModel>/attachments}">
+																					<columns>
+																						<Column width="300px" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+																							<unified:FileUploader id="fileUploader" icon="sap-icon://attachment" iconFirst="true" change="onSelectUploadFile"
+																								placeholder="Choose a file for upload...."/>
+																						</Column>
+																						<Column width="auto">
+																							<Button id="bDelAttmnt" icon="sap-icon://delete" press="onDeleteAttachment" type="Reject" tooltip="Delete"/>
+																						</Column>
+																					</columns>
+																					<items>
+																						<ColumnListItem type="Inactive">
+																							<cells>
+																								<Link text="{fileAttachmentModel>FileName}" press="onFileDownload" width="300px"/>
+																								<Input visible="false"/>
+																							</cells>
+																						</ColumnListItem>
+																					</items>
+																				</Table>
+																			</Panel>
+																		</form:content>
+																	</form:SimpleForm>
+																</l:content>
+															</l:BlockLayoutCell>
+														</l:content>
+													</l:BlockLayoutRow>
+												</l:content>
+											</l:BlockLayout>
+										</content>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</f:content>
+					</f:DynamicPage>
+				</content>
+				<footer class="myFooter">
+					<Bar>
+						<contentRight>
+							<Button id="returnReq" text="Return to Requester" type="Reject" press="onReturnToRequster" icon="sap-icon://response" visible="false"
+								class="myButtonStyle"></Button>
+							<Button id="sendToApprv" text="Send for Approval" type="Accept" press="onSendToApprover" icon="sap-icon://action" visible="false"
+								class="myButtonStyle"/>
+							<Button id="rejectReq" text="Reject" type="Reject" press="onRejectReq" icon="sap-icon://decline" visible="false" class="myButtonStyle"></Button>
+							<Button id="saveReq" text="Save" type="Accept" press="onSaveRequest" icon="sap-icon://save" visible="false" class="myFooter myButtonStyle"/>
+							<Button id="cancelReq" text="Cancel" type="Reject" press="onCancelReq" icon="sap-icon://sys-cancel" visible="false" class="myButtonStyle"></Button>
+							<Button id="submitReq" text="Submit" type="Accept" press="onSubmitReq" icon="sap-icon://save" visible="false" class="myFooter myButtonStyle"></Button>
+							<Button id="editReq" text="Edit" type="Accept" press="onEditReq" icon="sap-icon://edit" visible="false" class="myFooter myButtonStyle"></Button>
+							<Button id="apprvReq" text="Approve" type="Accept" press="onApprvReq" icon="sap-icon://accept" visible="false"
+								class="myFooter myButtonStyle"></Button>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

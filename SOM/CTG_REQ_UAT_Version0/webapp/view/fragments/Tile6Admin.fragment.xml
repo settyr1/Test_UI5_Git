@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<GenericTile id="prodAdmin" class="sapUiTinyMarginBegin sapUiMediumMarginTop myTile6Style" 
+		header="Manage Product Master" subheader="" press="onManageProdAdmin">
+		<TileContent>
+			<ImageContent src="sap-icon://settings" />
+		</TileContent>
+	</GenericTile>	
+</core:FragmentDefinition>
