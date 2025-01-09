@@ -1,0 +1,128 @@
+<mvc:View controllerName="com.pfizer.ctg.CTG_REQ.controller.ItemLevelList" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:m="sap.m" height="100%" xmlns:f="sap.ui.layout.form">
+	<m:App>
+		<m:pages>
+			<m:Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack" enableScrolling="false" class="sapUiContentPadding">
+				<m:headerContent>
+					<m:Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></m:Button>
+					<m:Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></m:Text>
+				</m:headerContent>
+				<m:content>
+					<f:SimpleForm layout="ResponsiveGridLayout" editable="false" singleContainerFullSize="true">
+						<f:toolbar>
+							<m:Toolbar id="TB1">
+								<m:Title id="count" text="Detail Results" class="itemLevelTitle"></m:Title>
+								<m:ToolbarSpacer/>
+								<m:SearchField placeholder="Search Globally" value="{ui>/globalFilter}" id="srchText" search="filterGlobally" width="15rem"
+									tooltip="Global Search"/>
+								<m:Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>
+								<m:Button icon="sap-icon://download" press="onDataExport" tooltip="Export to Excel"/>
+							</m:Toolbar>
+						</f:toolbar>
+						<f:content>
+							<Table id="ItemId" selectionMode="None" visibleRowCountMode="Fixed" visibleRowCount="15" rows="{srchHeadModel>/}" filter="onFilterRows">
+								<rowSettingsTemplate>
+									<RowSettings
+										highlight="{= ${srchHeadModel>ItmStatDesc} === 'Active' ? 'Success' : ${srchHeadModel>ItmStatDesc} === 'Expired' ? 'Error' : ${srchHeadModel>ItmStatDesc} === 'In-Progress' ? 'Warning':'Warning'}"/>
+								</rowSettingsTemplate>
+								<columns>
+									<Column hAlign="Center" filterProperty="ItmStatDesc" width="7rem">
+										<m:Label text="Item Status"/>
+										<template>
+											<m:Text text="{srchHeadModel>ItmStatDesc}" id="itemStatDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ReqNo" width="7rem">
+										<m:Label text="Request #"/>
+										<template>
+											<m:Link text="{srchHeadModel>ReqNo}" press="onReqNoHyperlink" id="reqNo" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ProdName" width="7.5rem">
+										<m:Label text="Product Name"/>
+										<template>
+											<m:Text text="{srchHeadModel>ProdName}" id="prodName" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="HStatDesc" width="7rem">
+										<m:Label text="Request Status"/>
+										<template>
+											<m:Text text="{srchHeadModel>HStatDesc}" id="reqStatDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="PhaseDesc" width="7rem">
+										<m:Label text="Phase"/>
+										<template>
+											<m:Text text="{srchHeadModel>PhaseDesc}" id="phaseDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" id="price" filterProperty="ProdTypDesc" width="7rem">
+										<m:Label text="Product Type"/>
+										<template>
+											<m:Text text="{srchHeadModel>ProdTypDesc}" id="prodTypDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ExpiryDt" width="7rem">
+										<m:Label text="Expiration Date"/>
+										<template>
+											<m:Text text="{srchHeadModel>ExpiryDt}" id="expDt" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="Group" width="7.5rem">
+										<m:Label text="Group"/>
+										<template>
+											<m:Text text="{srchHeadModel>Group}" id="group" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="Markets" width="7rem">
+										<m:Label text="Destination"/>
+										<template>
+											<m:Text text="{srchHeadModel>Markets}" id="destMarkets" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="Strenghts" width="7rem">
+										<m:Label text="Strength"/>
+										<template>
+											<m:Text text="{srchHeadModel>Strenghts}" id="strengths" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="DestTypDesd" width="7rem">
+										<m:Label text="Destination Type"/>
+										<template>
+											<m:Text text="{srchHeadModel>DestTypDesd}" id="destTypDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="APIValue" width="7rem">
+										<m:Label text="API Val"/>
+										<template>
+											<m:Text text="{srchHeadModel>APIValue}" id="apiVal" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="SFGValue" width="7rem">
+										<m:Label text="SFG Val"/>
+										<template>
+											<m:Text text="{srchHeadModel>SFGValue}" id="sfgVal" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="FGValue" width="7rem">
+										<m:Label text="FG Val"/>
+										<template>
+											<m:Text text="{srchHeadModel>FGValue}" id="fgVal" wrapping="false"/>
+										</template>
+									</Column>
+								</columns>
+							</Table>
+						</f:content>
+					</f:SimpleForm>
+				</m:content>
+				<m:footer class="myFooter">
+					<m:Bar>
+						<m:contentRight>
+							<m:Image tooltip="Pfizer ERP"/>
+						</m:contentRight>
+					</m:Bar>
+				</m:footer>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

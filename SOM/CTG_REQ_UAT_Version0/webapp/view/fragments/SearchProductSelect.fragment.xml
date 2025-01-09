@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="dialog" title="Select Product" items="{selectedProdModel>/matchedItems}" search="onFragVHelpSearch"
+		cancel="onProdSelectionCancel" confirm="onClickOk" multiSelect="true">
+		<StandardListItem title="{selectedProdModel>ProdName}" description="{selectedProdModel>ProdDesc}"
+			info="{ path: 'selectedProdModel>DevPhase', formatter: '.formatter.formatDevPhDesc'}">
+			<customData>
+				<core:CustomData key="{selectedProdModel>ProdId}" value="{selectedProdModel>ProdName}"/>
+			</customData>
+		</StandardListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

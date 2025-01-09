@@ -1,0 +1,298 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZGTS_FDA_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="FDA_PGENERAL" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                </Key>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="FdaIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="FDA profile Ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FdaMchanged" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="FDA manually chg Ind" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ftz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Free trade zone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GaCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Govrn. Agency Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gapgmcode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="GA Program Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gaprocode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="GA Process Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Intusecode" Type="Edm.String" Nullable="false" MaxLength="16" sap:label="Intended Use Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Disclaimer" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Disclaimer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Itemtype" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Item type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prcodequal" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Product Code Qualif." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prcodenum" Type="Edm.String" Nullable="false" MaxLength="19" sap:label="Product Code Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Commchar" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Product Code Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Apiproduct" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="API product ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scigenusname" Type="Edm.String" Nullable="false" MaxLength="22" sap:label="Scientific Gen. Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Scispecname" Type="Edm.String" Nullable="false" MaxLength="22" sap:label="Scientific Spc. Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ZdfdaScisubspecname" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Scientific SubSp Nm." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tradename" Type="Edm.String" Nullable="false" MaxLength="35" sap:label="Trade Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remarktype" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Remark type code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Remarktext" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Remark text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CommentsInc" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Incomplete Reason" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Created by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="0" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="0" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="PgeneralToPPG23P" Relationship="ZGTS_FDA_SRV.PgeneralToPPG23P" FromRole="FromRole_PgeneralToPPG23P" ToRole="ToRole_PgeneralToPPG23P"/>
+                <NavigationProperty Name="PgeneralToPPG23BP" Relationship="ZGTS_FDA_SRV.PgeneralToPPG23BP" FromRole="FromRole_PgeneralToPPG23BP" ToRole="ToRole_PgeneralToPPG23BP"/>
+                <NavigationProperty Name="PgeneralToPPG19PG20" Relationship="ZGTS_FDA_SRV.PgeneralToPPG19PG20" FromRole="FromRole_PgeneralToPPG19PG20" ToRole="ToRole_PgeneralToPPG19PG20"/>
+                <NavigationProperty Name="PgeneralToPPG04" Relationship="ZGTS_FDA_SRV.PgeneralToPPG04" FromRole="FromRole_PgeneralToPPG04" ToRole="ToRole_PgeneralToPPG04"/>
+            </EntityType>
+            <EntityType Name="FDA_PPG19PG20" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                    <PropertyRef Name="GuidPr"/>
+                    <PropertyRef Name="RoleCode"/>
+                    <PropertyRef Name="IdCode"/>
+                    <PropertyRef Name="Partner"/>
+                </Key>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RoleCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Entity Role Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IdCode" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Entity Identif. Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FDA_PPG23BP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                    <PropertyRef Name="GuidPr"/>
+                    <PropertyRef Name="CompCode"/>
+                    <PropertyRef Name="IdCode"/>
+                    <PropertyRef Name="Partner"/>
+                </Key>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Affirm. of Comp Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IdCode" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Entity Identif. Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Comments" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FDA_DROPDOWN" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Zkey"/>
+                    <PropertyRef Name="Zvalue"/>
+                </Key>
+                <Property Name="Zkey" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Zvalue" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Ztext" Type="Edm.String" Nullable="false" MaxLength="132" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <EntityType Name="ZFDA_SEARCH" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                </Key>
+                <Property Name="Grvsy" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Log. Sys. Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FdaIndicator" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="FDA profile Ind." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prvsy" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Product Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ftz" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Free trade zone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GaCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Govrn. Agency Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gapgmcode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="GA Program Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Gaprocode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="GA Process Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Created by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreatedOn" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="0" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedBy" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Changed by" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChangedOn" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="0" sap:label="Changed On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Prtxt" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="SearchToPPG23BP" Relationship="ZGTS_FDA_SRV.SearchToPPG23BP" FromRole="FromRole_SearchToPPG23BP" ToRole="ToRole_SearchToPPG23BP"/>
+                <NavigationProperty Name="SearchToPPG23P" Relationship="ZGTS_FDA_SRV.SearchToPPG23P" FromRole="FromRole_SearchToPPG23P" ToRole="ToRole_SearchToPPG23P"/>
+                <NavigationProperty Name="SearchToPPG19PG20" Relationship="ZGTS_FDA_SRV.SearchToPPG19PG20" FromRole="FromRole_SearchToPPG19PG20" ToRole="ToRole_SearchToPPG19PG20"/>
+                <NavigationProperty Name="SearchToPPG04" Relationship="ZGTS_FDA_SRV.SearchToPPG04" FromRole="FromRole_SearchToPPG04" ToRole="ToRole_SearchToPPG04"/>
+            </EntityType>
+            <EntityType Name="FDA_PPG04" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                    <PropertyRef Name="GuidPr"/>
+                    <PropertyRef Name="SeqNr"/>
+                </Key>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeqNr" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Sequential number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConstName" Type="Edm.String" Nullable="false" MaxLength="51" sap:label="Name of Const. Elem." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConstQty" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Quantity of Con. Ele" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConstUom" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="External UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ConstPerc" Type="Edm.String" Nullable="false" MaxLength="7" sap:label="Percent of Cons Elem" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FDA_PPG06" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidPr"/>
+                    <PropertyRef Name="SeqNr"/>
+                </Key>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeqNr" Type="Edm.String" Nullable="false" MaxLength="6" sap:label="Sequential number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SrcTypeCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Source Type Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CntryCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="FDA_PPG23P" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GuidChar"/>
+                    <PropertyRef Name="GuidPr"/>
+                    <PropertyRef Name="CompCode"/>
+                    <PropertyRef Name="CompQual"/>
+                </Key>
+                <Property Name="GuidChar" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GuidPr" Type="Edm.Binary" Nullable="false" sap:label="GUID 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Affirm. of Comp Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompQual" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Affirm. of Comp Qual" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Comments" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Comments" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="BP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Partner"/>
+                </Key>
+                <Property Name="Partner" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="BusinessPartner" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Name 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="City" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="Street" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Street" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Country" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Country" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Region" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Region" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+            </EntityType>
+            <Association Name="PgeneralToPPG04" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.FDA_PGENERAL" Multiplicity="1" Role="FromRole_PgeneralToPPG04"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG04" Multiplicity="*" Role="ToRole_PgeneralToPPG04"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PgeneralToPPG04">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PgeneralToPPG04">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PgeneralToPPG19PG20" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.FDA_PGENERAL" Multiplicity="1" Role="FromRole_PgeneralToPPG19PG20"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG19PG20" Multiplicity="*" Role="ToRole_PgeneralToPPG19PG20"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PgeneralToPPG19PG20">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PgeneralToPPG19PG20">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PgeneralToPPG23BP" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.FDA_PGENERAL" Multiplicity="1" Role="FromRole_PgeneralToPPG23BP"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG23BP" Multiplicity="*" Role="ToRole_PgeneralToPPG23BP"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PgeneralToPPG23BP">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PgeneralToPPG23BP">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="PgeneralToPPG23P" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.FDA_PGENERAL" Multiplicity="1" Role="FromRole_PgeneralToPPG23P"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG23P" Multiplicity="*" Role="ToRole_PgeneralToPPG23P"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_PgeneralToPPG23P">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_PgeneralToPPG23P">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SearchToPPG19PG20" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.ZFDA_SEARCH" Multiplicity="1" Role="FromRole_SearchToPPG19PG20"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG19PG20" Multiplicity="*" Role="ToRole_SearchToPPG19PG20"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SearchToPPG19PG20">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SearchToPPG19PG20">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SearchToPPG23P" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.ZFDA_SEARCH" Multiplicity="1" Role="FromRole_SearchToPPG23P"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG23P" Multiplicity="*" Role="ToRole_SearchToPPG23P"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SearchToPPG23P">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SearchToPPG23P">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SearchToPPG23BP" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.ZFDA_SEARCH" Multiplicity="1" Role="FromRole_SearchToPPG23BP"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG23BP" Multiplicity="*" Role="ToRole_SearchToPPG23BP"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SearchToPPG23BP">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SearchToPPG23BP">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="SearchToPPG04" sap:content-version="1">
+                <End Type="ZGTS_FDA_SRV.ZFDA_SEARCH" Multiplicity="*" Role="FromRole_SearchToPPG04"/>
+                <End Type="ZGTS_FDA_SRV.FDA_PPG04" Multiplicity="*" Role="ToRole_SearchToPPG04"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SearchToPPG04">
+                        <PropertyRef Name="GuidChar"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SearchToPPG04">
+                        <PropertyRef Name="GuidChar"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGTS_FDA_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="FDA_PGENERALSet" EntityType="ZGTS_FDA_SRV.FDA_PGENERAL" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_PPG19PG20Set" EntityType="ZGTS_FDA_SRV.FDA_PPG19PG20" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_PPG23BPSet" EntityType="ZGTS_FDA_SRV.FDA_PPG23BP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_DROPDOWNSet" EntityType="ZGTS_FDA_SRV.FDA_DROPDOWN" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ZFDA_SEARCHSet" EntityType="ZGTS_FDA_SRV.ZFDA_SEARCH" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_PPG04Set" EntityType="ZGTS_FDA_SRV.FDA_PPG04" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_PPG06Set" EntityType="ZGTS_FDA_SRV.FDA_PPG06" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="FDA_PPG23PSet" EntityType="ZGTS_FDA_SRV.FDA_PPG23P" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="BPSet" EntityType="ZGTS_FDA_SRV.BP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <AssociationSet Name="SearchToPPG23PSet" Association="ZGTS_FDA_SRV.SearchToPPG23P" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFDA_SEARCHSet" Role="FromRole_SearchToPPG23P"/>
+                    <End EntitySet="FDA_PPG23PSet" Role="ToRole_SearchToPPG23P"/>
+                </AssociationSet>
+                <AssociationSet Name="PgeneralToPPG23PSet" Association="ZGTS_FDA_SRV.PgeneralToPPG23P" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FDA_PGENERALSet" Role="FromRole_PgeneralToPPG23P"/>
+                    <End EntitySet="FDA_PPG23PSet" Role="ToRole_PgeneralToPPG23P"/>
+                </AssociationSet>
+                <AssociationSet Name="PgeneralToPPG23BPSet" Association="ZGTS_FDA_SRV.PgeneralToPPG23BP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FDA_PGENERALSet" Role="FromRole_PgeneralToPPG23BP"/>
+                    <End EntitySet="FDA_PPG23BPSet" Role="ToRole_PgeneralToPPG23BP"/>
+                </AssociationSet>
+                <AssociationSet Name="SearchToPPG04Set" Association="ZGTS_FDA_SRV.SearchToPPG04" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFDA_SEARCHSet" Role="FromRole_SearchToPPG04"/>
+                    <End EntitySet="FDA_PPG04Set" Role="ToRole_SearchToPPG04"/>
+                </AssociationSet>
+                <AssociationSet Name="PgeneralToPPG19PG20Set" Association="ZGTS_FDA_SRV.PgeneralToPPG19PG20" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FDA_PGENERALSet" Role="FromRole_PgeneralToPPG19PG20"/>
+                    <End EntitySet="FDA_PPG19PG20Set" Role="ToRole_PgeneralToPPG19PG20"/>
+                </AssociationSet>
+                <AssociationSet Name="SearchToPPG19PG20Set" Association="ZGTS_FDA_SRV.SearchToPPG19PG20" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFDA_SEARCHSet" Role="FromRole_SearchToPPG19PG20"/>
+                    <End EntitySet="FDA_PPG19PG20Set" Role="ToRole_SearchToPPG19PG20"/>
+                </AssociationSet>
+                <AssociationSet Name="PgeneralToPPG04Set" Association="ZGTS_FDA_SRV.PgeneralToPPG04" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="FDA_PGENERALSet" Role="FromRole_PgeneralToPPG04"/>
+                    <End EntitySet="FDA_PPG04Set" Role="ToRole_PgeneralToPPG04"/>
+                </AssociationSet>
+                <AssociationSet Name="SearchToPPG23BPSet" Association="ZGTS_FDA_SRV.SearchToPPG23BP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZFDA_SEARCHSet" Role="FromRole_SearchToPPG23BP"/>
+                    <End EntitySet="FDA_PPG23BPSet" Role="ToRole_SearchToPPG23BP"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZGTS_FDA_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZGTS_FDA_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

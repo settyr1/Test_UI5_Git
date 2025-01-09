@@ -1,0 +1,63 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form">
+    <Page
+        id="idPageCustomerSearch"
+        showHeader="false"
+        contentHeight="350em"
+        enableScrolling="true">
+        <content>
+            <form:SimpleForm
+                id="idFormCustomerSelect"
+                layout="ResponsiveGridLayout">
+                <Label text="BP Number"/>
+                <Input id="idBPInputNumber" value="{data>/formData/BPNumber}" maxLength="10"/>
+                <Label text="Search Term 1"/>
+     <!--           <Link-->
+					<!--text="Info"-->
+					<!--press="handleResponsivePopoverPress" />-->
+                <Input id="idBPInputSearchTerm1" value="{data>/formData/SearchTerm1}"  maxLength="20"
+                	placeholder="Enter *NTID* to view Colleague screenings" 
+                />
+                <Label text="External Number"/>
+                <Input id="idBPInputExternalNumber" value="{data>/formData/ExternalNumber}"  maxLength="20"
+                	placeholder="BP # src system; SAP/E1/FLEX/ENGAGE (under 40 char)"/>
+                <Label text="BP Name"/>
+                <Input id="idBPInputName" value="{data>/formData/Name}"  maxLength="40"/>
+                <core:Title text="Address" emphasized="true"/>
+                <Label text="House Number" />
+                <Input id="idBPHouseNumber" value="{data>/formData/HouseNumber}"  maxLength="10"/>
+                <Label text="Street"/>
+                <Input id="idBPStreet" value="{data>/formData/Street}"  maxLength="40"/>
+                <Label text="PostalCode" visible="false"/>
+                <Input id="idBPPostalCode" value="{data>/formData/PostalCode}"  maxLength="10" visible="false"/>
+                <Label text="City"/>
+                <Input id="idBPInputCity" value="{data>/formData/City}"  maxLength="40"/>
+
+              <Label text="Country"/>
+              <Select change="onCountryChange" 
+            	forceSelection="false" 
+            	id="idCountry" 
+            	selectedKey="{data>/formData/Country}"
+                items="{
+						path: 'oModelCountry>/CountrySet',
+						sorter: { path: 'Landx' }
+					}">
+				<core:Item key="{oModelCountry>Land1}" text="{oModelCountry>Landx}" />
+			  </Select>
+			  
+              <Label id="lblRegion" text="Region" visible="false"/>
+              <Select change="onRegionChange" 
+            		  visible="false"	
+                      forceSelection="false" 
+                      id="idRegion" 
+                      selectedKey="{data>/formData/Region}"
+              />
+
+                
+            </form:SimpleForm>
+        </content>
+    </Page>
+</core:FragmentDefinition>

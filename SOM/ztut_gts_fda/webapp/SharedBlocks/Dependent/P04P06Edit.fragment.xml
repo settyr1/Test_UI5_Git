@@ -1,0 +1,175 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:form="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" xmlns:semantic="sap.m.semantic"
+	xmlns:uica="sap.ca.ui"
+	xmlns:l="sap.ui.layout" xmlns:f-semantic="sap.f.semantic"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	>
+	
+	<ScrollContainer height='20rem' vertical='true'>
+	<Table id="tblPPG04" items="{FDA>/PgeneralToPPG04}" noDataText="{i18n>detailLineItemTableNoDataText}"
+		busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin"
+		mode="MultiSelect"
+		width="95%"
+		growingThreshold="3"
+		sticky="sap.m.Sticky.ColumnHeaders"
+		growing="true"
+		growingScrollToLoad="true"
+		updateFinished="ontblPPG04UpdateFinished">
+		<headerToolbar>
+			<OverflowToolbar id="tblPPG04Toolbar">
+				<Title id="tblPPG04Header" text="PPG04 SAP.m.table"/>
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://add" tooltip="Add" press="BcAddPpg04" />
+				<Button icon="sap-icon://delete" tooltip="Delete" press="BcDeletePpg04_2" />
+				<Button icon="sap-icon://sort" tooltip="Sort by ConstQty" press="sortPPG04"/>
+				<Button icon="sap-icon://action-settings" press="onPersoButtonPressed" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="{= sap.m.OverflowToolbarPriority.NeverOverflow }" />
+					</layoutData>
+				</Button>				
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="3em" >
+				<Text text="Delete"/>
+			</Column>			
+			<!--<Column>-->
+			<!--	<Text text="GuidChar"/>-->
+			<!--</Column>-->
+			<!--<Column>-->
+			<!--	<Text text="SeqNr"/>-->
+			<!--</Column>-->
+			<Column demandPopin="false" hAlign="Right" width="30%">
+				<Text text="ConstName"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right" width="20%">
+				<Text text="ConstQty"/>
+			</Column>
+			<Column demandPopin="false" hAlign="Right" >
+				<Text text="ConstUom"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right" width="20%">
+				<Text text="ConstPerc"/>
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Button icon="sap-icon://delete" type="Reject" press="BcDeletePpg04"/>					
+					<!--<ObjectIdentifier text="{FDA>GuidChar}"/>-->
+					<!--<Input type="Text" value="{FDA>SeqNr}"/>-->
+					<Input type="Text" value="{FDA>ConstName}"   maxLength="{= parseInt(${/#FDA_PPG04/ConstName/@maxLength}) }" />
+					<Input type="Text"  value="{path:'FDA>ConstQty', type : '.ConvZeroNumber' }"    
+										textAlign="Right" 
+										maxLength="{= parseInt(${/#FDA_PPG04/ConstQty/@maxLength}) }"
+										liveChange="LiveChangeOnlyNumber" 
+										app:integerPart="{/#FDA_PPG04/ConstQty/@maxLength}"
+										app:fractionalPart="0" 										
+										/>
+					<Input type="Text" value="{FDA>ConstUom}"    
+					                   maxLength="{= parseInt(${/#FDA_PPG04/ConstUom/@maxLength}) }"
+					                   showValueHelp="true"
+									    app:SearchName="ZFDA_CTSUOM" 
+				    					app:SearchService="search_uomSet"
+				    					app:SearchReturnField="Ctsmu"					                   
+					                   valueHelpRequest="bc_onSearchHelp"/>
+					<Input type="Text" value="{path:'FDA>ConstPerc', type : '.ConvZeroNumber' }" 
+									   textAlign="Right" maxLength="{= parseInt(${/#FDA_PPG04/ConstPerc/@maxLength}) }"
+										liveChange="LiveChangeOnlyNumber" 
+										app:integerPart="{/#FDA_PPG04/ConstPerc/@maxLength}"
+										app:fractionalPart="0" 									   
+									   />
+
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</ScrollContainer>										
+
+
+	<ui:Table id="uitable" selectionMode="MultiToggle" rows="{FDA>/PgeneralToPPG04}" visibleRowCount="7" sort="sortDeliveryDate"
+		ariaLabelledBy="title">
+				<ui:toolbar>
+					<Toolbar>
+						<Title id="uititle" text="SAP ui table"></Title>
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://sorting-ranking"
+							tooltip="Sort ascending across Categories and Name"
+							press="sortCategoriesAndName"/>
+						<Button
+							icon="sap-icon://sort"
+							tooltip="Sort Categories"
+							press="sortCategories"/>
+						<Button
+							icon="sap-icon://decline"
+							tooltip="Clear all sortings"
+							press="clearAllSortings"/>
+					</Toolbar>
+				</ui:toolbar>
+				
+				<ui:columns>
+					<ui:Column width="3rem">
+						<Label text="Del" />
+						<ui:template>
+							<Button icon="sap-icon://delete" type="Reject" press="deletePPG04"/>
+						</ui:template>
+					</ui:Column>
+					<!--<ui:Column width="11rem">-->
+					<!--	<Label text="GuidChar" />-->
+					<!--	<ui:template>-->
+							<!--<Input value="{FDA>GuidChar}"/>-->
+					<!--		<Text text="{FDA>GuidChar}" wrapping="false" />-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					<!--<ui:Column width="11rem" sortProperty="SeqNr" filterProperty="SeqNr" showSortMenuEntry="true">-->
+					<!--	<Label text="SeqNr" />-->
+					<!--	<ui:template>-->
+					<!--		<Input value="{FDA>SeqNr}"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>					-->
+					<ui:Column width="15rem" sortProperty="ConstName">
+						<Label text="ConstName" />
+						<ui:template>
+							<Input value="{FDA>ConstName}"/>
+						</ui:template>
+					</ui:Column>					
+					<ui:Column width="11rem" sortProperty="ConstQty">
+						<Label text="ConstQty" />
+						<ui:template>
+							
+							<Input type="Text"  value="{path:'FDA>ConstQty', type : '.ConvZeroNumber' }"    
+										textAlign="Right" 
+										maxLength="{= parseInt(${/#FDA_PPG04/ConstQty/@maxLength}) }"
+										liveChange="LiveChangeOnlyNumber" 
+										app:integerPart="{/#FDA_PPG04/ConstQty/@maxLength}"
+										app:fractionalPart="0" 										
+							/>							
+							<!--<Input value="{FDA>ConstQty}"/>-->
+						</ui:template>
+					</ui:Column>					
+					<ui:Column width="11rem">
+						<Label text="ConstUom" />
+						<ui:template>
+							<Input value="{FDA>ConstUom}"/>
+						</ui:template>
+					</ui:Column>					
+					<ui:Column width="11rem" sortProperty="ConstPerc">
+						<Label text="ConstPerc" />
+						<ui:template>
+							<Input type="Text" value="{path:'FDA>ConstPerc', type : '.ConvZeroNumber' }" 
+									   textAlign="Right" maxLength="{= parseInt(${/#FDA_PPG04/ConstPerc/@maxLength}) }"
+										liveChange="LiveChangeOnlyNumber" 
+										app:integerPart="{/#FDA_PPG04/ConstPerc/@maxLength}"
+										app:fractionalPart="0" 									   
+							/>
+						</ui:template>
+					</ui:Column>					
+					
+
+				</ui:columns>			
+				
+	</ui:Table>
+</core:FragmentDefinition>

@@ -1,0 +1,211 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.ProductSearch" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:t="sap.ui.table">
+	<App>
+		<pages>
+			<Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<VBox class="sapUiSmallMargin">
+						<f:Form id="prodSrch" title="Product Search" width="auto" editable="true" visible="true">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+									columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+							</f:layout>
+							<f:title/>
+							<f:formContainers>
+								<f:FormContainer visible="true">
+									<f:formElements>
+										<f:FormElement visible="true">
+											<f:label>
+												<Label text="Product Name" design="Bold" required="true"/>
+											</f:label>
+											<f:fields>
+												<Input id="srchProduct" showSuggestion="true" showValueHelp="true" valueHelpRequest="onSearch" submit="onEnterSearch"
+													placeholder="Pfizer Compound/Other Names" suggestionItems="{prodSrchModel>/products}" suggestionItemSelected="onItemSelected">
+													<suggestionItems>
+														<core:ListItem key="{prodSrchModel>ProdName}" text="{prodSrchModel>ProdDesc}" additionalText="{prodSrchModel>DevPhDesc}"/>
+													</suggestionItems>
+												</Input>
+												<Button id="bProdSrch" text="Product Search" type="Emphasized" press="onSearch" width="145px" icon="sap-icon://search" enabled="true">
+													<layoutData>
+														<l:GridData span="L3 M3"/>
+													</layoutData>
+												</Button>												
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="true">
+											<f:label>
+												<Label text="Selected Product" design="Bold"/>
+											</f:label>
+											<f:fields>
+												<Link id="selectedProd" text="" press="onProductLink"/>
+												<Text id="selectedProdNames" text="" width="100%">
+													<layoutData>
+														<l:GridData span="L6 M6"/>
+													</layoutData>
+												</Text>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement visible="true">
+											<f:label>
+												<Label text="Phase" design="Bold"/>
+											</f:label>
+											<f:fields>
+												<Text id="devPhase" text=""></Text>
+												<Button id="bReqSrch" text="Request Search" type="Emphasized" press="onRequestSearch" width="145px" icon="sap-icon://search" enabled="true">
+													<layoutData>
+														<l:GridData span="L3 M3"/>
+													</layoutData>
+												</Button>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+									<f:title/>
+								</f:FormContainer>
+								<f:FormContainer visible="true">
+									<f:formElements>
+										<f:FormElement id="prodTypeE" visible="false">
+											<f:label>
+												<Label text="Product Type" design="Bold" required="true"/>
+											</f:label>
+											<f:fields>
+												<ComboBox id="prodType" width="180px" items="{ path: 'prodTypeModel>/myData', templateShareable : true }" change="onProdTypeSelected">
+													<items>
+														<core:Item text="{prodTypeModel>Desc}" key="{prodTypeModel>Value}"></core:Item>
+													</items>
+												</ComboBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement id="finiGoodsFormE" visible="false">
+											<f:label>
+												<Label text="Finished Goods Form" design="Bold" required="true"/>
+											</f:label>
+											<f:fields>
+												<ComboBox id="finiGoodsForm" width="180px" items="{ path: 'dropDownModel>/finiGoodsForm', templateShareable : true }"
+													change="onFiniGoodsFrmSelect">
+													<items>
+														<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+													</items>
+												</ComboBox>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement id="destShipE" visible="false">
+											<f:label>
+												<Label text="Destination" design="Bold" required="true"/>
+											</f:label>
+											<f:fields>
+												<RadioButtonGroup id="destShip" columns="2" selectedIndex="0" valueState="None" editable="true" select="onProdSrceSelect" width="170px">
+													<buttons>
+														<RadioButton id="pfizer" text="Pfizer" editable="true" valueState="None" selected="false" textAlign="Left"/>
+														<RadioButton id="external" text="3rd Party" editable="true" valueState="None" selected="false" textAlign="Left"/>
+													</buttons>
+												</RadioButtonGroup>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement id="purchOrdE" visible="false">
+											<f:label>
+												<Label text="Purchase Order" design="Bold" required="true"/>
+											</f:label>
+											<f:fields>
+												<Input id="purchOrd" value="" width="170px" change="onPurchOrdChange"></Input>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+						<Toolbar>
+							<ToolbarSpacer/>
+							<Button id="bReqCreate" text="Create Request" type="Emphasized" press="onRequestCreate" width="auto" visible="false"
+								icon="sap-icon://create"/>
+						</Toolbar>
+						<t:Table id="prodReqItemTab" rows="{prodSrchWrkListModel>/ProdReqItems}" title="Contego Requests" selectionMode="Single"
+							selectionBehavior="RowOnly" enableColumnReordering="false">
+							<t:columns>
+								<t:Column width="7rem" sortProperty="ReqNo" filterProperty="ReqNo">
+									<Label text="Request No" design="Bold"/>
+									<t:template>
+										<Link text="{prodSrchWrkListModel>ReqNo}" press="onReqNoHyperlink" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="8rem" sortProperty="ProdTyp" filterProperty="ProdType">
+									<Label text="Product Type" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>ProdTypDesc}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem" sortProperty="DevPhDesc" filterProperty="DevPhDesc">
+									<Label text="Phase" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>DevPhDesc}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem" sortProperty="PricModDesc" filterProperty="PricModDesc">
+									<Label text="Pricing Model" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>PricModDesc}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="8rem" sortProperty="HStatDesc" filterProperty="HStatDesc">
+									<Label text="Request Status" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>HStatDesc}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="10rem" sortProperty="RequstName" filterProperty="RequstName">
+									<Label text="Requestor" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>RequstName}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="8rem" sortProperty="SubmitDate" filterProperty="SubmitDate">
+									<Label text="Date Submitted" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>SubmitDate}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="8rem" sortProperty="EffDate" filterProperty="EffDate">
+									<Label text="Effective Date" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>EffDate}" wrapping="false"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem" sortProperty="ExpDate" filterProperty="ExpDate">
+									<Label text="Expiry Date" design="Bold"/>
+									<t:template>
+										<Text text="{prodSrchWrkListModel>ExpDate}"/>
+									</t:template>
+								</t:Column>
+								<t:Column width="7rem">
+									<Label text="Actions" design="Bold"/>
+									<t:template>
+										<t:RowAction>
+											<t:items>
+												<t:RowActionItem id="bActIcon" icon="sap-icon://action" visible="true"/>
+												<t:RowActionItem id="bAppend" icon="sap-icon://add-activity-2" text="Append" press="onActionAppend" visible="false"/>
+												<t:RowActionItem id="bUpdate" icon="sap-icon://edit" text="Update" press="onActionUpdate" visible="false"/>
+												<t:RowActionItem id="bRenew"  icon="sap-icon://add-activity" text="Renew" press="onActionRenew" visible="false"/>
+												<t:RowActionItem id="bExtend" icon="sap-icon://add-process" text="Extend" press="onActionExtend" visible="false"/>
+												<t:RowActionItem id="bDummy" text="" visible="true"/>
+											</t:items>
+										</t:RowAction>
+									</t:template>
+								</t:Column>
+							</t:columns>
+						</t:Table>
+					</VBox>
+				</content>
+				<footer>
+					<Bar>
+						<contentRight>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

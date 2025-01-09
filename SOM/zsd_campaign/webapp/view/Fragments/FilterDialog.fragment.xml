@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<ViewSettingsDialog 
+		confirm="handleFilterDialogConfirm">
+		<filterItems>
+			<ViewSettingsFilterItem 
+				text="Brand"
+				key="Brand"
+				items="{path:'JMDL>/Brands'}"				
+				multiSelect="true">
+				<items>
+					<ViewSettingsItem text="{JMDL>Brand}" key="Brand___EQ___{JMDL>Brand}" />
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem
+				text="Material"
+				key="Matnr"
+				items="{path:'JMDL>/Campaign/CampaignDetails'}"				
+				multiSelect="true">
+				<items>
+					<ViewSettingsItem text="{JMDL>Matnr}" key="Matnr___EQ___{JMDL>Matnr}" />
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+
+</core:FragmentDefinition>

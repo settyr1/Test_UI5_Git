@@ -1,0 +1,102 @@
+<mvc:View controllerName="com.pfizer.ctg.CTG_REQ.controller.HeaderLevelList" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:m="sap.m" xmlns:f="sap.ui.layout.form">
+	<m:App>
+		<m:pages>
+			<m:Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack" enableScrolling="false"
+				class="sapUiContentPadding">
+				<m:headerContent>
+					<m:Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></m:Button>
+					<m:Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></m:Text>
+				</m:headerContent>
+				<m:content>
+					<f:SimpleForm layout="ResponsiveGridLayout" editable="false" singleContainerFullSize="true">
+						<f:toolbar>
+							<m:Toolbar id="TB1">
+								<m:Title id="count" text="Header Results" class="headerTitle"></m:Title>
+								<m:ToolbarSpacer/>
+								<m:SearchField id="srchText" placeholder="Search Globally" value="{ui>/globalFilter}" search="filterGlobally" width="15rem"
+									tooltip="Global Search"/>
+								<m:Button icon="sap-icon://decline" tooltip="Clear all filters" press="clearAllFilters"/>
+								<m:Button icon="sap-icon://download" press="onDataExport" tooltip="Export to Excel"/>
+							</m:Toolbar>
+						</f:toolbar>
+						<f:content>
+							<Table id="headerId" selectionMode="None" enableBusyIndicator="true" visibleRowCountMode="Fixed" visibleRowCount="15"
+								rows="{srchHeadModel>/}" width="auto" filter="onFilterRows">
+								<columns>
+									<Column hAlign="Center" filterProperty="ReqNo" width="5rem">
+										<m:Label text="Request No"/>
+										<template>
+											<m:Link text="{srchHeadModel>ReqNo}" id="reqNo" press="onReqNoHyperlink" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="HStatDesc" width="7rem">
+										<m:Label text="Status"/>
+										<template>
+											<m:Text text="{srchHeadModel>HStatDesc}" id="hStatDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="DestTypDesd" width="7rem">
+										<m:Label text="Destination Type"/>
+										<template>
+											<m:Text text="{srchHeadModel>DestTypDesd}" id="destTypDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="PriceModelDesc" width="7rem">
+										<m:Label text="Pricing Model"/>
+										<template>
+											<m:Text text="{srchHeadModel>PriceModelDesc}" id="reqTypDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ProdName" width="10rem">
+										<m:Label text="Product Name"/>
+										<template>
+											<m:Text text="{srchHeadModel>ProdName}" id="prodName" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="OtherNames" width="10.5rem">
+										<m:Label text="Other Names"/>
+										<template>
+											<m:Text text="{srchHeadModel>OtherNames}" id="otherName" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="PhaseDesc" width="7rem">
+										<m:Label text="Phase"/>
+										<template>
+											<m:Text text="{srchHeadModel>PhaseDesc}" id="phaseDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" id="price" filterProperty="ProdTypDesc" width="7rem">
+										<m:Label text="Product Type"/>
+										<template>
+											<m:Text text="{srchHeadModel>ProdTypDesc}" id="prodTypDesc" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ExpiryDt" width="7rem">
+										<m:Label text="Expiration Date"/>
+										<template>
+											<m:Text text="{srchHeadModel>ExpiryDt}" id="expDate" wrapping="false"/>
+										</template>
+									</Column>
+									<Column hAlign="Center" filterProperty="ReqTyp" width="7rem">
+										<m:Label text="Request Type"/>
+										<template>
+											<m:Text text="{srchHeadModel>ReqTypDesc}" wrapping="false"/>
+										</template>
+									</Column>
+								</columns>
+							</Table>
+						</f:content>
+					</f:SimpleForm>
+				</m:content>
+				<m:footer class="myFooter">
+					<m:Bar>
+						<m:contentRight>
+							<m:Image tooltip="Pfizer ERP"/>
+						</m:contentRight>
+					</m:Bar>
+				</m:footer>
+			</m:Page>
+		</m:pages>
+	</m:App>
+</mvc:View>

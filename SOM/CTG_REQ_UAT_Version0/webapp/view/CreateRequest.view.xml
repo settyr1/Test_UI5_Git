@@ -1,0 +1,31 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:uxap="sap.uxap"
+	xmlns:f="sap.ui.layout.form" controllerName="com.pfizer.ctg.CTG_REQ.controller.CreateRequest" xmlns:unified="sap.ui.unified"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="CreateReqPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+				</content>
+				<footer class="myFooter">
+					<Bar>
+						<contentRight>
+							<Button id="deleteReq" type="Transparent" icon="sap-icon://delete" tooltip="Delete Request" press="onDeleteReq" visible="false"
+								class="deleteButtonStyle"></Button>
+							<Button id="cancelReq" text="Cancel" type="Reject" press="onCancelReq" icon="sap-icon://sys-cancel" visible="false" class="myButtonStyle"></Button>
+							<Button id="saveReq" text="Save" type="Accept" press="onSaveReq" icon="sap-icon://save" visible="false" class="myButtonStyle"></Button>
+							<Button id="editReq" text="Edit" type="Accept" press="onEditReq" visible="false" class="myFooter myButtonStyle"
+								icon="sap-icon://edit"></Button>
+							<Button id="submitReq" text="Submit" type="Accept" press="onSubmitReq" visible="false" class="myFooter myButtonStyle"
+								icon="sap-icon://complete"></Button>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,53 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:ui="sap.ui.table"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<VBox class="sapUiNoMargin">
+		
+		
+		<Table id="idCampaignDetails" inset="false" items="{JMDL>/Campaign/CampaignDetails}" mode="MultiSelect" keyboardMode="Edit">
+			<headerToolbar>
+				<OverflowToolbar id="tblPCampaignDetailsToolbar">
+					<Title id="tblCampaignDetailsHeader" text=""/>
+					<ToolbarSpacer/>
+					<Button text="{i18n>BrandMaterials}" tooltip="All Brands" press="bcAddAllBrandMaterials"/>					
+					<Button icon="sap-icon://add" tooltip="Add" press="bcAddCampaignDetails"/>
+					<Button icon="sap-icon://delete" tooltip="Delete" press="bcDeleteCampaignDetails"/>
+					<Button icon="sap-icon://sort"    press="handleSortButtonPressed"/>
+					<Button icon="sap-icon://filter"  press="handleFilterButtonPressed" />						
+				</OverflowToolbar>
+			</headerToolbar>
+		<infoToolbar>
+			<Toolbar id="vsdFilterBar" visible="false">
+				<Text id="vsdFilterLabel" />
+			</Toolbar>
+		</infoToolbar>				
+			<columns>
+				<Column>
+					<Text text="{/#CampaignBrands/Brand/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#CampaignBrands/Matnr/@sap:label}"/>
+				</Column>
+				<Column>
+					<Text text="{/#CampaignBrands/Maktx/@sap:label}"/>
+				</Column>					
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+
+						<Input type="Text" value="{path:'JMDL>Brand'}" textAlign="Left" 
+							editable="{= ${JMDL>NewInd} === true }"
+							showValueHelp="true" app:SearchName="ZSD_BRANDS" app:SearchService="ZsdBrands" app:SearchReturnField="Brand" valueHelpRequest="bc_onSearchHelp"
+						/>						
+						<Input type="Text" value="{path:'JMDL>Matnr'}" textAlign="Left" maxLength="{= parseInt(${/#BrandMaterial/Matnr/@maxLength}) }"
+							editable="{= ${JMDL>NewInd} === true }"
+							showValueHelp="true" app:SearchName="MAT1S" app:SearchService="Mat1s" app:SearchReturnField="Matnr" valueHelpRequest="bc_onSearchHelp"
+						/>
+						<Text text="{JMDL>Maktx}"/>
+						
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

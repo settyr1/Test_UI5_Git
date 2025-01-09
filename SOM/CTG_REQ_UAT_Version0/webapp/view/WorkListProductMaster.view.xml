@@ -1,0 +1,285 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:t="sap.ui.table"
+	controllerName="com.pfizer.ctg.CTG_REQ.controller.WorkListProductMaster" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="WrkListProdPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<form:SimpleForm id="sfProdMaster" title="Product Master" editable="false" layout="ResponsiveGridLayout" singleContainerFullSize="true"
+						class="sapUiFormTitle">
+						<form:toolbar>
+							<Toolbar id="TB1">
+								<Title id="prodMaster" text="Product Master" level="H4" titleStyle="H4"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</form:toolbar>
+						<form:content>
+							<IconTabBar id="iTabBarProdAdmin" expandable="false" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false"
+								visible="true" selectedKey="iTFProdReq" select="onIconTabSelect">
+								<items>
+									<IconTabFilter id="iTFProdList" text="Active Products" icon="sap-icon://product" count="" design="Vertical" enabled="true" visible="true"
+										key="PRODTAB">
+										<content>
+											<t:Table id="prodListTab" rows="{prodWrkListModel>/ProdList}" title="" selectionMode="None" enableColumnReordering="false"
+												visibleRowCountMode="Auto" minAutoRowCount="7" sort="onRequestedDateSort">
+												<t:extension>
+													<Toolbar>
+														<ToolbarSpacer/>
+														<SearchField id="searchProdList" placeholder="Search" width="auto" search="onSearchList" liveChange="onSearchList"/>
+														<Button id="refreshProd" icon="sap-icon://refresh" tooltip="Refresh List" press="onRefreshProdList"></Button>
+													</Toolbar>
+												</t:extension>
+												<t:columns>
+													<t:Column width="10rem" sortProperty="ProdName" filterProperty="ProdName">
+														<Label text="Compound Name" design="Bold"/>
+														<t:template>
+															<Link text="{prodWrkListModel>ProdName}" press="onProdListNameLink" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="15rem" sortProperty="OtherNames" filterProperty="OtherNames">
+														<Label text="Other Names" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>OtherNames}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="DevPhDesc" filterProperty="DevPhDesc">
+														<Label text="Dev Phase" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>DevPhDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="10rem" sortProperty="PriInd" filterProperty="PriInd">
+														<Label text="Primary Indication" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>PriIndDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="6rem" sortProperty="Ddose" filterProperty="Ddose">
+														<Label text="Daily Dose" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>Ddose}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="5rem" sortProperty="Biologic" filterProperty="Biologic">
+														<Label text="Biologic" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>Biologic', formatter: '.formatter.formatBooleanVal' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="ProdSrc" filterProperty="ProdSrc">
+														<Label text="Product Source" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>ProdSrc', formatter: '.formatter.formatProdSrc' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="POCInd" filterProperty="POCInd">
+														<Label text="POC Reached" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>POCInd', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="FirstClass" filterProperty="FirstClass">
+														<Label text="First In Class" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>FirstClass', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="9rem" sortProperty="CreatedBy" filterProperty="CreatedBy">
+														<Label text="Requested By" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>CreatedBy}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="8rem" sortProperty="CreatedDt" filterProperty="CreatedDt" id="reqDate">
+														<Label text="Requested Date" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>CreatedDt}"/>
+														</t:template>
+													</t:Column>
+												</t:columns>
+											</t:Table>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter id="iTFProdReq" text="New Product Requests" icon="sap-icon://add-product" count="" design="Vertical" enabled="true"
+										visible="true" key="PRDREQTAB">
+										<content>
+											<t:Table id="prodReqTab" rows="{newProdReqModel>/ProdList}" title="" selectionMode="None" enableColumnReordering="false">
+												<t:extension>
+													<Toolbar>
+														<ToolbarSpacer/>
+														<SearchField id="searchProd" placeholder="Search" width="auto" search="onSearch" liveChange="onSearch"/>
+														<Button id="createProd" text="Create Product" type="Emphasized" press="onCreateProd" class="myFooter" icon="sap-icon://create"></Button>
+													</Toolbar>
+												</t:extension>
+												<t:columns>
+													<t:Column width="10rem" sortProperty="ProdName" filterProperty="ProdName">
+														<Label text="Compound Name" design="Bold"/>
+														<t:template>
+															<Link text="{newProdReqModel>ProdName}" press="onProdReqNameLink" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="15rem" sortProperty="OtherNames" filterProperty="OtherNames">
+														<Label text="Other Names" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>OtherNames}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="DevPhDesc" filterProperty="DevPhDesc">
+														<Label text="Dev Phase" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>DevPhDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="10rem" sortProperty="PriInd" filterProperty="PriInd">
+														<Label text="Primary Indication" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>PriIndDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="6rem" sortProperty="Ddose" filterProperty="Ddose">
+														<Label text="Daily Dose" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>Ddose}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="5rem" sortProperty="Biologic" filterProperty="Biologic">
+														<Label text="Biologic" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'newProdReqModel>Biologic', formatter: '.formatter.formatBooleanVal' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="ProdSrc" filterProperty="ProdSrc">
+														<Label text="Product Source" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'newProdReqModel>ProdSrc', formatter: '.formatter.formatProdSrc' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="POCInd" filterProperty="POCInd">
+														<Label text="POC Reached" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'newProdReqModel>POCInd', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="FirstClass" filterProperty="FirstClass">
+														<Label text="First In Class" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'newProdReqModel>FirstClass', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="9rem" sortProperty="CreatedBy" filterProperty="CreatedBy">
+														<Label text="Requested By" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>CreatedBy}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="8rem" sortProperty="CreatedDt" filterProperty="CreatedDt">
+														<Label text="Request Date" design="Bold"/>
+														<t:template>
+															<Text text="{newProdReqModel>CreatedDt}"/>
+														</t:template>
+													</t:Column>
+												</t:columns>
+											</t:Table>
+										</content>
+									</IconTabFilter>
+									<IconTabFilter id="iTFInActvProd" text="InActive Products" icon="sap-icon://status-inactive" count="" design="Vertical" enabled="true"
+										visible="true" key="PRDINACTAB">
+										<content>
+											<t:Table id="inactProdTab" rows="{prodWrkListModel>/InActProd}" title="" selectionMode="None" enableColumnReordering="false">
+												<t:extension>
+													<Toolbar>
+														<ToolbarSpacer/>
+														<SearchField id="searchInActProd" placeholder="Search" width="auto" search="onSearchInActProd" liveChange="onSearchList"/>
+														<Button id="refreshInActProd" icon="sap-icon://refresh" tooltip="Refresh List" press="onRefreshInActProd"></Button>
+													</Toolbar>
+												</t:extension>
+												<t:columns>
+													<t:Column width="10rem" sortProperty="ProdName" filterProperty="ProdName">
+														<Label text="Compound Name" design="Bold"/>
+														<t:template>
+															<Link text="{prodWrkListModel>ProdName}" press="onProdListNameLink" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="15rem" sortProperty="OtherNames" filterProperty="OtherNames">
+														<Label text="Other Names" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>OtherNames}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="DevPhDesc" filterProperty="DevPhDesc">
+														<Label text="Dev Phase" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>DevPhDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="10rem" sortProperty="PriInd" filterProperty="PriInd">
+														<Label text="Primary Indication" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>PriIndDesc}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="6rem" sortProperty="Ddose" filterProperty="Ddose">
+														<Label text="Daily Dose" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>Ddose}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="5rem" sortProperty="Biologic" filterProperty="Biologic">
+														<Label text="Biologic" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>Biologic', formatter: '.formatter.formatBooleanVal' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="ProdSrc" filterProperty="ProdSrc">
+														<Label text="Product Source" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>ProdSrc', formatter: '.formatter.formatProdSrc' }" wrapping="false"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="POCInd" filterProperty="POCInd">
+														<Label text="POC Reached" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>POCInd', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="7rem" sortProperty="FirstClass" filterProperty="FirstClass">
+														<Label text="First In Class" design="Bold"/>
+														<t:template>
+															<Text text="{ path: 'prodWrkListModel>FirstClass', formatter: '.formatter.formatBooleanVal' }"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="9rem" sortProperty="CreatedBy" filterProperty="CreatedBy">
+														<Label text="Requested By" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>CreatedBy}"/>
+														</t:template>
+													</t:Column>
+													<t:Column width="8rem" sortProperty="CreatedDt" filterProperty="CreatedDt">
+														<Label text="Requested Date" design="Bold"/>
+														<t:template>
+															<Text text="{prodWrkListModel>CreatedDt}"/>
+														</t:template>
+													</t:Column>
+												</t:columns>
+											</t:Table>
+										</content>
+									</IconTabFilter>
+								</items>
+							</IconTabBar>
+						</form:content>
+					</form:SimpleForm>
+				</content>
+				<footer class="myFooter">
+					<Bar>
+						<contentRight>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="prodSummDialog" title="Product Master Change Summary" class="myDialogHStyle myDialogTitleStyle">
+		<Table id="prodSummTab" items="{prodSummModel>/ProdSummSet}" width="auto" growing="true" growingThreshold="5">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="{reqHExtnModel>/ReqHExtnSet/ProdId}" />
+					<ToolbarSpacer />
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column id="prdAttr"><Text text="Product Attribute"/></Column>
+				<Column id="prdMstVal"><Text text="Product Master"/></Column>
+				<Column id="reqVal"><Text text="Current Request"/></Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{prodSummModel>ParamId}"></Text>
+						<Text text="{prodSummModel>ProdMstVal}"/>
+						<Text text="{prodSummModel>ReqVal}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<FlexBox justifyContent="End">
+			<Button id="prodSummClose" text="Close" press="onProdSummClose" width="auto" class="sapUiSmallMarginEnd"></Button>
+		</FlexBox>
+	</Dialog>
+</core:FragmentDefinition>

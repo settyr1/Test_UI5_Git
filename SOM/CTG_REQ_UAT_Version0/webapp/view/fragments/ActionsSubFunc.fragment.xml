@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="com.pfizer.ctg.CTG_REQ.controller.ValuationComparator.ActionSheetSubFunctions"
+	xmlns="sap.m">
+	<ActionSheet showCancelButton="true" cancelButtonText="Cancel" title="">
+		<buttons>
+			<Button id="bAppend" text="Append" icon="sap-icon://media-forward" width="100px" visible="false" press="onAppendAction"/>
+			<Button id="bExtend" text="Extend" icon="sap-icon://calendar" width="100px" visible="false" press="onExtendAction"/>
+			<Button id="bRenew" text="Renew" icon="sap-icon://activate" width="100px" visible="false" press="onRenewAction" />
+			<Button id="bUpdate" text="Update" icon="sap-icon://media-forward" width="100px" visible="false" press="onUpdateAction"/>
+		</buttons>
+	</ActionSheet>
+</core:FragmentDefinition>

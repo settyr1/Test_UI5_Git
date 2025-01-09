@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog id="auditLogDialog" title="Request Audit Log" class="myDialogHStyle myDialogTitleStyle">
+		<Table id="auditLogTab" items="{reqAudtLogModel>/ReqAudtLogSet}" width="auto" growing="true" growingThreshold="5">
+			<columns>
+				<Column id="reqNo"><Text text="Request No"/></Column>
+				<Column id="activity"><Text text="Activity"/></Column>
+				<Column id="updDt"><Text text="Change Date"/></Column>
+				<Column id="updTm"><Text text="Change Time"/></Column>
+				<Column id="userId"><Text text="Changed By"/></Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{reqAudtLogModel>ReqNo}"></Text>
+						<Text text="{reqAudtLogModel>Activity}"/>
+						<Text text="{reqAudtLogModel>UpdDate}"/>
+						<Text text="{reqAudtLogModel>UpdTime}"/>
+						<Text text="{reqAudtLogModel>UserName}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<FlexBox justifyContent="End">
+			<Button id="audtLogClose" text="Close" press="onAuditLogClose" width="auto" class="sapUiSmallMarginEnd"></Button>
+		</FlexBox>
+	</Dialog>
+</core:FragmentDefinition>

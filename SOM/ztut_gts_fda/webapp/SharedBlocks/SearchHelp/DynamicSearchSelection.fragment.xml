@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" 
+		xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" 
+		xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	
+	<P13nDialog title="Search" cancel="bc_onSearchClose" class="sapUiNoMargin" id="filterdialog" ok="bc_onSearchSelect"
+		contentWidth="800px" contentHeight="auto" busy="{detailView>/busy}">
+
+		<VBox class="sapUiNoMargin">
+			<Table id="idSearchHelpTable" inset="false"
+				items="{ path: 'FDA>/searchHelp', 
+				         factory: 'com.pfizer.fda.factory.SearchHelpFactory.factory' }" 
+				width="100%"
+				updateFinished="onAttributesUpdateFinished" 
+				headerText="{FDA>/searchHelpName}" class="sapUiNoMargin" 
+				growing="true" growingThreshold="5000"
+				noDataText="{i18n>notFoundTitle}"  
+				visible="true" 
+				keyboardMode="Edit"
+			>
+				<columns>
+					<Column width="30%">
+						<Text text="Label"/>
+					</Column>
+					<Column>
+						<Text text="Input"/>
+					</Column>
+				</columns>
+			</Table>
+		</VBox>
+		<Toolbar>
+			<ToolbarSpacer width="85%"></ToolbarSpacer>
+			<Button type="Emphasized" text="Search" press="bc_ExecuteSearchHelp"></Button>
+		</Toolbar>
+		<VBox class="sapUiNoMargin">
+
+			<Table id="idSearchHelpResults" inset="false"
+				items="{ path: 'FDA>/searchHelpResult', factory: 'com.pfizer.fda.factory.SearchHelpResults.factory' }"
+				columns="{ path: 'FDA>/searchHelpOutputCols', 
+				           factory: 'com.pfizer.fda.factory.SearchHelpResultColumn.factory' }"
+				width="100%"
+				updateFinished="onAttributesUpdateFinished" 
+				headerText="" class="sapUiNoMargin" 
+				growing="true" growingThreshold="5000"
+				noDataText="{i18n>notFoundTitle}"  
+				visible="true" 
+				mode="SingleSelectMaster"
+				selectionChange="bc_SearchHelpSelect"
+			>
+			</Table>
+		</VBox>
+	</P13nDialog>
+</core:FragmentDefinition>

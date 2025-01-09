@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<GenericTile id="approveVFC" press="onManageAprvorReq" subheader="Approver" header="Manage My Requests"
+		class="sapUiTinyMarginBegin sapUiMediumMarginTop myTile2345Style" tileContent="{/UserInfoWrklistItems}">
+		<TileContent footerColor="Good" unit="{/UserInfoWrklistItems/Unit}" footer="{/UserInfoWrklistItems/Footer}" >
+			<NumericContent icon="sap-icon://approvals" value="{/UserInfoWrklistItems/ApprvWrkItem}"/>
+		</TileContent>
+	</GenericTile>
+</core:FragmentDefinition>

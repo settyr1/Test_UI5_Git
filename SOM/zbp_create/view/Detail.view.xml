@@ -1,0 +1,184 @@
+<mvc:View controllerName="ZBP_CREATE.view.Detail" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+
+  xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+
+  <Page class="sapUiFioriObjectPage" navButtonPress="onNavBack" showNavButton="{device>/isPhone}" title="{i18n>detailTitle}">
+    <content>
+
+      <ObjectHeader id="objHeader" title="{Name1}" number="{Id}">
+        <statuses id="statuses">
+
+          <ObjectStatus id="oStatusId" state="{ path: 'Msg', formatter: 'ZBP_CREATE.util.Formatter.convertStatusState' }" text="{Msg}" icon="./css/images/{Msg}.png"></ObjectStatus>
+
+        </statuses>
+
+        <ObjectAttribute text="Submitted On: { path: 'Crdat', formatter: 'ZBP_CREATE.util.Formatter.convertDate' }"></ObjectAttribute>
+
+        <ObjectAttribute text=""></ObjectAttribute>
+
+      </ObjectHeader>
+
+      <l:VerticalLayout class="Detail" defaultSpan="L12 M12 S12" id="detailFragment" width="100%">
+
+        <l:content>
+
+          <!--     <f:SimpleForm id="statusDisplay"-->
+
+          <!--editable="false"-->
+
+          <!--layout="ResponsiveGridLayout"-->
+
+          <!--title="{i18n>statusInfo}">-->
+
+          <!--<f:content>-->
+
+          <l:VerticalLayout defaultSpan="L20 M12 S12" id="statusBox" width="100%">
+
+            <Panel class="sapUiResponsiveMargin" expandable="true" expanded="true"
+                    headerText="Partner Screening status" width="auto">
+
+              <content>
+
+                <FormattedText
+      htmlText='&lt;p&gt;Business Partner &lt;strong&gt;&lt;u&gt; {Id} &lt;/u&gt; &lt;/strong&gt; cleared
+      &lt;strong&gt;Restricted Party Screening&lt;/strong&gt;
+      for compliance with
+      &lt;strong&gt;CP #206 Section A – Restricted Party Screening &lt;/strong&gt;and is
+      &lt;strong&gt;&lt;u&gt; APPROVED &lt;/u&gt; &lt;/strong&gt;
+      to engage in Business Transactions.&lt;/p&gt;
+
+&lt;p&gt;Please note that you are required to save this record for five years, or longer
+if mandated by Company recordkeeping requirements.&lt;/p&gt;
+
+&lt;p&gt;Although this entity has passed the Restricted Party Screening process, please note
+that other regulatory clearance requirements may still apply.
+If you have any questions about whether or not such additional requirements exist, please contact the
+Legal Division colleague responsible for reviewing your Trade Transactions.&lt;/p&gt;
+
+&lt;dl&gt;&lt;dt&gt;Thank you,&lt;/dt&gt;Global Trade Controls Center of Excellence&lt;/dd&gt;
+
+&lt;p&gt;Note: This is system generated message from an unmonitored mailbox. Please do not reply.&lt;/p&gt;'
+visible="{= ${Msg} === 'Approved' }"/>
+
+
+<FormattedText
+      htmlText='&lt;p&gt;Your request to perform &lt;strong&gt;Restricted Party Screening &lt;/strong&gt; of Business Partner
+      &lt;strong&gt;&lt;u&gt; {Id} &lt;/u&gt; &lt;/strong&gt;
+      is pending review for compliance with
+      &lt;strong&gt;CP #206 Section A - Restricted Party Screening. &lt;/strong&gt;You
+    should not engage in Business Transactions with this Business Partner until notified the review is complete and
+      &lt;strong&gt;&lt;u&gt; {Id} &lt;/u&gt; &lt;/strong&gt;cleared
+    &lt;strong&gt;Restricted Party Screening.&lt;/strong/p&gt;
+
+&lt;p&gt;NO ACTION REQUIRED ON YOUR PART.To determine final status,
+wait 4 hours then re-check status of the business partner.&lt;/p&gt;
+
+&lt;p&gt;If you continue to receive the status &lt;strong&gt;&lt;u&gt; IN PROGRESS &lt;/u&gt; &lt;/strong&gt; after
+48 hours, you may contact
+&lt;a href="//www.sap.com" &gt;rps@pfizer.com&lt;/a&gt; and
+request information on the review.  Please include this notification in the email.&lt;/p&gt;
+
+&lt;p&gt;To learn more about the &lt;strong&gt;Restricted Party Screening &lt;/strong&gt;process,
+&lt;a href="http://legal.pfizer.com/GTC/Pages/GlobalTradeControls.aspx" &gt;click here&lt;/a&gt;'
+
+visible="{= ${Msg} === 'In-Progress' }"/>
+
+
+<FormattedText
+      htmlText='&lt;p&gt;Business Partner &lt;strong&gt;&lt;u&gt; {Id} &lt;/u&gt; &lt;/strong&gt; has been determined to be a
+      &lt;strong&gt;RESTRICTED PARTY.&lt;/strong&gt;
+      At this time,
+      &lt;u&gt; Pfizer may not engage in any Business Transactions with &lt;/u&gt;
+      &lt;strong&gt;{Id} &lt;/strong&gt;To
+    receive more information about this determination, please contact
+  &lt;a href="//www.pfizer.com" &gt;rps@pfizer.com&lt;/a&gt;
+
+  &lt;dl&gt;&lt;dt&gt;Thank you,&lt;/dt&gt;Global Trade Controls Center of Excellence&lt;/dd&gt;
+
+&lt;p&gt;Note: This is system generated message from an unmonitored mailbox. Please do not reply.&lt;/p&gt;'
+
+visible="{= ${Msg} === 'Denied' }"/>
+
+
+
+
+
+              </content>
+
+            </Panel>
+
+          </l:VerticalLayout>
+
+          <!--  </f:content>-->
+
+          <!--</f:SimpleForm>-->
+
+          <l:Grid defaultSpan="L12 M12 S12" width="100%">
+
+            <l:content>
+
+              <f:SimpleForm columnsL="1" columnsM="1" editable="false" emptySpanL="4" emptySpanM="4" id="addressDisplay" labelSpanL="3" labelSpanM="3"
+
+                layout="ResponsiveGridLayout" maxContainerCols="2" title="Business Partner Information">
+
+                <f:content>
+
+                  <Label text="Name"/>
+
+                  <Text editable="false" text="{Name1}"/>
+
+                  <Label text="" visible="{= ${Name2}.length>0 }"/>
+
+                  <Text editable="false" text="{Name2}" visible="{= ${Name2}.length>0 }"/>
+
+                  <Label text="" visible="{= ${Name3}.length>0 }"/>
+
+                  <Text editable="false" text="{Name3}" visible="{= ${Name3}.length>0 }"/>
+
+                  <Label text="" visible="{= ${Name4}.length>0 }"/>
+
+                  <Text editable="false" text="{Name4}" visible="{= ${Name4}.length>0 }"/>
+
+                  <Label text="Street"/>
+
+                  <Text editable="false" text="{Street1}"/>
+
+                  <Label text="City"/>
+
+                  <Text editable="false" text="{City1}"/>
+
+                  <Label text="Country"/>
+
+                  <Text editable="false" text="{Landx}"/>
+
+                  <Label text="Region" />
+
+                  <Text editable="false" text="{Bezei}"/>
+
+                </f:content>
+
+              </f:SimpleForm>
+
+            </l:content>
+
+          </l:Grid>
+
+        </l:content>
+
+      </l:VerticalLayout>
+
+    </content>
+
+    <footer>
+
+      <Toolbar>
+
+        <ToolbarSpacer/>
+    <Text text="{i18n>footerText1}" /><Text text="{i18n>footerText2}" class="blue-text" />
+      </Toolbar>
+
+    </footer>
+
+  </Page>
+
+</mvc:View>

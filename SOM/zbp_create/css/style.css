@@ -1,0 +1,451 @@
+@font-face {
+  font-family: 'FSAlbert-ExtraBold';
+  src: url('./fonts/FSAlbert-ExtraBold.eot');
+  src: url('./fonts/FSAlbert-ExtraBold.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-ExtraBold.woff2') format('woff2'),
+    url('./fonts/FSAlbert-ExtraBold.woff') format('woff'),
+    url('./fonts/FSAlbert-ExtraBold.ttf') format('truetype'),
+    url('./fonts/FSAlbert-ExtraBold.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-ThinItalic';
+  src: url('./fonts/FSAlbert-ThinItalic.eot');
+  src: url('./fonts/FSAlbert-ThinItalic.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-ThinItalic.woff2') format('woff2'),
+    url('./fonts/FSAlbert-ThinItalic.woff') format('woff'),
+    url('./fonts/FSAlbert-ThinItalic.ttf') format('truetype'),
+    url('./fonts/FSAlbert-ThinItalic.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-Thin';
+  src: url('./fonts/FSAlbert-Thin.eot');
+  src: url('./fonts/FSAlbert-Thin.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-Thin.woff2') format('woff2'),
+    url('./fonts/FSAlbert-Thin.woff') format('woff'),
+    url('./fonts/FSAlbert-Thin.ttf') format('truetype'),
+    url('./fonts/FSAlbert-Thin.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-LightItalic';
+  src: url('./fonts/FSAlbert-LightItalic.eot');
+  src: url('./fonts/FSAlbert-LightItalic.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-LightItalic.woff2') format('woff2'),
+    url('./fonts/FSAlbert-LightItalic.woff') format('woff'),
+    url('./fonts/FSAlbert-LightItalic.ttf') format('truetype'),
+    url('./fonts/FSAlbert-LightItalic.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-Light';
+  src: url('./fonts/FSAlbert-Light.eot');
+  src: url('./fonts/FSAlbert-Light.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-Light.woff2') format('woff2'),
+    url('./fonts/FSAlbert-Light.woff') format('woff'),
+    url('./fonts/FSAlbert-Light.ttf') format('truetype'),
+    url('./fonts/FSAlbert-Light.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-Italic';
+  src: url('./fonts/FSAlbert-Italic.eot');
+  src: url('./fonts/FSAlbert-Italic.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-Italic.woff2') format('woff2'),
+    url('./fonts/FSAlbert-Italic.woff') format('woff'),
+    url('./fonts/FSAlbert-Italic.ttf') format('truetype'),
+    url('./fonts/FSAlbert-Italic.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-BoldItalic';
+  src: url('./fonts/FSAlbert-BoldItalic.eot');
+  src: url('./fonts/FSAlbert-BoldItalic.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-BoldItalic.woff2') format('woff2'),
+    url('./fonts/FSAlbert-BoldItalic.woff') format('woff'),
+    url('./fonts/FSAlbert-BoldItalic.ttf') format('truetype'),
+    url('./fonts/FSAlbert-BoldItalic.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert-Bold';
+  src: url('./fonts/FSAlbert-Bold.eot');
+  src: url('./fonts/FSAlbert-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert-Bold.woff2') format('woff2'),
+    url('./fonts/FSAlbert-Bold.woff') format('woff'),
+    url('./fonts/FSAlbert-Bold.ttf') format('truetype'),
+    url('./fonts/FSAlbert-Bold.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'FSAlbert';
+  src: url('./fonts/FSAlbert.eot');
+  src: url('./fonts/FSAlbert.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/FSAlbert.woff2') format('woff2'),
+    url('./fonts/FSAlbert.woff') format('woff'),
+    url('./fonts/FSAlbert.ttf') format('truetype'),
+    url('./fonts/FSAlbert.svg') format('svg'); font-weight: normal;
+  font-style: normal;
+}
+body.sapUiBody{
+    background-color:#fff;
+    font-family: 'FSAlbert';
+}
+.sapMText,.sapMOH .sapMOHAttr .sapMObjectAttributeTitle, .sapMOH .sapMOHAttr .sapMObjectAttributeText, .sapMOH .sapMOHAttr .sapMObjectAttributeColon,.sapMInputBaseInner, .sapMBtnInner,.sapMSFI,.sapMOHNumberDiv .sapMObjectNumberText,.sapMFT{
+  font-family: 'FSAlbert';
+}
+.sapMOHTitle h1 .sapMText,.sapMTitle, .sapMFT strong{
+  font-family: 'FSAlbert-Bold';
+}
+.sapMPanelHdr,.sapUiForm h4.sapUiFormTitle{
+  font-family: 'FSAlbert';
+  font-size:1.4rem
+}
+.sapMFT strong{
+  font-weight:normal;
+}
+.sapMLabelRequired:before{
+  color:#ee4026;
+}
+.sapMSplitContainerMasterVisible .sapMNavItem .sapMIBar.sapMHeader-CTX.sapMPageHeader .sapMBarPH>.sapMBarChild:last-child, .sap-phone .sapMNavItem .sapMIBar.sapMHeader-CTX.sapMPageHeader .sapMBarPH>.sapMBarChild:last-child,.sapUiMedia-Std-Tablet
+.sapMNavItem .sapMIBar.sapMHeader-CTX.sapMPageHeader .sapMBarPH>.sapMBarChild:last-child{
+  background:url(images/ERP_Logo.png) no-repeat left center;
+  padding-left: 45px;
+}
+.sapMShellGlobalOuterBackground{
+  background: rgba(0, 0, 0, 0);
+  background:  linear-gradient(to bottom, #a9c6de, #e7ecf0);
+  background: -webkit-linear-gradient(-90deg, #a9c6de, #e7ecf0);
+    background: -o-linear-gradient(-90deg, #a9c6de, #e7ecf0);
+    background: -moz-linear-gradient(-90deg, #a9c6de, #e7ecf0);
+}
+.sapMSplitContainerDetail section, .sapMNavItem.sapUiViewDisplayBlock .sapUiFioriObjectPage:not(.sapMPageWithSubHeader) section{
+  background: url(images/GTS_Logo_Background.png) #fff  no-repeat center 60%;
+}
+.sapMSplitContainerDetail section section{
+  background-image:none;
+}
+.sap-desktop .sapMIBar.sapMHeader-CTX.sapMPageHeader,.sap-tablet .sapMIBar.sapMHeader-CTX.sapMPageHeader,.sap-phone .sapMIBar.sapMHeader-CTX.sapMPageHeader{
+    border-bottom:0px;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.30);
+    box-shadow: inset 0 -0.0625rem #fff;
+    padding-bottom:2px;
+    background: #9cce60;
+    background: -webkit-linear-gradient(#9cce60, #7dba42);
+    background: -o-linear-gradient(#9cce60, #7dba42);
+    background: -moz-linear-gradient(#9cce60, #7dba42);
+    background: linear-gradient(#9cce60, #7dba42);
+}
+.sap-desktop .sapMIBar.sapMHeader-CTX.sapMPageHeader > .sapMBarMiddle > .sapMBarPH, .sap-phone .sapMIBar.sapMHeader-CTX.sapMPageHeader > .sapMBarMiddle > .sapMBarPH, .sap-tablet .sapMIBar.sapMHeader-CTX.sapMPageHeader > .sapMBarMiddle > .sapMBarPH{
+  padding:0;
+}
+.sapUiGlobalBackgroundColor, .sapMGlobalBackgroundColor{
+  background-color:#fff;
+  background-image:none;
+}
+.sapMPageHeader:before{
+  border-top-color:transparent;
+}
+.sapMSplitContainerMaster:before{
+  border-right-color:transparent;
+}
+.sapMShellBrandingBar{
+  background-color:transparent;
+}
+.sapMIBar-CTX .sapMTitle,.sapMObjStatus>.sapMObjStatusTitle,.sapMStdTileMonitorType .sapMStdTileTitle{
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.30);
+    font-weight:normal;
+}
+html.sap-desktop .sapMIBar.sapMFooter-CTX,html.sap-phone .sapMIBar.sapMFooter-CTX,html.sap-tablet .sapMIBar.sapMFooter-CTX{
+  background-color:#f8f8f8;
+    border-top:0.0625rem solid #e5e5e5;
+}
+.sapMPageHeader .sapMBtn .sapUiIcon, .sapMPageHeader .sapMBtnInner{
+  color:#fff;
+}
+.sapMIBar-CTX.sapMFooter-CTX .sapMText{
+  height:47px;
+  width:180px;
+  font-size:0;
+  background:url(images/powered_by_erp_gray.png) no-repeat left top;
+  background-size: contain;
+}
+.sapMIBar-CTX.sapMFooter-CTX .blue-text.sapMText{
+  display:none;
+}
+.sapMIBar-CTX.sapMFooter-CTX .blue-text.sapMText:before{
+  content:'|';
+  color:#babbba;
+  padding-right:7px;
+}
+.sapMPageHeader .sapMBtn:hover > .sapMBtnHoverable .sapUiIcon, .sapMPageHeader .sapMBtn:hover > .sapMBtnInner{
+  color:#4b6698;
+}
+.sapMPopup-CTX.sapMDialog .sapMIBar.sapMHeader-CTX{
+    border-bottom:5px solid #ff8500;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.30);
+    box-shadow: inset 0 -0.0625rem #fff;
+    padding-bottom:2px;
+}
+.sapMPopup-CTX.sapMDialog .sapMIBar.sapMHeader-CTX > .sapMBarMiddle > .sapMBarContainer{
+  border-bottom:5px solid #92d050;
+}
+.sapMPopup-CTX.sapMDialog .sapMIBar.sapMHeader-CTX > .sapMBarMiddle > .sapMBarPH{
+  padding:0;
+}
+.sapMPopup-CTX.sapMDialog .sapMIBar.sapMHeader-CTX > .sapMBarMiddle > .sapMBarContainer > .sapMTitle{
+  height:42px;
+  background: #006a96;
+    background: -webkit-linear-gradient(-90deg, #006a96, #00b8ff);
+    background: -o-linear-gradient(-90deg, #006a96, #00b8ff);
+    background: -moz-linear-gradient(-90deg, #006a96, #00b8ff);
+    background: linear-gradient(-90deg, #006a96, #00b8ff);
+    border: 0.0625rem solid #fff;
+    display:block;
+    border-radius:10px 10px 0 0;
+}
+.sapMDialog>header.sapMDialogTitle>.sapMBarMiddle>.sapMBarPH>.sapMTitle{
+    color:#fff;
+}
+.sapMNavItem .sapMBarRight div.sapMBtnInner.sapMBtnEmphasized{
+  border-radius: 6px;
+    background: #0054A4;
+    background-image: -o-linear-gradient(-89deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.00) 100%);
+    background-image: -moz-linear-gradient(-89deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.00) 100%);
+    background-image: -ms-linear-gradient(-89deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.00) 100%);
+    background-image: linear-gradient(-179deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.00) 100%);
+    border: 0.0625rem solid #014483;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.30);
+}
+div.sapMBtnInner.sapMBtnAccept,.sapMFooter-CTX .sapMBtn:hover>.sapMBtnHoverable.sapMBtnAccept:not(.sapMBtnActive),.sapMFooter-CTX .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive),.sapMFooter-CTX div.sapMBtnInner{
+   border-radius: 6px;
+    background: #66B015;
+    background-image: -o-linear-gradient(-89deg, #91C657 0%, #66B015 100%);
+    background-image: -moz-linear-gradient(-89deg, #91C657 0%, #66B015 100%);
+    background-image: -ms-linear-gradient(-89deg, #91C657 0%, #66B015 100%);
+    background-image: linear-gradient(-179deg, #91C657 0%, #66B015 100%);
+    border: 0.0625rem solid #507F1A;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.30);
+}
+.sapMFooter-CTX div.sapMBtnInner.sapMBtnReject,.sapMFooter-CTX .sapMBtn:hover>.sapMBtnHoverable.sapMBtnReject:not(.sapMBtnActive){
+  border-radius: 6px;
+  background:#DD4C5E;
+   background-image: -o-linear-gradient(-180deg, #DD4C5E 0%, #D0021B 100%);
+    background-image: -moz-linear-gradient(-180deg, #DD4C5E 0%, #D0021B 100%);
+    background-image: -ms-linear-gradient(-180deg, #DD4C5E 0%, #D0021B 100%);
+  background-image:linear-gradient(-180deg, #DD4C5E 0%, #D0021B 100%);
+  border:1px solid #D0021B;
+    color: #fff;
+    text-shadow:none;
+}
+.sapMFocus > .sapMSFF > .sapMSFB.sapMSFBA, .sapMSFB:active,.sapMBar-CTX :not(.sapMBtnDisabled)>.sapMBtnInner.sapMBtnActive{
+    background-color:#4B6698;
+}
+.sapMFocus > .sapMSFF > .sapMSFB{
+    color:#4B6698;
+}
+.sapMFocus > .sapMSFF, *:not(.sapMSFDisabled) > .sapMSFF:hover,.sapMInputBaseInner:focus:not(.sapMInputBaseReadonlyInner):not(.sapMInputBaseStateInner),
+.sapMInputBaseInner:hover:not(.sapMInputBaseReadonlyInner):not(.sapMInputBaseStateInner):not(.sapMInputBaseDisabledInner),.sap-desktop .sapMSlt:focus,.sap-phone .sapMSlt:focus,.sap-tablet .sapMSlt:focus, .sapMSltHoverable:hover,
+.sapMSltPressed:not(.sapMSltDisabled):not(.sapMSltState),.sapMSltHoverable:not(.sapMSltState):hover,html.sap-desktop .sapMSlt:not(.sapMSltDisabled):not(.sapMSltState):focus{
+    border-color:#71a701;
+}
+.sapMSFI, .sapMInputBaseInner,.sapMOH .sapMOHAttr .sapMObjectAttributeTitle, .sapMOH .sapMOHAttr .sapMObjectAttributeText, .sapMOH .sapMOHAttr .sapMObjectAttributeColon{
+   color:#4A4A4A;
+}
+.sapUiForm h4.sapUiFormTitle,.sapMPanelHdr,.sapUiForm .sapUiFormTitle{
+  color: #4b6698;
+}
+.sapMLabel{
+    color:#4A4A4A;
+    font-family: 'FSAlbert';
+}
+.sapUiForm .sapMLabel{
+  color:#616161;
+}
+.sapUiForm .sapMText{
+  font-family: 'FSAlbert-Bold';
+}
+.sapUiForm .sapMLabel, .sapUiForm .sapMText{
+  font-size:1rem;
+  line-height:1.5rem;
+}
+body .sapUiFormResGrid.sapUiFormBackgrTranslucent>div{
+  background-color:transparent;
+}
+.sapMFooter-CTX span.sapMBtnInner{
+  border-radius:6px;
+}
+.sapMListBGSolid .sapMLIB.sapMLIBSelected{
+    background:#4481bc !important;
+}
+.sapMText.sapMObjLTitle{
+  color:#4b6698;
+  font-size:1.15rem;
+}
+.sapMListBGSolid .sapMLIB .sapMImg{
+  width:30%;
+}
+.sapMListBGSolid .sapMLIB .sapMObjLStatusDiv{
+  position:absolute;
+  margin-top:-34px;
+}
+.sapMListBGSolid .sapMLIB.sapMLIBSelected .sapMObjStatusSuccess>.sapMObjStatusText{
+  color:#fff !important;
+}
+.sapMListBGSolid .sapMLIB.sapMLIBSelected .sapMSLITitle,.sapMListBGSolid .sapMLIB.sapMLIBSelected .sapMSLIDescription,.sapMListBGSolid .sapMLIB.sapMLIBSelected .sapMObjLNumberStateNone, .sapMListBGSolid .sapMLIB.sapMLIBSelected
+.sapMText.sapMObjLTitle,.sapMListBGSolid .sapMLIB.sapMLIBSelected .sapMObjectAttributeDiv .sapMText{
+  color:#fff;
+}
+.sapMListBGSolid .sapMLIB:nth-child(even){
+    background-color: #eee;
+}
+.sapMListBGSolid .sapMLIB.sapMLIBHoverable:hover,.sapMLIBHoverable:hover{
+  background-color: #ccc;
+}
+.sapMOHTitle h1 .sapMText{
+  font-size:2rem;
+}
+.spacerTop {
+  margin-top: 2rem;
+}
+.right {
+  margin-left : 20px;
+}
+.alignToRight {
+    position: absolute !important;
+    right: 20px !important;
+}
+.firstToRight {
+    /*position: absolute !important;*/
+    position: relative !important;
+    float: right !important;
+    top: 35px !important;
+    right: 5px !important;
+}
+.secondToRight {
+    /*position: absolute !important;*/
+    float: right !important;
+    position: relative !important;
+    top: 35px !important;
+    right: 5px !important;
+}
+.widthForSmallResolution .sap-tablet .sapMDialog, .sap-desktop .sapMDialog {
+    min-width: 18rem;
+}
+.sapMObjStatusNone>.sapMObjStatusText {
+    color: #000000 !important;
+    font-family: 'FSAlbert-ExtraBold';
+}
+.sapMObjStatusError>.sapMObjStatusText {
+    color: #cc1919 !important;
+    font-family: 'FSAlbert-ExtraBold';
+}
+.sapMObjStatusWarning>.sapMObjStatusText {
+    color: #ff9933 !important;
+    font-family: 'FSAlbert-ExtraBold';
+}
+.sapMObjStatusSuccess>.sapMObjStatusText {
+    color: #007833 !important;
+    font-family: 'FSAlbert-ExtraBold';
+}
+.sapMOHStatus .sapMObjStatusSuccess>.sapMObjStatusText,.sapMOHStatus .sapMObjStatusWarning>.sapMObjStatusText,.sapMOHStatus .sapMObjStatusNone>.sapMObjStatusText,.sapMOHStatus .sapMObjStatusError>.sapMObjStatusText {
+  font-size:1rem;
+}
+.detail {
+    background-color: #ff9999;
+}
+html5.sapUiTheme-sap_bluecrystal {
+      background-color: #ff9999;
+}
+.sapMOH{padding:1rem 2rem 0;}
+.sapMInputBaseInner{background-color:transparent;}
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  body.sapUiBody,.sapMText,.sapMPanelHdr,.sapUiForm h4.sapUiFormTitle,.sapMLabel,.sapMOH .sapMOHAttr .sapMObjectAttributeTitle, .sapMOH .sapMOHAttr .sapMObjectAttributeText, .sapMOH .sapMOHAttr .sapMObjectAttributeColon,.sapMInputBaseInner,
+.sapMBtnInner,.sapMSFI,.sapMOHNumberDiv .sapMObjectNumberText,.sapMFT{
+    font-family: sans-serif, Arial, Helvetica;
+  }
+  .sapMIBar-CTX.sapMFooter-CTX .sapMText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-style:italic;
+    font-weight:bold;
+  }
+  .sapMOHTitle h1 .sapMText,.sapMTitle, .sapMFT strong,.sapUiForm .sapMText,.sapMObjStatusSuccess>.sapMObjStatusText,.sapMIBar-CTX.sapMFooter-CTX
+.blue-text.sapMText,.sapMObjStatusNone>.sapMObjStatusText,.sapMObjStatusError>.sapMObjStatusText,.sapMObjStatusWarning>.sapMObjStatusText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-weight:bold;
+  }
+}
+@media screen\0 {
+  body.sapUiBody,.sapMText,.sapMPanelHdr,.sapUiForm h4.sapUiFormTitle,.sapMLabel,.sapMOH .sapMOHAttr .sapMObjectAttributeTitle, .sapMOH .sapMOHAttr .sapMObjectAttributeText, .sapMOH .sapMOHAttr .sapMObjectAttributeColon,.sapMInputBaseInner,
+.sapMBtnInner,.sapMSFI,.sapMOHNumberDiv .sapMObjectNumberText,.sapMFT{
+    font-family: sans-serif, Arial, Helvetica;
+  }
+  .sapMIBar-CTX.sapMFooter-CTX .sapMText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-style:italic;
+    font-weight:bold;
+  }
+  .sapMOHTitle h1 .sapMText,.sapMTitle, .sapMFT strong,.sapUiForm .sapMText,.sapMObjStatusSuccess>.sapMObjStatusText,.sapMIBar-CTX.sapMFooter-CTX
+.blue-text.sapMText,.sapMObjStatusNone>.sapMObjStatusText,.sapMObjStatusError>.sapMObjStatusText,.sapMObjStatusWarning>.sapMObjStatusText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-weight:bold;
+  }
+}
+@supports (-ms-accelerator:true) {
+  body.sapUiBody,.sapMText,.sapMPanelHdr,.sapUiForm h4.sapUiFormTitle,.sapMLabel,.sapMOH .sapMOHAttr .sapMObjectAttributeTitle, .sapMOH .sapMOHAttr .sapMObjectAttributeText, .sapMOH .sapMOHAttr .sapMObjectAttributeColon,.sapMInputBaseInner,
+.sapMBtnInner,.sapMSFI,.sapMOHNumberDiv .sapMObjectNumberText,.sapMFT{
+    font-family: sans-serif, Arial, Helvetica;
+  }
+  .sapMIBar-CTX.sapMFooter-CTX .sapMText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-style:italic;
+    font-weight:bold;
+  }
+  .sapMOHTitle h1 .sapMText,.sapMTitle, .sapMFT strong,.sapUiForm .sapMText,.sapMObjStatusSuccess>.sapMObjStatusText,.sapMIBar-CTX.sapMFooter-CTX
+.blue-text.sapMText,.sapMObjStatusNone>.sapMObjStatusText,.sapMObjStatusError>.sapMObjStatusText,.sapMObjStatusWarning>.sapMObjStatusText{
+    font-family:sans-serif, Arial, Helvetica;
+    font-weight:bold;
+  }
+}
+
+.sapMPopup-CTX .sapMIBar.sapMHeader-CTX.sapMPopoverHeader {
+    background-color: #007cc0;
+}
+
+.sapMIBar-CTX .sapMBtnTransparent {
+    background-image: none;
+    background-color: #007833;
+    border-color: #007833;
+    border:0;
+    color: #ffffff;
+}
+
+
+.sapUiFormM .sapUiFormContainerTitle>.sapUiFormTitle {
+    font-weight: bold;
+}
+.masterStyle{
+width:40%;
+}
+.zlogoHeader
+{
+    background:url(images/ERP_Logo.png) no-repeat left center;
+    padding-left: 45px;      
+    border-bottom:0px;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.30);
+    margin-top: 0.25rem;
+    font-weight:bold;
+    vertical-align: bottom;
+}
+
+.ztopMargin
+{
+	margin-top:1.15rem;
+}

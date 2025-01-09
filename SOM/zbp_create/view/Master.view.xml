@@ -1,0 +1,46 @@
+<mvc:View controllerName="ZBP_CREATE.view.Master" displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table"
+	xmlns="sap.m">
+	<Page id="page" title="{i18n>masterTitle}">
+		<headerContent>
+			<Toolbar>	
+                <Button id='icon2' 
+                icon='sap-icon://hint' press="onHelpLink" tooltip="Open Instructions" type="Emphasized">
+                </Button>
+            </Toolbar>			
+		</headerContent>
+		<subHeader>
+			<Bar id="searchBar">
+				<contentMiddle>
+					<!--showRefreshButton="{device>/isNoTouch}"-->
+					<!--search="onValueHelpBP"-->
+					<SearchField id="searchField" showRefreshButton="false" showSearchButton="false" placeholder="{i18n>masterSearchPlaceholder}"
+						liveChange="onLiveSearch" tooltip="{i18n>masterSearchTooltip}" width="100%"></SearchField>
+				</contentMiddle>
+				<contentRight>
+					<Button id='srch' icon="sap-icon://employee-lookup" press="onValueHelpBPB" tooltip="Search existing Business Partners" type="Emphasized"/>
+					<Button id='add' icon="sap-icon://add-contact" press="onAddPartner" tooltip="Add new Business Partner" type="Emphasized"/>
+					<Button id='refr' icon="sap-icon://kpi-managing-my-area" press="onRefreshPartner" tooltip="Check my Business Partner's status" type="Emphasized"/>
+				</contentRight>
+			</Bar>
+		</subHeader>
+		<content>
+			<List id="list" items="{/GTS_BPSet}" mode="{device>/listMode}" noDataText="{i18n>masterListNoDataText}" select="onSelect">
+				<items>
+					<ObjectListItem title="{Name1}" type="Active" press="onSelect" number="" numberUnit="">
+						<firstStatus>
+							<ObjectStatus id="oMasterStatus" state="{ path: 'Msg', formatter: 'ZBP_CREATE.util.Formatter.convertStatusState' }" text=""
+								icon="./css/images/{Msg}.png" iconDensityAware = "false"/>
+						</firstStatus>
+						<attributes>
+							<ObjectAttribute text="{path: 'Crdat', formatter: 'ZBP_CREATE.util.Formatter.convertDate'}"></ObjectAttribute>
+							<ObjectAttribute text=""></ObjectAttribute>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>

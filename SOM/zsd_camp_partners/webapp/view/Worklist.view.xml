@@ -1,0 +1,213 @@
+<mvc:View controllerName="zsdcamppartners.controller.Worklist" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistViewTitle}"
+	 >
+	
+		<semantic:content >
+					
+		<f:SimpleForm id="idform" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout" 
+		    width="800px"
+		    class="sapUiMediumMarginBegin">
+			<f:content>				
+				<!--<core:Title text="{i18n>Customer}" emphasized="true" class="sapUiNoMargin"/>-->
+				<Label text="{/#SoldTo/Kunag/@sap:label}" textAlign="Begin">
+					<layoutData>
+						<l:GridData span="XL4 L4 M4 S4"></l:GridData>
+					</layoutData>							
+				</Label>
+				<Input value="{JMDL>/Kunag}" id="inpKunag"  
+					valueState="{mandatoryFields>/Tradename}"
+					valueStateText="{i18n>EnterValue}"
+					maxLength="{= parseInt(${/#SoldTo/Kunag/@maxLength}) }"
+					showValueHelp="true" app:SearchName="DEBIS" app:SearchService="Debis" app:SearchReturnField="Kunnr" valueHelpRequest="bc_onSearchHelp">
+					<layoutData>
+						<l:GridData span="XL6 L6 M6 S6"></l:GridData>
+					</layoutData>					
+				</Input>
+				<Button text="edit" icon="sap-icon://edit" tooltip="{i18n>edit}" press="onEdit" >
+					<layoutData>
+						<l:GridData span="XL2 L2 M2 S2"></l:GridData>
+					</layoutData>	
+				</Button>
+			</f:content>
+		</f:SimpleForm>	
+	<l:VerticalLayout
+		binding="{JMDL>/}"
+		class="sapUiLargeMarginBegin">
+		<l:content>
+			<ObjectIdentifier title="{JMDL>Name1}, {JMDL>Name2}" text="{JMDL>Stras}, {JMDL>Ort01}, {JMDL>Regio} {JMDL>Pstlz}"  
+			titleActive="false" titlePress="titleClicked"
+			visible="{= ${JMDL>Name1} !== '' }"
+			/>
+		</l:content>
+	</l:VerticalLayout>
+
+			
+	<Table id="tblShipToQty" items="{JMDL>/ShipToQtySet}" noDataText="{i18n>detailLineItemTableNoDataText}"
+		busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin"
+		mode="None"
+		width="95%"
+		growingThreshold="30"
+		growing="true"
+		growingScrollToLoad="true"
+		updateFinished="ontblShipToQtyFinished">
+		<!--<headerToolbar>-->
+		<!--	<OverflowToolbar id="tblShipToQtyToolbar">-->
+		<!--		<Title id="tblShipToQtyHeader"/>-->
+		<!--		<ToolbarSpacer/>-->
+		<!--		<Button icon="sap-icon://add" tooltip="Add" press="BcAddShipToQty" />-->
+		<!--		<Button icon="sap-icon://delete" tooltip="Delete" press="BcDeleteShipToQty" />-->
+		<!--		<Button icon="sap-icon://sort" tooltip="Sort by ConstQty" press="BcSortShipToQty"/>-->
+		<!--		<Button icon="sap-icon://filter" press="bcShipToQtyFilter" />-->
+		<!--		<Button icon="sap-icon://action-settings" press="bcShipToQtySettingsDialog" >-->
+		<!--			<layoutData>-->
+		<!--				<OverflowToolbarLayoutData priority="{= sap.m.OverflowToolbarPriority.NeverOverflow }" />-->
+		<!--			</layoutData>-->
+		<!--		</Button>				-->
+		<!--	</OverflowToolbar>-->
+		<!--</headerToolbar>-->
+		<columns>
+			<!--<Column width="3em" >-->
+			<!--	<Text text="Delete"/>-->
+			<!--</Column>			-->
+			<!--<Column>-->
+			<!--	<Text text="GuidChar"/>-->
+			<!--</Colun>-->
+			<!--<Column>-->
+			<!--	<Text text="GuidPr"/>-->
+			<!--</Column>-->
+			<Column demandPopin="false"  width="8rem">
+				<Text text="{/#SoldToShipToQty/Kunwe/@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Desktop" demandPopin="true" width="30rem">
+				<Text text="{/#SoldToShipToQty/ShiptoName/@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" >
+				<Text text="{/#SoldToShipToQty/Zterm/@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" >
+				<Text text="{/#SoldToShipToQty/AreaMgr/@sap:label}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Right">
+				<Text text="{/#SoldToShipToQty/SplitQty/@sap:label}"/>
+			</Column>	
+			<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Right" width="3rem">
+				<Text text="{/#SoldToShipToQty/Selected/@sap:label}"/>
+			</Column>			
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<!--<Button icon="sap-icon://delete" type="Reject" press="BcDeleteP1920"/>					-->
+					<!--<ObjectIdentifier text="{JMDL>GuidChar}"/>-->
+					<!--<Input type="Text" value="{JMDL>SeqNr}"/>-->
+
+					<Input type="Text"  value="{JMDL>Kunwe}"
+										valueState="{= ${JMDL>Kunwe} === '' ? 'None' : ${JMDL>KunweErr} }"
+										valueStateText="{i18n>EnterValue}"
+										
+										editable="false"
+					        		    maxLength="{= parseInt(${/#SoldToShipToQty/Kunwe/@maxLength}) }" />
+					<Input type="Text"  value="{JMDL>ShiptoName}"
+										valueState="{= ${JMDL>ShiptoName} === '' ? 'None' : ${JMDL>ShiptoNameErr} }"
+										valueStateText="{i18n>EnterValue}"
+										editable="false"
+										maxLength="{= parseInt(${/#SoldToShipToQty/ShiptoName/@maxLength}) }" />
+
+					<Input type="Text"  value="{JMDL>Zterm}"
+										valueState="{= ${JMDL>Zterm} === '' ? 'None' : ${JMDL>ZtermErr} }"
+										valueStateText="{i18n>EnterValue}"
+										editable="{= !${JMDL>StratcoUser} }"
+					        		    maxLength="{= parseInt(${/#SoldToShipToQty/Zterm/@maxLength}) }" />
+					<Input type="Text"  value="{JMDL>AreaMgr}"
+										valueState="{= ${JMDL>AreaMgr} === '' ? 'None' : ${JMDL>AreaMgrErr} }"
+										valueStateText="{i18n>EnterValue}"
+										editable="{JMDL>StratcoUser}"
+					        		    maxLength="{= parseInt(${/#SoldToShipToQty/AreaMgr/@maxLength}) }" />
+					<Input type="Text"  value="{path:'JMDL>SplitQty', type : '.ConvZeroNumber' }"
+										valueState="{= ${JMDL>SplitQty} === '' ? 'None' : ${JMDL>SplitQtyErr} }"
+										valueStateText="{i18n>EnterValue}"
+										editable="{JMDL>StratcoUser}"
+									    textAlign="Right" 
+										liveChange="LiveChangeOnlyNumber" 
+										app:integerPart="{/#SoldToShipToQty/SplitQty/@precision}"
+										app:fractionalPart="{/#SoldToShipToQty/SplitQty/@scale}" 												
+					        		    />					        		    
+					<CheckBox text="" selected="{JMDL>Selected}" editable="{= !${JMDL>StratcoUser} }"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>			
+			
+			
+			<!--<ui:Table id="uitable" selectionMode="None" rows="{JMDL>/BrandMaterialSet}" visibleRowCount="20" sort="sortDeliveryDate"-->
+			<!--	ariaLabelledBy="title">-->
+			<!--	<ui:toolbar>-->
+			<!--		<Toolbar>-->
+			<!--			<Title id="uititle" text="{i18n>worklistViewTitle}"></Title>-->
+			<!--			<ToolbarSpacer/>-->
+			<!--			<Button icon="sap-icon://add" text="{i18n>add}" tooltip="{i18n>add}" press="onAdd"/>-->
+			<!--			<Button icon="sap-icon://save" text="{i18n>save}" tooltip="{i18n>save}" press="onSave"/>-->
+			<!--			<Button text="Export" icon="sap-icon://excel-attachment" width="auto" press="onDataExport"/>-->
+			<!--		</Toolbar>-->
+			<!--	</ui:toolbar>-->
+			<!--	<ui:columns>-->
+			<!--		<ui:Column width="4rem">-->
+			<!--			<Label text=""/>-->
+			<!--			<ui:template>-->
+			<!--				<Button icon="sap-icon://delete" type="Reject" press="onDeleteBrandLink" visible="{= ${JMDL>NewInd} === true }"/>-->
+			<!--			</ui:template>-->
+			<!--		</ui:Column>-->
+			<!--		<ui:Column width="4rem">-->
+			<!--			<Label text="{i18n>Delete}"/>-->
+			<!--			<ui:template>-->
+							<!--<Button icon="sap-icon://delete" type="Reject" press="deleteBrandLink" visible="{= ${JMDL>NewInd} === true }"/>-->
+			<!--				<CheckBox text="" selected="{JMDL>DelInd}" visible="{= ${JMDL>NewInd} === false }" />-->
+							<!--<Text text="{= ${JMDL>NewInd} === true }"></Text>-->
+			<!--			</ui:template>-->
+			<!--		</ui:Column>					-->
+			<!--		<ui:Column width="15rem" sortProperty="Brand">-->
+			<!--			<Label text="{/#BrandMaterial/Brand/@sap:label}"/>-->
+			<!--			<ui:template>-->
+			<!--				<Select-->
+			<!--				   enabled="{= ${JMDL>NewInd} === true }"-->
+			<!--				   selectedKey="{JMDL>Brand}"-->
+			<!--				   valueState="{= ${JMDL>BrandErr} === '' ? 'None' : ${JMDL>BrandErr} }"-->
+			<!--				   items="{ path: 'JMDL>/Brands', -->
+			<!--				            sorter: { path: 'Brand' },-->
+			<!--				            filters: [],-->
+			<!--				            templateShareable: true-->
+			<!--				           }" -->
+			<!--					>-->
+			<!--					<core:Item key="{JMDL>Brand}" text="{JMDL>Brandname}" />-->
+			<!--				</Select>								-->
+							<!--<Input type="Text" value="{path:'JMDL>Brand'}" textAlign="Left" maxLength="{= parseInt(${/#BrandMaterial/Brand/@maxLength}) }" -->
+							<!--	valueState="{= ${JMDL>BrandErr} === '' ? 'None' : ${JMDL>BrandErr} }"-->
+							<!--	valueStateText="{i18n>EnterValue}"-->
+							<!--	editable="{= ${JMDL>NewInd} === true }"-->
+							<!--/>-->
+			<!--			</ui:template>-->
+			<!--		</ui:Column>-->
+			<!--		<ui:Column width="11rem" sortProperty="Matnr">-->
+			<!--			<Label text="{/#BrandMaterial/Matnr/@sap:label}"/>-->
+			<!--			<ui:template>-->
+			<!--				<Input type="Text" value="{path:'JMDL>Matnr'}" textAlign="Left" maxLength="{= parseInt(${/#BrandMaterial/Matnr/@maxLength}) }"-->
+			<!--					valueState="{= ${JMDL>MatnrErr} === '' ? 'None' : ${JMDL>MatnrErr} }"-->
+			<!--					valueStateText="{i18n>EnterValue}"-->
+			<!--					editable="{= ${JMDL>NewInd} === true }"-->
+			<!--					showValueHelp="true" app:SearchName="MAT0M" app:SearchService="Mat0m" app:SearchReturnField="Matnr" valueHelpRequest="bc_onSearchHelp"/>-->
+			<!--			</ui:template>-->
+			<!--		</ui:Column>-->
+			<!--	</ui:columns>-->
+			<!--</ui:Table>-->
+		</semantic:content>
+		
+					<semantic:customFooterContent>
+						<Button text="{i18n>export}" press="onDataExport"/>
+
+						<Button text="{i18n>save}" tooltip="{i18n>save}" press="onSave"/>
+					</semantic:customFooterContent>		
+	</semantic:FullscreenPage>
+</mvc:View>

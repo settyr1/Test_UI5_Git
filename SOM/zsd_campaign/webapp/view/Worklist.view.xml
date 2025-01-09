@@ -1,0 +1,94 @@
+<mvc:View controllerName="zsdcampaign.controller.Worklist" xmlns="sap.m" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>worklistViewTitle}"
+	 >
+	
+		<semantic:content >
+					
+		<f:SimpleForm id="idform" maxContainerCols="1" editable="true" layout="ResponsiveGridLayout"
+
+		    class="sapUiMediumMarginBegin">
+			<f:content>				
+				<!--<core:Title text="{i18n>Customer}" emphasized="true" class="sapUiNoMargin"/>-->
+					<Label text="{/#Campaign/DatabChar/@sap:label}" textAlign="Begin">
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"></l:GridData>
+						</layoutData>
+					</Label>
+					<DatePicker value="{JMDL>/DatabChar}" valueFormat="yyyyMMdd" displayFormat="MM/dd/yyyy" class="sapUiSmallMarginBottom"
+					change="bc_handleDateChange">
+						<layoutData>
+							<l:GridData span="XL3 L3 M3 S3"></l:GridData>
+						</layoutData>
+					</DatePicker>
+					<Label text="{/#Campaign/DatbiChar/@sap:label}" textAlign="Begin">
+						<layoutData>
+							<l:GridData span="XL2 L2 M2 S2"></l:GridData>
+						</layoutData>
+					</Label>
+					<DatePicker value="{JMDL>/DatbiChar}" valueFormat="yyyyMMdd" displayFormat="MM/dd/yyyy" class="sapUiSmallMarginBottom"
+					change="bc_handleDateChange">
+						<layoutData>
+							<l:GridData span="XL3 L3 M3 S3"></l:GridData>
+						</layoutData>
+					</DatePicker>
+					<Button text="{i18n>search}" tooltip="{i18n>search}" press="onSearchCampaign">
+						<layoutData>
+							<l:GridData span="XL1 L1 M1 S1"></l:GridData>
+						</layoutData>						
+					</Button>					
+					
+	
+			</f:content>
+		</f:SimpleForm>	
+
+			<ui:Table id="uitable" selectionMode="Single" rows="{JMDL>/CampaignSet}" visibleRowCount="15" sort="sortDeliveryDate"
+				ariaLabelledBy="title" rowSelectionChange="onRowChange">
+				<ui:toolbar>
+					<Toolbar>
+						<Title id="uititle" text="{i18n>worklistViewTitle}"></Title>
+						<ToolbarSpacer/>
+						<Button icon="sap-icon://add" text="{i18n>create}" tooltip="{i18n>create}" press="onCreateNew"/>
+						<!--<Button text="Export" icon="sap-icon://excel-attachment" width="auto" press="onDataExport"/>-->
+					</Toolbar>
+				</ui:toolbar>
+				<ui:columns>
+					<!--<ui:Column width="4rem">-->
+					<!--	<Label text=""/>-->
+					<!--	<ui:template>-->
+					<!--		<Button icon="sap-icon://delete" type="Reject" press="onDeleteBrandLink" visible="{= ${JMDL>NewInd} === true }"/>-->
+					<!--	</ui:template>-->
+					<!--</ui:Column>-->
+					
+					<ui:Column sortProperty="CampId"  filterProperty="CampId">
+						<Label text="{/#Campaign/CampId/@sap:label}"/>
+						<ui:template>
+							<Text  text="{path:'JMDL>CampId', type : '.ConvZeroNumber' }" ></Text>
+						</ui:template>
+					</ui:Column>
+					<ui:Column  sortProperty="CampDesc">
+						<Label text="{/#Campaign/CampDesc/@sap:label}"/>
+						<ui:template>
+							<Text text="{path:'JMDL>CampDesc'}"></Text>
+						</ui:template>
+					</ui:Column>
+					<ui:Column sortProperty="DatabChar">
+						<Label text="{/#Campaign/DatabChar/@sap:label}"/>
+						<ui:template>
+							<Text text="{path:'JMDL>DatabChar', formatter:'.formatter.dateFormat' }"></Text>
+						</ui:template>
+					</ui:Column>
+					<ui:Column  sortProperty="DatbiChar">
+						<Label text="{/#Campaign/DatbiChar/@sap:label}"/>
+						<ui:template>
+							<Text text="{path:'JMDL>DatbiChar', formatter:'.formatter.dateFormat'}"></Text>
+						</ui:template>
+					</ui:Column>					
+				</ui:columns>
+			</ui:Table>
+		</semantic:content>
+		
+	</semantic:FullscreenPage>
+</mvc:View>

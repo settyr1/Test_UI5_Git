@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ResponsivePopover title="Search Term Additional Information" class="sapUiPopupWithPadding" placement="Bottom">
+		<beginButton>
+			<Button text="close" 
+			        press="handleCloseButton" 
+			        class="sapMBtnNew"
+			        icon="sap-icon://close-command-field"/>
+		</beginButton>
+		<content>
+			<Text text="Lorem ipsum dolor st amet"/>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

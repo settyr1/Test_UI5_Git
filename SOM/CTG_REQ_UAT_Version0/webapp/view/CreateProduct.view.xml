@@ -1,0 +1,226 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:t="sap.ui.table" controllerName="com.pfizer.ctg.CTG_REQ.controller.CreateProduct" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="CreateProdPage" title="{i18n>viewTitle}" showNavButton="true" navButtonPress="onNavBack">
+				<headerContent>
+					<Button id="bHome" press="onHome" icon="sap-icon://home" type="Reject" tooltip="Return to Home"></Button>
+					<Text id="idUserName" text="{i18n>displayUserName}" class="myDispStyle"></Text>
+				</headerContent>
+				<content>
+					<f:Form id="prodCreaForm" title="Create Product" width="auto" editable="true" visible="true">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4"
+								columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:toolbar>
+							<Toolbar>
+								<Title id="prodCreaMain" text="Create Product" level="H4" titleStyle="H4"/>
+								<ToolbarSpacer/>
+								<Label required="true" text="{i18n>requiredField}"/>
+							</Toolbar>
+						</f:toolbar>
+						<f:formContainers>
+							<f:FormContainer visible="true">
+								<f:formElements>
+									<f:FormElement visible="false">
+										<f:label>
+											<Label text="Pfizer Compound Name" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<Input id="pfCompName" value="{createProductModel>/newProduct/ProdName}" width="150px" editable="false" change="onValueChange"></Input>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Compound Names" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<Table id="otherNamesTab" items="{otherNamesModel>/Names}" width="65%" fixedLayout="false">
+												<columns>
+													<Column width="auto">
+														<Text text="Qualifier"/>
+													</Column>
+													<Column width="auto">
+														<Text text="Name"/>
+													</Column>
+													<Column width="auto">
+														<Button id="bAddRow" icon="sap-icon://add" text="" press="onAddTabRow" tooltip="Add Row" enabled="false"/>
+													</Column>
+													<Column width="auto"/>
+												</columns>
+												<items>
+													<ColumnListItem>
+														<cells>
+															<ComboBox id="prodQual" width="160px" items="{ path: 'dropDownModel>/prodQualifier', templateShareable : true }" editable="true"
+																value="{otherNamesModel>Qualifier}" change="onProdQualChange">
+																<items>
+																	<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+																</items>
+															</ComboBox>
+															<Input id="othNames" value="{otherNamesModel>ProdName}" width="250px" editable="true" change="onValueChange"></Input>
+															<Button id="bDeleteRow" icon="sap-icon://delete" press="onDelTabRow" type="Reject" tooltip="Delete Row"/>
+														</cells>
+													</ColumnListItem>
+												</items>
+											</Table>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+					<f:Form id="prodCreate" title="" width="auto" editable="true" visible="true">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="6" labelSpanL="6" labelSpanM="6" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0"
+								columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer visible="true">
+								<f:formElements>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Development Phase" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<ComboBox id="devPhase" width="150px" items="{ path: 'dropDownModel>/devPhase', templateShareable : true }" editable="false"
+												change="onValueChange">
+												<items>
+													<core:Item text="{dropDownModel>Desc}" key="{dropDownModel>Value}"></core:Item>
+												</items>
+											</ComboBox>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Primary Indication" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<Input id="priInd" value="" width="280px" editable="false" change="onValueChange" showValueHelp="true"
+												   valueHelpRequest="onValueHelpClick"/>
+										</f:fields>
+									</f:FormElement>									
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="" visible="false"/>
+										</f:label>
+										<f:fields>
+											<Text  id="priIndHier" text="{createProductModel>/newProduct/PriIndHier}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Mechanism of Action" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<ComboBox id="actionMech" width="280px" items="{ path: 'dropDownModel>/mechOfAction', templateShareable : true }"
+												change="onValueChange" editable="false">
+												<items>
+													<core:Item text="{dropDownModel>Desc}" enabled="true" key="{dropDownModel>Value}"/>
+												</items>
+											</ComboBox>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Mechanism of Action Type" design="Bold" required="false"/>
+										</f:label>
+										<f:fields>
+											<RadioButtonGroup id="MOAType" columns="4" selectedIndex="0" valueState="None" editable="false" select="onValueChange">
+												<buttons>
+													<RadioButton text="Disease Modifier" editable="true" valueState="None" selected="true" />
+													<RadioButton text="Treats Symptoms" editable="true" valueState="None" selected="false"/>
+												</buttons>
+											</RadioButtonGroup>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Daily Dose at Product Launch(MG)" design="Bold" required="false"/>
+										</f:label>
+										<f:fields>
+											<Input id="dDose" value="{createProductModel>/newProduct/Ddose}" width="150px" editable="false" change="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Product Source" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<RadioButtonGroup id="prodSource" columns="2" selectedIndex="0" valueState="None" editable="false" select="onValueChange" width="170px">
+												<buttons>
+													<RadioButton id="pfizer" text="Pfizer" editable="true" valueState="None" selected="false" textAlign="Left"/>
+													<RadioButton id="external" text="3rd Party" editable="true" valueState="None" selected="false" textAlign="Left"/>
+												</buttons>
+											</RadioButtonGroup>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Product Active" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<CheckBox id="prodActv" text="" enabled="false" visible="true" selected="false" select="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+							<f:FormContainer visible="true">
+								<f:formElements>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Is it Biologic?" design="Bold" required="true"/>
+										</f:label>
+										<f:fields>
+											<Switch id="biologic" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label>
+											<Label text="Is it Biosimilar?" design="Bold" required="false"/>
+										</f:label>
+										<f:fields>
+											<Switch id="biosim" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement id="ficIndE" visible="false">
+										<f:label>
+											<Label id="ficIndL" text="Is it First in Class?" design="Bold" required="false"/>
+										</f:label>
+										<f:fields>
+											<Switch id="firstInClass" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement id="pocIndE" visible="false">
+										<f:label>
+											<Label text="Has it reached POC?" design="Bold" required="false"/>
+										</f:label>
+										<f:fields>
+											<Switch id="reachedPOC" state="false" customTextOff="No" customTextOn="Yes" enabled="false" change="onValueChange"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement visible="true">
+										<f:label></f:label>
+										<f:fields></f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</content>
+				<footer class="myFooter">
+					<Bar>
+						<contentRight>
+							<Button id="deleteProd" type="Reject" icon="sap-icon://delete" tooltip="Delete Product" press="onDeleteProd" visible="false"
+								class="deleteButtonStyle"></Button>
+							<Button id="cancelProd" text="Cancel" icon="sap-icon://sys-cancel" type="Reject" press="onCancelProd" visible="false" class="myButtonStyle"></Button>
+							<Button id="editProd" text="Edit" icon="sap-icon://edit" type="Accept" press="onEditProd" visible="false" class="myFooter myButtonStyle"></Button>
+							<Button id="saveProd" text="Submit" icon="sap-icon://complete" type="Accept" press="onSaveProd" visible="false" class="myFooter myButtonStyle"></Button>
+							<Image tooltip="Pfizer ERP"/>
+						</contentRight>
+					</Bar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

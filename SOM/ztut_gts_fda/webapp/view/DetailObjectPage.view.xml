@@ -1,0 +1,137 @@
+<core:View
+		xmlns:core="sap.ui.core"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:semantic="sap.m.semantic"
+		xmlns:footerbar="sap.ushell.ui.footerbar"		
+		xmlns="sap.uxap"
+		xmlns:layout="sap.ui.layout"
+		xmlns:m="sap.m"
+		xmlns:comp="sap.ui.comp.variants"
+		xmlns:f="sap.ui.layout.form"
+		xmlns:Header="com.pfizer.fda.SharedBlocks.Header"
+		xmlns:Dependent="com.pfizer.fda.SharedBlocks.Dependent"
+		xmlns:sample="com.pfizer.fda.ObjectPageOnJSON"
+		xmlns:goals="com.pfizer.fda.SharedBlocks.goals"
+		xmlns:personal="com.pfizer.fda.SharedBlocks.personal"
+		xmlns:employment="com.pfizer.fda.SharedBlocks.employment"
+		controllerName="com.pfizer.fda.controller.DetailObjectPage"
+		height="100%">
+
+<semantic:DetailPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}"
+		title="{i18n>detailTitle}"
+		busy="{detailView>/busy}"
+		busyIndicatorDelay="{detailView>/delay}">
+
+		<semantic:content>
+			
+	<ObjectPageLayout id="ObjectPageLayout" class="sapUiNoMargin noPadding" useIconTabBar="true" busyIndicatorDelay="{detailView>/lineItemTableDelay}">
+		<headerTitle class="sapUiNoMargin">
+			<ObjectPageHeader id="headerForTest"
+							  headerDesign="Light"
+							  objectTitle="{FDA>/Prvsy} {FDA>/Prtxt}"
+							  showTitleSelector="false"
+							  titleSelectorPress="handleTitleSelectorPress"
+							  showMarkers="true"
+							  markFavorite="true"
+							  markLocked="false"
+							  markFlagged="false"
+							  markLockedPress="handleMarkLockedPress"
+							  objectSubtitle="Last Updated {path:'FDA>/ChangedOnStr', formatter:'.formatter.formatMyDateTime'}"
+							  >
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://action" text="action" importance="Low"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://action-settings" text="settings" importance="Low"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://edit" text="edit" importance="Medium"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://save" text="save" visible="false"/>
+				</actions>
+				<!--<breadCrumbsLinks>-->
+				<!--	<m:Link text="Page 1 a very long link" press="handleLink1Press"/>-->
+				<!--	<m:Link text="Page 2 long link" press="handleLink2Press"/>-->
+				<!--</breadCrumbsLinks>-->
+			</ObjectPageHeader>
+		</headerTitle>
+		<headerContent>
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="{/#FDA_PGENERAL/GaCode/@sap:label}"    text="{FDA>/GaCode}" state="Error" />
+				<m:ObjectStatus title="{/#FDA_PGENERAL/Gapgmcode/@sap:label}" text="{FDA>/Gapgmcode}" state="Warning"/>
+				<m:ObjectStatus title="{/#FDA_PGENERAL/Gaprocode/@sap:label}" text="{FDA>/Gaprocode}" state="Success" icon="sap-icon://alert"/>
+			</layout:VerticalLayout>
+			<m:Text width="200px" visible="{= ${FDA>/FdaMchanged} === 'X' ? true : false }"
+					text="Manually Changed"/>
+			<m:ObjectStatus text="{/#FDA_PGENERAL/Itemtype/@sap:label}  {FDA>/Itemtype}" state="Error"/>
+			<m:ObjectStatus title="{/#FDA_PGENERAL/Prcodequal/@sap:label}" text="{FDA>/Prcodequal}" state="Warning"/>
+			<layout:VerticalLayout>
+				<layout:layoutData>
+					<ObjectPageHeaderLayoutData
+							showSeparatorAfter="true"
+							showSeparatorBefore="true"/>
+				</layout:layoutData>			
+				<m:ProgressIndicator
+						percentValue="40"
+						displayValue="30%"
+						showValue="true"
+						state="None"/>
+				<!--<layout:VerticalLayout>-->
+			</layout:VerticalLayout>	
+			<layout:VerticalLayout>
+				<layout:layoutData>
+					<ObjectPageHeaderLayoutData
+							showSeparatorAfter="true"
+							showSeparatorBefore="true"/>
+				</layout:layoutData>
+				<m:Label text="{/#FDA_PGENERAL/Intusecode/@sap:label}"/>
+				<m:ObjectIdentifier title="" text="{FDA>/Intusecode}" titleActive="true" titlePress="titleClicked"/>
+			</layout:VerticalLayout>
+
+			<!--<m:Tokenizer>-->
+			<!--	<m:Token text="Wayne Enterprises"/>-->
+			<!--	<m:Token text="Big's Caramels"/>-->
+			<!--</m:Tokenizer>-->
+
+			<m:RatingIndicator maxValue="8" class="sapUiSmallMarginBottom" value="4" tooltip="Rating Tooltip"/>
+
+		</headerContent>
+		<sections class="sapUiNoMargin noPadding">
+			<ObjectPageSection title="FDA" class="sapUiNoMargin noPadding"> 
+				<subSections class="noPadding">
+					<ObjectPageSubSection title="General" >
+						<blocks class="sapUiNoMargin noPadding">
+<!-- add reference to page to display from namespace Header and file name-->
+							<Header:HeaderPage id="headerBlock"/>
+						</blocks>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection title="PG01/PG02/PG07" >
+						<blocks class="sapUiNoMargin noPadding">
+<!-- add reference to page to display from namespace Header and file name for P01-->
+							<Header:HeaderPageP01 id="headerBlockP01"/>
+						</blocks>
+					</ObjectPageSubSection>				
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection id="idP04-P06" title="P04-P06" class="sapUiNoMargin noPadding"> 
+				<subSections class="noPadding">
+					<ObjectPageSubSection title="P04-P06" >
+						<blocks class="sapUiNoMargin noPadding">
+<!-- add reference to page to display from namespace Dependent and file name for P04P06-->
+							<Dependent:P04P06 id="P04P06Block"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+	</ObjectPageLayout>
+
+	</semantic:content>
+
+	<semantic:customShareMenuContent>
+		<m:Button text="Save" icon="sap-icon://save" type="Emphasized" press="onSave" />
+	</semantic:customShareMenuContent>
+
+</semantic:DetailPage>
+
+</core:View>
